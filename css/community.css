@@ -20,8 +20,8 @@ body{
 	"menu menu menu"
 	"title title title"
 	". headers data"
-	". communities data"
-	"spacer spacer spacer";
+	". create data"
+	". post data";
 
 }
 
@@ -195,44 +195,14 @@ label.titleLabel{
 	grid-area: headers;
 }
 
-.communities{
-	grid-area: communities;
-	border: 1px solid black;
-	grid-template-rows: minmax(100px,500px);
+.create{
+	grid-area: create;
 }
 
-ul.communities{
-	border: 1px solid #E1E1E1;
-	margin-top: 0;
-}
-
-ul.communities li{
-	border-bottom: 1px solid #E1E1E1;
-	margin-bottom: -1;
-}
-
-label.commsLabel{
-	font-size: 20px;
-	padding: 10 0 0 10;
-	position: absolute;
-}
-
-.commsBtn{
-	border: 1px solid transparent;
-	background-color: transparent;
-	/*border: 1px solid black;*/
-	padding: 9 0 20 755;
-}
-
-.commsBtn:hover{
-	background-color: red;
+.post{
+	grid-area: post;
 }
 
 .data{
 	grid-area: data;
-}
-
-.spacer{
-	grid-area: spacer;
-	margin: 40;
 }

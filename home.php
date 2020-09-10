@@ -14,8 +14,8 @@
 			<div class="header">
 				<div class="logo">
 					<a class="aLogo" href="home.php">
-					<img src="pictures/logo3.png">
-					<label class ="siteName">SiteName</label>
+					<img class="logo3" src="pictures/pgh.png">
+					<img class ="proghub" src="pictures/proghub2.png">
 					</a>
 				</div>
 				
@@ -48,7 +48,7 @@
 			<!--LEFT NAVIGATION MENU-->
 			<div class="menu">
 				<ul class="nav">
-					<li class="open"><form class="homeNav" action="home2nd.php" method="get">
+					<li class="open"><form class="homeNav" action="home.php" method="get">
 						<input class="homeBtn" type="submit" value="Home"/></li>
 					</form></li>
 					<li><form class="communityNav" action="communities.php" method="get">
@@ -83,9 +83,15 @@
 				<label class="stars"> 0 Stars </label>
 				<label class="comments"> 0 Comments </label>
 			</div>
-			
+			<?php
+				$totalDiscussions = 5;
+				$totalProjects = 10;
+			?>
 			<div class="data">
-				Data
+				<ul class="data">
+					<li class="discussionsNum">Total Discussions: <?php echo $totalDiscussions; ?></li>
+					<li class="projectsNum">Total Projects: <?php echo $totalProjects; ?></li>
+				</ul>
 			</div>
 				
 		</div>

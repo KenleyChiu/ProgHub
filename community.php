@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<title>Website Project</title>
-		<link rel="stylesheet" type="text/css" href="css/communities.css">
+		<link rel="stylesheet" type="text/css" href="css/community.css">
 	</head>
 	
 	<?php
@@ -67,42 +67,30 @@
 			</div>
 			
 			<div class="title">
-				<label class="titleLabel"> COMMUNITIES </label>
+				<?php 
+					session_start();
+					//$titleName = $_GET
+					//dont know yet how to get the title of the community clicked.
+					echo "<label class='titleLabel'>".$_SESSION['communitiesArr'][0]."</label>";
+				?>
 			</div>
 			
 			<div class="headers">
 				headers
 			</div>
 			
-			<?php
-				session_start();
-				$communitiesArr = array();
-				array_push($communitiesArr,"Java","C","Javascript","C++","C#","Php","Ruby","Python");
+			<div class="create">
+				create
+			</div>
 				
-				$_SESSION['communitiesArr'] = $communitiesArr;
-				$communityCount = sizeof($communitiesArr);
-			?>
-			
-			<div class="communities">
-				<ul class="communities">
-					<form action="community.php" method="get">
-						<?php 
-							for($commsPos=0;$commsPos<$communityCount;$commsPos++){
-								echo "<li><label class='commsLabel' type='submit'/>".$_SESSION['communitiesArr'][$commsPos]."</label>
-								<input class='commsBtn"/*.$commsPos*/."' type='submit' value=''/></li>";
-							}
-						?>
-					</form>
-				</ul>
+			<div class ="post">
+				post
 			</div>
 			
 			<div class="data">
 				Data
 			</div>
-			
-			<div class="spacer">
 				
-			</div>
 		</div>
 		
 	</body>
