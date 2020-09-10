@@ -35,7 +35,7 @@
 					<?php 
 						if(!$signedInStatus){
 							echo "<form class='login' action='login.php' method='post'>";
-							echo "<input class='loginBtn' type='submit' value='Log In'/>";
+							echo "<input class='loginBtn' type='submit' value='Login'/>";
 							echo "</form>";
 							echo "<form class='signup' action='signup.php' method='post'>";
 							echo "<input class='signupBtn' type='submit' value='Sign Up'/>";
@@ -66,9 +66,12 @@
 				</ul>
 			</div>
 			
-			<!--<div class="longDiv">
-				<span class="longDivider"> </span>
-			</div>-->
+			<div class="info">
+				<ul class="info">
+					<li>Some: </li>
+					<li>Info</li>
+				</ul>
+			</div>
 			
 			<div class="sections">
 				<label class="recent"><a href="#"> Recent </a></label>

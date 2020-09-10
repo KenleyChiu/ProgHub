@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<title>Website Project</title>
-		<link rel="stylesheet" type="text/css" href="css/community.css">
+		<link rel="stylesheet" type="text/css" href="css/login.css">
 	</head>
 	
 	<?php
@@ -48,7 +48,7 @@
 			<!--LEFT NAVIGATION MENU-->
 			<div class="menu">
 				<ul class="nav">
-					<li class="open"><form class="homeNav" action="home.php" method="get">
+					<li><form class="homeNav" action="home.php" method="get">
 						<input class="homeBtn" type="submit" value="Home"/></li>
 					</form></li>
 					<li><form class="communityNav" action="communities.php" method="get">
@@ -67,30 +67,34 @@
 			</div>
 			
 			<div class="title">
-				<?php 
-					session_start();
-					//$titleName = $_GET
-					//dont know yet how to get the title of the community clicked.
-					echo "<label class='titleLabel'>".$_SESSION['communitiesArr'][0]."</label>";
-				?>
+				<label class="titleLabel"> LOGIN </label>
 			</div>
 			
-			<div class="headers">
-				headers
-			</div>
-			
-			<div class="create">
-				create
-			</div>
+			<?php
+				/*session_start();*/
 				
-			<div class ="post">
-				post
+				
+			?>
+			
+			<div class="loginForm">
+				<ul class="loginForm">
+					<form action="home.php" method="post">
+						<li><!--<label class="loginDetails"> Username: </label>-->
+						<input class="loginInput" type="text" name="username" Placeholder="Username.."/></li>
+						<li><!--<label class="loginDetails"> Password: </label>-->
+						<input class="loginInput" type="text" name="password" Placeholder="Password.."/></li>
+						<li><input class="logInAcc" type="submit" value="Log In"/></li>
+					</form>
+					<form action="signup.php" method="post">					
+						<li><label class="loginDetails"> Don't have an account yet? </label>
+						<input class="signUpAcc" type="submit" value="Sign Up Now"/></li>
+					</form>
+				</ul>
 			</div>
 			
-			<div class="data">
-				Data
-			</div>
+			<div class="footer">
 				
+			</div>
 		</div>
 		
 	</body>

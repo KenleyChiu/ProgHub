@@ -3,7 +3,7 @@
 	padding: 0;
 	text-decoration: none;
 	list-style: none;
-	font-family: Helvetica;
+	font-family: Courier New;
 }
 
 body{
@@ -17,8 +17,9 @@ body{
 	grid-template-rows: auto;
 	grid-template-areas:
 	"header header header"
-	"menu sections data"
-	"menu post data";
+	"menu menu menu"
+	"info sections data"
+	"info post data";
 }
 
 /*.mainGrid div:nth-child(1){
@@ -141,77 +142,38 @@ body{
 
 .menu{
 	grid-area: menu;
+	background-color: #323335;
+
 }
 
 ul.nav{
-	margin: 20;
-	background-color: white;
-	width: 70%;
-	transform: translate(40px, 5px);
-	height: 307.5px;
-	border-radius: 10px	;
-	border: 1px solid #E1E1E1;
+	height: 40;
+	margin-left: 350;	
 }
 
-/*ul.nav li{
-	margin: 10 130 10 20;
-	text-align: center;
-	border: 1px solid transparent;
-}*/
-
-/*ul.nav li:hover{
-	background-color: #D3D2CA;
-	color: white;
-}*/
-
-/*ul li.open{
-	background-color: #D3D2CA;
-	color: white;
-}*/
-
-.homeNav, .communityNav, .usersNav, .tagsNav, .aboutNav{
-	/*margin: 10 140 10 30;*/
-	border: 1px solid transparent;
-	border-bottom: 1px solid #E1E1E1;
-	text-align: center;
+ul.nav li{
+	margin-top: 10;
+	display: inline-block;
 }
-
-.aboutNav{
-	border: 0;
-}
-
-/*.homeNav:hover, .communityNav:hover, .usersNav:hover, .tagsNav:hover, .aboutNav:hover{
-	height: 35;
-	width: 130;
-	text-align: center;
-	border: 1px solid transparent;
-	background-color: blue;
-}*/
 
 .homeBtn, .communityBtn, .usersBtn, .tagsBtn, .aboutBtn{
-	height: 60;
-	width: 270;
-	text-align: center;
+	margin-left: 5;
+	padding: 5 5 4 5;
+	color: #D0FF36;
+	border-radius: 10px 10px 0 0;
 	border: 1px solid transparent;
-	transition: 0.45s ease;
-	text-transform: uppercase;
-	border-radius: 0;
-	font-size: 18px;
-	background-color: transparent;
-	transform: translate(-2px,-0.5px);
+	background-color: #323335; 
+	font-size: 17px;
 }
 
 .homeBtn{
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
-	background-color: #D3D2CA;
-	color: white;
+	background-color: gray;
+	color: #D0FF36;
 }
 
-.aboutBtn{
-	transform: translate(0px,-0.5px);
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
+.homeBtn:hover, .communityBtn:hover, .usersBtn:hover, .tagsBtn:hover, .aboutBtn:hover{
+	background-color: gray;
+	/*color: #A464FF;*/
 }
 
 .homeBtn:hover, .communityBtn:hover, .usersBtn:hover, .tagsBtn:hover, .aboutBtn:hover{
@@ -219,12 +181,33 @@ ul.nav{
 	color: white;
 }
 
+.info{
+	grid-area: info;
+	justify-content: center;
+	margin: 10 0 0 30;
+}
+
+ul.info{
+	background-color: white;
+	height: 100px;
+	border-radius: 10px	;
+	border: 1px solid #E1E1E1;
+	width: 275px;
+	display:block;
+	padding-top: 50;
+}
+
+ul.info li{
+	text-align: center;
+	align-self: center;
+}
+
 .sections{
 	grid-area: sections;
 	border: 1px solid black;
 	padding: 15;
 	margin: 10 60 0 0;
-	transform: translate(0px, 30px);
+	/*transform: translate(0px, 30px);*/
 	height: 20%;
 }
 
@@ -260,7 +243,7 @@ label.popular a:hover{
 	border: 1px solid black;
 	padding: 10;
 	margin: 0 60 0 0;
-	transform: translate(0px,-20px);
+	/*transform: translate(0px,-20px);*/
 	border-radius: 5px;
 	background-color: white;
 	height: 60%;
@@ -313,7 +296,6 @@ ul.data{
 	border: 1px solid #E1E1E1;
 	text-align: center;
 	width: 275px;
-	
 }
 
 .discussionsNum{

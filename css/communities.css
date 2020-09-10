@@ -3,7 +3,7 @@
 	padding: 0;
 	text-decoration: none;
 	list-style: none;
-	font-family: Helvetica;
+	font-family: Courier New;
 }
 
 body{
@@ -21,7 +21,7 @@ body{
 	"title title title"
 	". headers data"
 	". communities data"
-	"spacer spacer spacer";
+	"footer footer footer";
 
 }
 
@@ -148,11 +148,13 @@ body{
 
 .menu{
 	grid-area: menu;
-	justify-self: center;
+	background-color: #323335;
+
 }
 
 ul.nav{
 	height: 40;
+	margin-left: 350;	
 }
 
 ul.nav li{
@@ -160,35 +162,42 @@ ul.nav li{
 	display: inline-block;
 }
 
-.homeBtn{
-	padding-left: 10;
-}
-
 .homeBtn, .communityBtn, .usersBtn, .tagsBtn, .aboutBtn{
 	margin-left: 5;
-	background-color: transparent; 
-	border: 0;
+	padding: 5 5 4 5;
+	color: #D0FF36;
+	border-radius: 10px 10px 0 0;
+	border: 1px solid transparent;
+	background-color: #323335; 
 	font-size: 17px;
 }
 
-.aboutBtn{
-	margin-right: 635;
+.communityBtn{
+	background-color: gray;
+	color: #D0FF36;
 }
 
 .homeBtn:hover, .communityBtn:hover, .usersBtn:hover, .tagsBtn:hover, .aboutBtn:hover{
-	color: #A464FF;
+	background-color: gray;
+	/*color: #A464FF;*/
 }
 
 .title{
 	grid-area: title;
-	height: 120;
-	text-align: center;
-	background-color: blue;
+	margin-top: 5;
+	height: 100;
+	background-color: #A464FF;
+	border: 1px solid black;
+	border-radius: 20px 20px 0 0;
+	width: 55%;
+	justify-self: center;
+	justify-content: center;
+	display: flex;
 }
 
 label.titleLabel{
 	font-size: 40px;
-	line-height: 300%;
+	align-self: center;
 }
 
 .headers{
@@ -221,7 +230,7 @@ label.commsLabel{
 	border: 1px solid transparent;
 	background-color: transparent;
 	/*border: 1px solid black;*/
-	padding: 9 0 20 755;
+	padding: 9 0 20 800;
 }
 
 .commsBtn:hover{
@@ -232,7 +241,7 @@ label.commsLabel{
 	grid-area: data;
 }
 
-.spacer{
-	grid-area: spacer;
+.footer{
+	grid-area: footer;
 	margin: 40;
 }

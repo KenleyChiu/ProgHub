@@ -35,7 +35,7 @@
 					<?php 
 						if(!$signedInStatus){
 							echo "<form class='login' action='login.php' method='post'>";
-							echo "<input class='loginBtn' type='submit' value='Log In'/>";
+							echo "<input class='loginBtn' type='submit' value='Login'/>";
 							echo "</form>";
 							echo "<form class='signup' action='signup.php' method='post'>";
 							echo "<input class='signupBtn' type='submit' value='Sign Up'/>";
@@ -48,7 +48,7 @@
 			<!--LEFT NAVIGATION MENU-->
 			<div class="menu">
 				<ul class="nav">
-					<li class="open"><form class="homeNav" action="home.php" method="get">
+					<li><form class="homeNav" action="home.php" method="get">
 						<input class="homeBtn" type="submit" value="Home"/></li>
 					</form></li>
 					<li><form class="communityNav" action="communities.php" method="get">
@@ -100,7 +100,7 @@
 				Data
 			</div>
 			
-			<div class="spacer">
+			<div class="footer">
 				
 			</div>
 		</div>
