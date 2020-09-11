@@ -5,7 +5,29 @@
 	</head>
 	
 	<?php
-		$signedInStatus = false;
+		session_start();
+		
+		//define signed in status as false (default)
+		$signedInStatus = "False";
+		$_SESSION['signedInStatus'] = $signedInStatus;
+		
+		//not yet implemented for communities.php and community.php
+		//uses the session variable from login.php
+		if($_SESSION['signedInLogin'] != null) {
+			$_SESSION['signedInStatus'] = $_SESSION['signedInLogin'];
+		}
+		
+		//click to go to login.php
+		if(isset($_POST['loginBtn'])){
+			header("Location: login.php");
+		}
+			
+		//click to destroy session then just reload the page.
+		if(isset($_POST['destroySesh'])){
+			session_destroy();
+		}
+		//}
+		
 	?>
 
 	<body>
@@ -33,14 +55,22 @@
 						<li><a href="#">Log In</a></li>
 					</ul>-->
 					<?php 
-						if(!$signedInStatus){
-							echo "<form class='login' action='login.php' method='post'>";
-							echo "<input class='loginBtn' type='submit' value='Login'/>";
+						//if not signed in, show login and sign up
+						//if signed in, show account image and username (destroy button for now)
+						if($_SESSION['signedInStatus'] == "False"){
+							echo "<form class='login' method='post'>";
+							echo "<input class='loginBtn' type='submit' name='loginBtn' value='Login'/>";
 							echo "</form>";
 							echo "<form class='signup' action='signup.php' method='post'>";
-							echo "<input class='signupBtn' type='submit' value='Sign Up'/>";
+							echo "<input class='signupBtn' type='submit' name='signupBtn' value='Sign Up'/>";
+							echo "</form>";
+						} 
+						if ($_SESSION['signedInStatus'] == "True"){
+							echo "<form class='destroySesh' method='post'>";
+							echo "<input class='signupBtn' type='submit' name='destroySesh' value='Destroy Sesh'/>";
 							echo "</form>";
 						}
+						
 					?>
 				</div>
 			</div>

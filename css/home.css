@@ -239,14 +239,14 @@ label.popular a:hover{
 
 .post{
 	grid-area: post;
-	grid-auto-rows:minmax(200px, auto);
+	grid-auto-rows:minmax(190px, auto);
 	border: 1px solid black;
-	padding: 10;
+	padding: 10 0 0 10;
 	margin: 0 60 0 0;
 	/*transform: translate(0px,-20px);*/
 	border-radius: 5px;
 	background-color: white;
-	height: 60%;
+	height: 100%;
 }
 
 .post img{
@@ -270,6 +270,7 @@ p.postTitle{
 	margin-top: 5;
 	color: black;
 	line-height: 1.2;
+	font-weight: bold;
 }
 
 label.stars{

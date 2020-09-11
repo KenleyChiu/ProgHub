@@ -5,9 +5,19 @@
 	</head>
 	
 	<?php
-		$signedInStatus = false;
-	?>
+		session_start();
+		
+		//gets the signed in status from home.php
+		$signedInStatus = $_SESSION['signedInStatus'];
+		//if log in button is pressed, create a new session variable to be used in home.php and go to home.php
+		if(isset($_POST['logInAcc'])){
+			$signedInStatus = "True";
+			$_SESSION['signedInLogin'] = "True";
+			header("Location: home.php");
+		}
 
+	?>
+	
 	<body>
 		<div class="mainGrid">
 			<!--HEADER-->
@@ -33,7 +43,7 @@
 						<li><a href="#">Log In</a></li>
 					</ul>-->
 					<?php 
-						if(!$signedInStatus){
+						if($signedInStatus == "False"){
 							echo "<form class='login' action='login.php' method='post'>";
 							echo "<input class='loginBtn' type='submit' value='Login'/>";
 							echo "</form>";
@@ -71,19 +81,17 @@
 			</div>
 			
 			<?php
-				/*session_start();*/
-				
 				
 			?>
 			
 			<div class="loginForm">
 				<ul class="loginForm">
-					<form action="home.php" method="post">
+					<form method="post">
 						<li><!--<label class="loginDetails"> Username: </label>-->
 						<input class="loginInput" type="text" name="username" Placeholder="Username.."/></li>
 						<li><!--<label class="loginDetails"> Password: </label>-->
 						<input class="loginInput" type="text" name="password" Placeholder="Password.."/></li>
-						<li><input class="logInAcc" type="submit" value="Log In"/></li>
+						<li><input class="logInAcc" type="submit" name="logInAcc" value="Log In"/></li>
 					</form>
 					<form action="signup.php" method="post">					
 						<li><label class="loginDetails"> Don't have an account yet? </label>
