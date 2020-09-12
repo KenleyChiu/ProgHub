@@ -1,20 +1,13 @@
 <html>
 	<head>
 		<title>Website Project</title>
-		<link rel="stylesheet" type="text/css" href="css/login.css">
+		<link rel="stylesheet" type="text/css" href="css/signup.css">
 	</head>
 	
 	<?php
 		session_start();
-		
 		//gets the signed in status from home.php
 		$signedInStatus = $_SESSION['signedInStatus'];
-		//if log in button is pressed, create a new session variable to be used in home.php and go to home.php
-		if(isset($_POST['logInAcc'])){
-			$_SESSION['signedInLogin'] = true;
-			header("Location: home.php");
-		}
-
 	?>
 	
 	<body>
@@ -76,28 +69,35 @@
 			</div>
 			
 			<div class="title">
-				<label class="titleLabel"> LOGIN </label>
+				<label class="titleLabel"> SIGNUP </label>
 			</div>
 			
 			<?php
 				
 			?>
 			
-			<!--LOGIN FORM-->
-			<div class="loginForm">
-				<ul class="loginForm">
-					<form method="post">
-						<li><!--<label class="loginDetails"> Username: </label>-->
-						<input class="loginInput" type="text" name="username" Placeholder="Username.."/></li>
-						<li><!--<label class="loginDetails"> Password: </label>-->
-						<input class="loginInput" type="text" name="password" Placeholder="Password.."/></li>
-						<li><input class="logInAcc" type="submit" name="logInAcc" value="Log In"/></li>
-					</form>
-					<form action="signup.php" method="post">					
-						<li><label class="loginDetails"> Don't have an account yet? </label>
-						<input class="signUpAcc" type="submit" value="Sign Up Now"/></li>
-					</form>
+			<!--SIGNUP FORM-->
+			<div class="signupForm">
+				<form action="login.php" method="post">
+					<table class="signupFormTable">
+						<tr><td><label class="signupDetails"> Username: </label></td>
+						<td><input class="signupInput" type="text" name="username" Placeholder="Username.."/></td></tr>
+						<tr><td><label class="signupDetails"> Password: </label></td>
+						<td><input class="signupInput" type="text" name="password" Placeholder="Password.."/></td></tr>
+						<tr><td><label class="signupDetails"> Confirm Password: </label></td>
+						<td><input class="signupInput" type="text" name="confirmPassword" Placeholder="Confirm Password.."/></td></tr>
+					</table>
+				
+					<ul class="signupForm">
+						<li><input class="signUpAcc" type="submit" name="signUpAcc" value="Register"/></li>
+				</form>
+				<form action="login.php" method="post">					
+					<li><label class="signupDetails"> Already have an account? </label>
+					<input class="loginAcc" type="submit" value="Login Here"/></li>
+				</form>
 				</ul>
+				
+				
 			</div>
 			
 			<!--FOOTER-->

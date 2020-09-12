@@ -19,9 +19,8 @@ body{
 	"header header header"
 	"menu menu menu"
 	"title title title"
-	". headers data"
-	". create data"
-	". post data";
+	". loginForm ."
+	"footer footer footer";
 
 }
 
@@ -172,11 +171,6 @@ ul.nav li{
 	font-size: 17px;
 }
 
-.communityBtn{
-	background-color: gray;
-	color: #D0FF36;
-}
-
 .homeBtn:hover, .communityBtn:hover, .usersBtn:hover, .tagsBtn:hover, .aboutBtn:hover{
 	background-color: gray;
 	/*color: #A464FF;*/
@@ -200,18 +194,71 @@ label.titleLabel{
 	align-self: center;
 }
 
-.headers{
-	grid-area: headers;
+.signupForm{
+	grid-area: loginForm;
+	justify-content: center;
+	/*background-color: #FBF7EF;*/
+	background-image: url("pictures/innerbg.jpg");
 }
 
-.create{
-	grid-area: create;
+.signupFormTable{
+	margin-left:auto; 
+	margin-right:auto;
+	margin-top: 50;
+	border-spacing: 0 8;
 }
 
-.post{
-	grid-area: post;
+ul.signupForm{
+	/*border: 1px solid black;*/
+	display:block;
+	margin-bottom: 50;
 }
 
-.data{
-	grid-area: data;
+ul.signupForm li{
+	margin-top: 8;
+	text-align: center;
+	align-self: center;
+}
+
+.signupInput{
+	padding: 4 100 4 5;
+}
+
+.signUpAcc{
+	padding: 6 105 6 105;
+	border-radius:5px;
+	background-color: #1668CD;
+	color: white;
+	font-size: 17px;
+	font-weight: bold;
+	
+}
+
+.signUpAcc:hover{
+	/*background-color: #82817D;*/
+	filter: contrast(120%);
+	filter: brightness(110%);
+}
+
+label.signinDetails{
+	margin-top: 50;
+	font-size: 15px;
+	display: inline;
+}
+
+.loginAcc{
+	display: inline;
+	border: 1px solid transparent;
+	background-color: transparent;
+	color: #0000EE;	
+}
+
+.loginAcc:hover{
+	color: #A464FF;
+}
+
+.footer{
+	grid-area: footer;
+	border: 1px solid black;
+	margin: 40;
 }

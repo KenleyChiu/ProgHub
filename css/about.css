@@ -18,24 +18,16 @@ body{
 	grid-template-areas:
 	"header header header"
 	"menu menu menu"
-	"title title title"
-	". headers data"
-	". create data"
-	". post data";
-
+	". about .";
 }
 
-/*.mainGrid div:nth-child(6){
+/*.mainGrid div:nth-child(1){
 	background-color:red;
 }
 
-.mainGrid div:nth-child(4){
+.mainGrid div:nth-child(3){
 	background-color:blue;
 }*/
-
-.maingrid > div {
-	/*border: 1px solid black;*/
-}
 
 .header{
 	grid-area: header;
@@ -146,6 +138,7 @@ body{
 	background-color: gray;
 }
 
+
 .menu{
 	grid-area: menu;
 	background-color: #323335;
@@ -172,7 +165,7 @@ ul.nav li{
 	font-size: 17px;
 }
 
-.communityBtn{
+.aboutBtn{
 	background-color: gray;
 	color: #D0FF36;
 }
@@ -182,36 +175,16 @@ ul.nav li{
 	/*color: #A464FF;*/
 }
 
-.title{
-	grid-area: title;
-	margin-top: 5;
-	height: 100;
-	background-color: #A464FF;
-	border: 1px solid black;
-	border-radius: 20px 20px 0 0;
-	width: 55%;
-	justify-self: center;
-	justify-content: center;
-	display: flex;
+.homeBtn:hover, .communityBtn:hover, .usersBtn:hover, .tagsBtn:hover, .aboutBtn:hover{
+	background-color: #D3D2CA;
+	color: white;
 }
 
-label.titleLabel{
-	font-size: 40px;
-	align-self: center;
+.about{
+	grid-area: about;
 }
 
-.headers{
-	grid-area: headers;
-}
 
-.create{
-	grid-area: create;
-}
 
-.post{
-	grid-area: post;
-}
 
-.data{
-	grid-area: data;
-}
+

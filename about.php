@@ -1,22 +1,14 @@
 <html>
 	<head>
 		<title>Website Project</title>
-		<link rel="stylesheet" type="text/css" href="css/login.css">
+		<link rel="stylesheet" type="text/css" href="css/about.css">
 	</head>
 	
 	<?php
 		session_start();
-		
-		//gets the signed in status from home.php
-		$signedInStatus = $_SESSION['signedInStatus'];
-		//if log in button is pressed, create a new session variable to be used in home.php and go to home.php
-		if(isset($_POST['logInAcc'])){
-			$_SESSION['signedInLogin'] = true;
-			header("Location: home.php");
-		}
-
+		$signedInStatus = false;
 	?>
-	
+
 	<body>
 		<div class="mainGrid">
 			<!--HEADER-->
@@ -42,6 +34,8 @@
 						<li><a href="#">Log In</a></li>
 					</ul>-->
 					<?php 
+						//if not signed in, show login and sign up
+						//if signed in, show account image and username (destroy button for now)
 						if(!$signedInStatus){
 							echo "<form class='login' action='login.php' method='post'>";
 							echo "<input class='loginBtn' type='submit' value='Login'/>";
@@ -49,7 +43,7 @@
 							echo "<form class='signup' action='signup.php' method='post'>";
 							echo "<input class='signupBtn' type='submit' value='Sign Up'/>";
 							echo "</form>";
-						}
+						}				
 					?>
 				</div>
 			</div>
@@ -57,7 +51,7 @@
 			<!--NAVIGATION MENU-->
 			<div class="menu">
 				<ul class="nav">
-					<li><form class="homeNav" action="home.php" method="get">
+					<li class="open"><form class="homeNav" action="home.php" method="get">
 						<input class="homeBtn" type="submit" value="Home"/></li>
 					</form></li>
 					<li><form class="communityNav" action="communities.php" method="get">
@@ -75,35 +69,10 @@
 				</ul>
 			</div>
 			
-			<div class="title">
-				<label class="titleLabel"> LOGIN </label>
+			<div class="about">
+				About
 			</div>
-			
-			<?php
 				
-			?>
-			
-			<!--LOGIN FORM-->
-			<div class="loginForm">
-				<ul class="loginForm">
-					<form method="post">
-						<li><!--<label class="loginDetails"> Username: </label>-->
-						<input class="loginInput" type="text" name="username" Placeholder="Username.."/></li>
-						<li><!--<label class="loginDetails"> Password: </label>-->
-						<input class="loginInput" type="text" name="password" Placeholder="Password.."/></li>
-						<li><input class="logInAcc" type="submit" name="logInAcc" value="Log In"/></li>
-					</form>
-					<form action="signup.php" method="post">					
-						<li><label class="loginDetails"> Don't have an account yet? </label>
-						<input class="signUpAcc" type="submit" value="Sign Up Now"/></li>
-					</form>
-				</ul>
-			</div>
-			
-			<!--FOOTER-->
-			<div class="footer">
-				
-			</div>
 		</div>
 		
 	</body>

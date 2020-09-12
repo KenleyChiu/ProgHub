@@ -7,26 +7,13 @@
 	<?php
 		session_start();
 		
+		//JUST GET SIGNED IN STATUS FROM USER DATABASE .
 		//define signed in status as false (default)
-		$signedInStatus = "False";
+		$signedInStatus = false;
 		$_SESSION['signedInStatus'] = $signedInStatus;
-		
-		//not yet implemented for communities.php and community.php
-		//uses the session variable from login.php
-		if($_SESSION['signedInLogin'] != null) {
-			$_SESSION['signedInStatus'] = $_SESSION['signedInLogin'];
-		}
-		
-		//click to go to login.php
 		if(isset($_POST['loginBtn'])){
 			header("Location: login.php");
 		}
-			
-		//click to destroy session then just reload the page.
-		if(isset($_POST['destroySesh'])){
-			session_destroy();
-		}
-		//}
 		
 	?>
 
@@ -36,7 +23,7 @@
 			<div class="header">
 				<div class="logo">
 					<a class="aLogo" href="home.php">
-					<img class="logo3" src="pictures/pgh.png">
+					<img class="logoPgh" src="pictures/pgh.png">
 					<img class ="proghub" src="pictures/proghub2.png">
 					</a>
 				</div>
@@ -57,7 +44,7 @@
 					<?php 
 						//if not signed in, show login and sign up
 						//if signed in, show account image and username (destroy button for now)
-						if($_SESSION['signedInStatus'] == "False"){
+						if(!$_SESSION['signedInStatus']){
 							echo "<form class='login' method='post'>";
 							echo "<input class='loginBtn' type='submit' name='loginBtn' value='Login'/>";
 							echo "</form>";
@@ -65,7 +52,7 @@
 							echo "<input class='signupBtn' type='submit' name='signupBtn' value='Sign Up'/>";
 							echo "</form>";
 						} 
-						if ($_SESSION['signedInStatus'] == "True"){
+						if ($_SESSION['signedInStatus']){
 							echo "<form class='destroySesh' method='post'>";
 							echo "<input class='signupBtn' type='submit' name='destroySesh' value='Destroy Sesh'/>";
 							echo "</form>";
@@ -75,7 +62,7 @@
 				</div>
 			</div>
 			
-			<!--LEFT NAVIGATION MENU-->
+			<!--NAVIGATION MENU-->
 			<div class="menu">
 				<ul class="nav">
 					<li class="open"><form class="homeNav" action="home.php" method="get">
@@ -96,6 +83,7 @@
 				</ul>
 			</div>
 			
+			<!--LEFT SIDE-->
 			<div class="info">
 				<ul class="info">
 					<li>Some: </li>
@@ -103,6 +91,7 @@
 				</ul>
 			</div>
 			
+			<!--MAIN SECTION-->
 			<div class="sections">
 				<label class="recent"><a href="#"> Recent </a></label>
 				<span class="divider1"> </span>
@@ -116,10 +105,13 @@
 				<label class="stars"> 0 Stars </label>
 				<label class="comments"> 0 Comments </label>
 			</div>
+			
 			<?php
 				$totalDiscussions = 5;
 				$totalProjects = 10;
 			?>
+			
+			<!--RIGHT SIDE-->
 			<div class="data">
 				<ul class="data">
 					<li class="discussionsNum">Total Discussions: <?php echo $totalDiscussions; ?></li>

@@ -5,6 +5,7 @@
 	</head>
 	
 	<?php
+		session_start();
 		$signedInStatus = false;
 	?>
 
@@ -14,7 +15,7 @@
 			<div class="header">
 				<div class="logo">
 					<a class="aLogo" href="home.php">
-					<img class="logo3" src="pictures/pgh.png">
+					<img class="logoPgh" src="pictures/pgh.png">
 					<img class ="proghub" src="pictures/proghub2.png">
 					</a>
 				</div>
@@ -45,7 +46,7 @@
 				</div>
 			</div>
 			
-			<!--LEFT NAVIGATION MENU-->
+			<!--NAVIGATION MENU-->
 			<div class="menu">
 				<ul class="nav">
 					<li class="open"><form class="homeNav" action="home.php" method="get">
@@ -68,10 +69,22 @@
 			
 			<div class="title">
 				<?php 
-					session_start();
-					//$titleName = $_GET
-					//dont know yet how to get the title of the community clicked.
-					echo "<label class='titleLabel'>".$_SESSION['communitiesArr'][0]."</label>";
+					$sqlConnection = mysqli_connect("localhost","root","");
+				
+					if($sqlConnection) {
+						$pghDatabase = mysqli_select_db($sqlConnection,'proghub_data');
+					} else {
+						die("Connection was not established!".mysqli_error());
+					}
+					
+					$communitiesListQuery = mysqli_query($sqlConnection,"select * from communitieslist");
+					
+					//displays chosen community as title
+					if($_SESSION['status'] == "selected"){
+						echo "<label class='titleLabel'>".$_SESSION['commSelected']."</label>";
+					}
+					
+					mysqli_close($sqlConnection);
 				?>
 			</div>
 			
