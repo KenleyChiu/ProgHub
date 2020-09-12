@@ -77,7 +77,13 @@
 			<?php
 				session_start();
 				$communitiesArr = array();
+				$imgArr = array();
+				
 				array_push($communitiesArr,"Java","C","Javascript","C++","C#","Php","Ruby","Python");
+				foreach(array_values($communitiesArr) as $key => $name){
+					array_push($imgArr,$name.".png");
+					//echo $imgArr[$key];
+				}
 				
 				$_SESSION['communitiesArr'] = $communitiesArr;
 				$communityCount = sizeof($communitiesArr);
@@ -88,8 +94,9 @@
 					<form action="community.php" method="get">
 						<?php 
 							for($commsPos=0;$commsPos<$communityCount;$commsPos++){
-								echo "<li><label class='commsLabel' type='submit'/>".$_SESSION['communitiesArr'][$commsPos]."</label>
-								<input class='commsBtn"/*.$commsPos*/."' type='submit' value=''/></li>";
+								echo "<li><img class='commsImg' src='pictures/".$imgArr[$commsPos]."'>
+								<label class='commsLabel'/>".$_SESSION['communitiesArr'][$commsPos]."</label>
+								<input class='commsBtn'"/*.$commsPos*/."type='submit' value=''/></li>";
 							}
 						?>
 					</form>
