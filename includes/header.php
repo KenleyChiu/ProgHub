@@ -18,23 +18,28 @@
         
         <div class="account">
             <?php 
-				global $user,$userArr;
-				
-				$usersQuery = mysqli_query($user,"select * from login");
+				global $user;
+				$signedInStatus="False";
+				$usersQuery = mysqli_query($user,"select * from login WHERE SignedInStatus = 'True' ");
 				$userArr = array();
-				
-				while($users = mysqli_fetch_array($usersQuery)){
-					$username = $users["Username"];
-					$password = $users["Password"];
-					$signedInStatus = $users["SignedInStatus"];
-					$position = $users["Position"];
-					if($signedInStatus == "True"){
-						array_push($userArr,$username,$password,$signedInStatus,$position);
-					} 
-					$_SESSION['signedInStatus'] = $signedInStatus;
-				}
+                $users = mysqli_fetch_array($usersQuery);
+                
+				if(empty($users))
+                {
+                    $signedInStatus="False";
+                }
+                else{
+                    echo $users["Username"];
+                    $username = $users["Username"];
+                    $password = $users["Password"];
+                    $signedInStatus = $users["SignedInStatus"];
+                    $position = $users["Position"];
+                    echo "yep";
+                    array_push($userArr,$username,$password,$signedInStatus,$position);
+                    $signedInStatus = $userArr[2];
+                }
 			
-                if($_SESSION['signedInStatus'] == "False"){
+                if($signedInStatus == "False"){
                     echo "<form class='login' action='login.php' method='post'>";
                     echo "<input class='loginBtn' type='submit' value='Login'/>";
                     echo "</form>";
