@@ -54,7 +54,7 @@
 			<div class="comment">
 				<label class="createComment"> Write a Comment </label>
 				<table class="commentDetails">
-				<tr><td><input class="commentInput" type = "text" name = "commentContent" Placeholder="Thread Discussion"/></td></tr>
+				<tr><td><input class="commentInput" type = "text" name = "commentContent" Placeholder="Write a comment.."/></td></tr>
 				<tr><td><input class="imageInput" type = "file" name = "commentImage" Placeholder="Image Filepath"/></td></tr>
 				<tr><td><span style="color:red"> <?php echo $errorMessage;?> </span></td></tr>
 				<tr><td><input class="commentBtn" type = "submit" name = "commentBtn" value="Post Comment"/></td></tr>
