@@ -24,7 +24,49 @@
 			</div>
 			
 			<?php
+				global $user;
 				
+				
+				$loginRegistrationError = "";
+				
+				if(isset($_POST['logInAcc'])){
+					$username=$password="";
+					if ($_SERVER["REQUEST_METHOD"] == "POST")
+					{
+						if(empty($_POST["username"])||empty($_POST["password"]))
+						{
+							$loginRegistrationError = "Fill up username and password";
+						}
+						else{
+							$loginRegistrationError=search($user,$_POST["username"],$_POST["password"]);
+						}
+					}
+
+
+				}
+				
+				
+				function search($database,$name,$password)
+				{
+					$statement = "select * from login Where Username='$name' AND Password ='$password'";
+					$results= mysqli_query($database,$statement);
+					if(!$results)
+					{
+						die();
+					}
+					$data=mysqli_fetch_array($results);
+					if(empty($data))
+					{
+						return "Invalid username or password";
+					}
+					else
+					{
+						$loginstatus = "update login set SignedInStatus='True' where Username='$name'";
+						mysqli_query($database,$loginstatus);
+						header("Location: home.php");
+					}
+					return "There is something wrong";
+				}
 			?>
 			
 			<!--LOGIN FORM-->
