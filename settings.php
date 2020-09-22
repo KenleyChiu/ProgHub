@@ -11,7 +11,7 @@
 		global $user;
 
 		if(isset($_POST['logoutBtn'])){
-			$login = "update login set SignedInStatus='False' where Username='admin')"; //".$userArr[0]."
+			$login = "update login set SignedInStatus='False' where Username='".$userArr[0]."')"; //".$userArr[0]."
 			$query = mysqli_query($user,$login);
 			header("Location: home.php");
 		}
