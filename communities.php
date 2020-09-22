@@ -15,7 +15,7 @@
 			</div>
 			
 			<div class="headers">
-				headers
+				
 			</div>
 			
 			<?php
