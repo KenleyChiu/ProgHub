@@ -9,6 +9,7 @@
 	
 
 	<body>
+	
 			<!--LEFT SIDE-->
 			<div class="info">
 				<ul class="info">
