@@ -25,6 +25,8 @@
 
                 $users = mysqli_fetch_array($usersQuery);
                 
+				
+				
 				if(empty($users))
                 {
                     $signedInStatus="False";
@@ -40,9 +42,6 @@
                     $signedInStatus = $userArr[2];
                 }
 				
-				if(isset($_POST['logoutBtn'])){
-					header("Location: login.php");
-				}
 				
                 if($signedInStatus == "False"){
                     echo "<form class='login' action='login.php' method='post'>";
@@ -57,10 +56,16 @@
 					echo "<form class='settings' action='settings.php' method='post'>";
                     echo "<input class='settingsBtn' type='submit' value='Settings'/>";
                     echo "</form>";
-					echo "<form class='logout' method='post'>";
+					/*echo "<form class='logout' method='post'>";
                     echo "<input class='logoutBtn' type='submit' name='logoutBtn' value='Logout'/>";
-                    echo "</form>";
+                    echo "</form>";*/
 				}
+				
+				/*if(isset($_POST['logoutBtn'])){
+					$login = "update login set SignedInStatus='False' where Username='admin')"; //".$userArr[0]."
+					$query = mysqli_query($user,$login);
+					header("Location: home.php");
+				}*/
 				
 				
             ?>
