@@ -47,11 +47,11 @@
 			<div class="create">
 				<label class="createPost"> Create a Post </label>
 				<table class="createDetails">
-				<tr><td valign="top">Title:</td><td><input class="titleInput" type = "text" name = "createTitle" Placeholder="Title"/></td></tr>
-				<tr><td valign="top">Content:</td><td><input class="contentInput" type = "text" name = "createContent" Placeholder="Thread Discussion"/></td></tr>
-				<tr><td valign="top">Image:</td><td><input class="imageInput" type = "file" name = "createImage" Placeholder="Image Filepath"/></td></tr>
-				<tr><td></td><td><span style="color:red"> <?php echo $errorMessage;?> </span></td></tr>
-				<tr><td></td><td><input class="createBtn" type = "submit" name = "createBtn" value="Create Post"/></td></tr>
+				<tr><td><input class="titleInput" type = "text" name = "createTitle" Placeholder="Title"/></td></tr>
+				<tr><td><input class="contentInput" type = "text" name = "createContent" Placeholder="Thread Discussion"/></td></tr>
+				<tr><td><input class="imageInput" type = "file" name = "createImage" Placeholder="Image Filepath"/></td></tr>
+				<tr><td><span style="color:red"> <?php echo $errorMessage;?> </span></td></tr>
+				<tr><td><input class="createBtn" type = "submit" name = "createBtn" value="Create Post"/></td></tr>
 			</table>
 			</div>
 				
