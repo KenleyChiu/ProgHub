@@ -18,17 +18,25 @@ body{
 	grid-template-areas:
 	"header header header"
 	"menu menu menu"
-	"info sections data"
-	"info post data";
+	"title title title"
+	". post data"
+	". comment data"
+	". postComments data"
+	"footer footer footer";
+
 }
 
-/*.mainGrid div:nth-child(1){
+/*.mainGrid div:nth-child(6){
 	background-color:red;
 }
 
-.mainGrid div:nth-child(3){
+.mainGrid div:nth-child(4){
 	background-color:blue;
 }*/
+
+.maingrid > div {
+	/*border: 1px solid black;*/
+}
 
 .header{
 	grid-area: header;
@@ -139,7 +147,6 @@ body{
 	background-color: gray;
 }
 
-
 .menu{
 	grid-area: menu;
 	background-color: #323335;
@@ -166,7 +173,7 @@ ul.nav li{
 	font-size: 17px;
 }
 
-.homeBtn{
+.communityBtn{
 	background-color: gray;
 	color: #D0FF36;
 }
@@ -176,77 +183,32 @@ ul.nav li{
 	/*color: #A464FF;*/
 }
 
-.homeBtn:hover, .communityBtn:hover, .usersBtn:hover, .tagsBtn:hover, .aboutBtn:hover{
-	background-color: #D3D2CA;
-	color: white;
-}
-
-.info{
-	grid-area: info;
-	justify-content: center;
-	margin: 10 0 0 30;
-}
-
-ul.info{
-	background-color: white;
-	height: 100px;
-	border-radius: 10px	;
-	border: 1px solid #E1E1E1;
-	width: 275px;
-	display:block;
-	padding-top: 50;
-}
-
-ul.info li{
-	text-align: center;
-	align-self: center;
-}
-
-.sections{
-	grid-area: sections;
+.title{
+	grid-area: title;
+	margin-top: 5;
+	height: 100;
+	background-color: #A464FF;
 	border: 1px solid black;
-	padding: 15;
-	margin: 10 60 20 0;
-	/*transform: translate(0px, 30px);*/
-	height: 20%;
+	border-radius: 20px 20px 0 0;
+	width: 55%;
+	justify-self: center;
+	justify-content: center;
+	display: flex;
 }
 
-label.recent, a:link, a:visited{
-	font-size: 22px;
-	color:  black;
-}
-
-label.recent a:hover{
-	color: gray;
-}
-
-.divider1{
-	display: inline-block;
-	width: 2px;
-	background-color: black;
-	height: 1.2em;
-	margin: 0 10 0 10;
-}
-
-label.popular, a:link, a:visited{
-	font-size: 22px;
-	color:  black;
-}
-
-label.popular a:hover{
-	color: gray;
+label.titleLabel{
+	font-size: 40px;
+	align-self: center;
 }
 
 .post{
 	grid-area: post;
 	grid-auto-rows:minmax(190px, auto);
 	border: 1px solid black;
-	padding: 10 0 0 10;
-	margin: 0 60 0 0;
-	/*transform: translate(0px,-20px);*/
 	border-radius: 5px;
 	background-color: white;
-	height: 100%;
+	padding: 10 0 10 10;
+	margin: 10 0 0 0;
 }
 
 .post img{
@@ -256,20 +218,25 @@ label.popular a:hover{
 	height: 35;
 }
 
-label.postUser{
+label.postUser, .postUser:link, .postUser:visited{
 	font-size: 17px;
-	padding: 0 0 10 10;
+	padding: 0 0 10 5;
 	color:  black;
-	line-height: 2.5;
+	line-height: 2;
 }
 
 label.postTitle{
 	font-size: 25px;
-	padding-left: 15;
-	margin-top: 5;
+	padding: 0 0 10 5;
 	color: black;
-	line-height: 1.2;
 	font-weight: bold;
+}
+
+p.postContent{
+	font-size: 15px;
+	margin-left: 10;
+	padding: 0 0 10 15;
+	color: black;
 }
 
 label.stars{
@@ -288,27 +255,66 @@ label.comments{
 	grid-area: data;
 }
 
-ul.data{
-	margin: 30 40 0 20;
-	background-color: white;
-	height: 100px;
-	border-radius: 10px	;
-	border: 1px solid #E1E1E1;
-	text-align: center;
-	width: 275px;
+.comment{
+	grid-area: comment;
+	border: 1px solid black;
+	padding: 10 0 10 10;
+	margin: 10 0 0 0;
 }
 
-.discussionsNum{
-	margin-top: 25;
+label.createComment{
+	font-weight: bold;
+	font-size: 20px;
 }
 
-.projectsNum{
-	margin-top: 5;
+.commentDetails{
+	margin-left: 10;
 }
 
-.discussionsNum, .projectsNum{
-	font-size: 18px;
+.commentDetails, td{
+	padding-bottom: 5;
 }
 
+.commentInput{
+	border-radius: 5px;
+	width: 650;
+	border: 1px solid black;
+}
 
+.commentInput{
+	padding: 2 0 100 5;
+}
 
+.commentBtn{
+	text-decoration: none;
+	border: transparent;
+	border-radius: 8px;
+	background-color: #323335;
+	font-size: 15px;
+	padding: 3 4 3 4;
+	color: #D0FF36;
+	float: right;
+}
+
+.commentBtn:hover{
+	background-color: gray;
+}
+
+.postComments{
+	grid-area: postComments;
+	border: 1px solid black;
+	padding: 10 0 10 10;
+	margin: 10 0 0 0;
+}
+
+.postComments img{
+	float: left;
+	margin: 0 0 0 0;
+	width: 35;
+	height: 35;
+}
+
+.footer{
+	grid-area: footer;
+	margin: 40;
+}

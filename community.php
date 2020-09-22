@@ -10,62 +10,9 @@
 	?>
 
 	<body>
-		<div class="mainGrid">
-			<!--HEADER-->
-			<div class="header">
-				<div class="logo">
-					<a class="aLogo" href="home.php">
-					<img class="logoPgh" src="pictures/pgh.png">
-					<img class ="proghub" src="pictures/proghub2.png">
-					</a>
-				</div>
-				
-				<div class="search">
-					<!--search-->
-					<form class="searchForm" action="search.php" method="get">
-						<input class="searchInput" type="text" name="search" Placeholder="Search" />
-					</form>
-				</div>
-				
-				<div class="account">
-					<!--<img src="user.png">-->
-					<!--<ul class="users">
-						<li><a href="#">Sign Up</a></li>
-						<li><a href="#">Log In</a></li>
-					</ul>-->
-					<?php 
-						if(!$signedInStatus){
-							echo "<form class='login' action='login.php' method='post'>";
-							echo "<input class='loginBtn' type='submit' value='Login'/>";
-							echo "</form>";
-							echo "<form class='signup' action='signup.php' method='post'>";
-							echo "<input class='signupBtn' type='submit' value='Sign Up'/>";
-							echo "</form>";
-						}
-					?>
-				</div>
-			</div>
-			
-			<!--NAVIGATION MENU-->
-			<div class="menu">
-				<ul class="nav">
-					<li class="open"><form class="homeNav" action="home.php" method="get">
-						<input class="homeBtn" type="submit" value="Home"/></li>
-					</form></li>
-					<li><form class="communityNav" action="communities.php" method="get">
-						<input class="communityBtn" type="submit" value="Communities"/>
-					</form></li>
-					<li><form class="usersNav" action="users.php" method="get">
-						<input class="usersBtn" type="submit" value="Users"/>
-					</form></li>
-					<li><form class="tagsNav" action="tags.php" method="get">
-						<input class="tagsBtn" type="submit" value="Tags"/>
-					</form></li>
-					<li><form class="aboutNav" action="about.php" method="get">
-						<input class="aboutBtn" type="submit" value="About"/>
-					</form></li>
-				</ul>
-			</div>
+		<?php include 'header.php';?>
+
+		<?php include 'navigation.php';?>
 			
 			<div class="title">
 				<?php 
@@ -89,19 +36,40 @@
 			</div>
 			
 			<div class="headers">
-				headers
+				<label class="threads"><a href="#"> Threads </a></label>
+				<span class="divider1"> </span>
+				<label class="projects"><a href="#"> Projects </a></label>
 			</div>
 			
+			<?php 
+				$errorMessage = "sample error";
+			?>
+			
 			<div class="create">
-				create
+				<label class="createPost"> Create a Post </label>
+				<table class="createDetails">
+				<tr><td valign="top">Title:</td><td><input class="titleInput" type = "text" name = "createTitle" Placeholder="Title"/></td></tr>
+				<tr><td valign="top">Content:</td><td><input class="contentInput" type = "text" name = "createContent" Placeholder="Thread Discussion"/></td></tr>
+				<tr><td valign="top">Image:</td><td><input class="imageInput" type = "file" name = "createImage" Placeholder="Image Filepath"/></td></tr>
+				<tr><td></td><td><span style="color:red"> <?php echo $errorMessage;?> </span></td></tr>
+				<tr><td></td><td><input class="createBtn" type = "submit" name = "createBtn" value="Create Post"/></td></tr>
+			</table>
 			</div>
 				
 			<div class ="post">
-				post
+				<a href="users.php"><img src="pictures/user.png"></a>
+				<label class="postUser"><a class="postUser" href="users.php" > Username </a></label><br><br>
+				<label class="postTitle"><a class="postTitle" href="post.php" > Title </a></label><br><br>
+				<label class="stars"> 0 Stars </label>
+				<label class="comments"> 0 Comments </label>
 			</div>
 			
 			<div class="data">
 				Data
+			</div>
+			
+			<div class="footer">
+				
 			</div>
 				
 		</div>

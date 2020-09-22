@@ -39,7 +39,7 @@
 			<div class ="post">
 				<img src="pictures/user.png">
 				<label class="postUser"> Username </label><br>
-				<p class="postTitle"> Title </p><br>
+				<label class="postTitle"> Title </label><br><br>
 				<label class="stars"> 0 Stars </label>
 				<label class="comments"> 0 Comments </label>
 			</div>

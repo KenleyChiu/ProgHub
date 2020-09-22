@@ -21,7 +21,8 @@ body{
 	"title title title"
 	". headers data"
 	". create data"
-	". post data";
+	". post data"
+	"footer footer footer";
 
 }
 
@@ -202,16 +203,135 @@ label.titleLabel{
 
 .headers{
 	grid-area: headers;
+	border: 1px solid black;
+	padding: 10 0 20 10;
+	margin-top: 10;
+	/*transform: translate(0px, 30px);*/
+	height: 20%;
+}
+
+label.threads, a:link, a:visited{
+	font-size: 22px;
+	color:  black;
+}
+
+label.threads a:hover{
+	color: gray;
+}
+
+.divider1{
+	display: inline-block;
+	width: 2px;
+	background-color: black;
+	height: 1.2em;
+	margin: 0 10 0 10;
+}
+
+label.projects, a:link, a:visited{
+	font-size: 22px;
+	color:  black;
+}
+
+label.projects a:hover{
+	color: gray;
 }
 
 .create{
 	grid-area: create;
+	border: 1px solid black;
+	padding: 5;
+}
+
+label.createPost{
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.createDetails{
+	margin-left: 10;
+}
+
+.createDetails, td{
+	padding-bottom: 5;
+}
+
+.titleInput, .contentInput{
+	border-radius: 5px;
+	width: 650;
+	border: 1px solid black;
+}
+
+.titleInput{
+	padding: 2 0 2 5;
+}
+
+.contentInput{
+	padding: 2 0 100 5;
+}
+
+.createBtn{
+	text-decoration: none;
+	border: transparent;
+	border-radius: 8px;
+	background-color: #323335;
+	font-size: 15px;
+	padding: 3 4 3 4;
+	color: #D0FF36;
+	float: right;
+}
+
+.createBtn:hover{
+	background-color: gray;
 }
 
 .post{
 	grid-area: post;
+	grid-auto-rows:minmax(190px, auto);
+	border: 1px solid black;
+	border-radius: 5px;
+	background-color: white;
+	padding: 10 0 10 10;
+	margin: 10 0 0 0;
+}
+
+.post img{
+	float: left;
+	margin: 0 0 0 0;
+	width: 35;
+	height: 35;
+}
+
+label.postUser, .postUser:link, .postUser:visited{
+	font-size: 17px;
+	padding: 0 0 10 5;
+	color:  black;
+	line-height: 2;
+}
+
+label.postTitle, .postTitle:link, .postTitle:visited{
+	font-size: 25px;
+	padding: 0 0 10 5;
+	color: black;
+	font-weight: bold;
+}
+
+label.stars{
+	font-size: 15px;
+	color:  black;
+	padding-left: 10;
+}
+
+label.comments{
+	font-size: 15px;
+	color: black;
+	padding-left: 5;
 }
 
 .data{
 	grid-area: data;
+}
+
+.footer{
+	grid-area: footer;
+	margin: 40;
 }
