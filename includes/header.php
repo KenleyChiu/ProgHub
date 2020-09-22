@@ -22,26 +22,17 @@
 				
 				$usersQuery = mysqli_query($user,"select * from login");
 				$userArr = array();
-				//$usersArr = array(array());
-				
 				
 				while($users = mysqli_fetch_array($usersQuery)){
 					$username = $users["Username"];
 					$password = $users["Password"];
 					$signedInStatus = $users["SignedInStatus"];
 					$position = $users["Position"];
-					//array_push($userArr,$username,$password,$signedInStatus,$position);
-					//array_push($usersArr,$userArr);
 					if($signedInStatus == "True"){
 						array_push($userArr,$username,$password,$signedInStatus,$position);
 					} 
 					$_SESSION['signedInStatus'] = $signedInStatus;
 				}
-				
-				
-				
-				//echo $_SESSION['signedInStatus'];
-				
 			
                 if($_SESSION['signedInStatus'] == "False"){
                     echo "<form class='login' action='login.php' method='post'>";
