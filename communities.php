@@ -19,18 +19,6 @@
 			</div>
 			
 			<?php
-				//use if no database
-				/*$communitiesArr = array();
-				$imgArr = array();
-				array_push($communitiesArr,"Java","C","Javascript","C++","C#","Php","Ruby","Python");
-				foreach(array_values($communitiesArr) as $key => $name){
-					array_push($imgArr,$name.".png");
-					//echo $imgArr[$key];
-				}
-				$_SESSION['communitiesArr'] = $communitiesArr;
-				$communityCount = sizeof($communitiesArr);*/
-				
-				//use if with database
 				global $data;
 				
 				$communitiesListQuery = mysqli_query($data,"select * from communitieslist");
@@ -68,14 +56,7 @@
 			<div class="communities">
 				<ul class="communities">
 					<form method="post">
-						<?php 
-							//use if no database
-							/*for($commsPos=0;$commsPos<$communityCount;$commsPos++){
-								echo "<li><img class='commsImg' src='pictures/".$imgArr[$commsPos]."'>
-								<label class='commsLabel'/>".$_SESSION['communitiesArr'][$commsPos]."</label>
-								<input class='commsBtn' type='submit' value=''/></li>";
-							}*/
-							
+						<?php 							
 							//use if with database - prints all communities
 							foreach(array_values($communityArr) as $key => $community){
 								echo "<li><img class='commsImg' src='data:image/jpeg;base64,".base64_encode($community["image"])."'>

@@ -37,29 +37,27 @@
 						if(!empty($_POST["confirmPassword"])) $confirmPassword = $_POST["confirmPassword"];
 					}
 					
-					/*if(empty($_POST["username"]) || empty($_POST["email"]) || empty($_POST["age"]) || empty($_POST["gender"]) ||
-						empty($_POST["password"]) || empty($_POST["confirmPassword"])){
-						$userRegistrationError = "Complete all fields!";
-					}*/
-					
-					if(!empty($_POST["username"]) && !empty($_POST["email"]) && !empty($_POST["age"]) && !empty($_POST["gender"]) &&
-						!empty($confirmPassword)){
-						if(!empty($password) && ($confirmPassword == $password)){
-							//add to userdetails
-							$userdetailsQuery = "insert into userdetails values('".$username."','".$password."','".$age."','".$email."','".$password."',LOAD_FILE('pictures/user.png'),
-							'','0')";
-							mysqli_query($user,$userdetailsQuery);
-							
-							//add to login
-							$loginQuery = "insert into login values('".$username."','".$password."','False','User')";
-							mysqli_query($user,$loginQuery);
-							header("Location: login.php");
+					if(!empty($username) && !empty($email) && !empty($age) && !empty($gender)){
+						if(!empty($confirmPassword) && !empty($password) && ($confirmPassword == $password)){
+							register($user,$username,$email,$age,$gender,$password,$confirmPassword);
 						} else {
 							$userRegistrationError = "Passwords do not match!";
 						}
 					} else {
 						$userRegistrationError = "Complete all fields!";
 					}
+				}
+				
+				function register($user,$username,$email,$age,$gender,$password,$confirmPassword){
+					//add to userdetails
+					$userdetailsQuery = "insert into userdetails values('".$username."','".$password."','".$age."','".$email."','".$password."',LOAD_FILE('pictures/user.png'),
+					'','0')";
+					mysqli_query($user,$userdetailsQuery);
+					
+					//add to login
+					$loginQuery = "insert into login values('".$username."','".$password."','False','User')";
+					mysqli_query($user,$loginQuery);
+					header("Location: login.php");
 				}
 			?>
 			
