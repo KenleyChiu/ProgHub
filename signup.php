@@ -49,11 +49,11 @@
 							//add to userdetails
 							$userdetailsQuery = "insert into userdetails values('".$username."','".$password."','".$age."','".$email."','".$password."',LOAD_FILE('pictures/user.png'),
 							'','0')";
-							mysqli_query($mysqlConnection,$userdetailsQuery);
+							mysqli_query($user,$userdetailsQuery);
 							
 							//add to login
 							$loginQuery = "insert into login values('".$username."','".$password."','False','User')";
-							mysqli_query($mysqlConnection,$loginQuery);
+							mysqli_query($user,$loginQuery);
 							header("Location: login.php");
 						} else {
 							$userRegistrationError = "Passwords do not match!";

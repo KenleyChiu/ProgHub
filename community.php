@@ -25,22 +25,16 @@
 			
 			<div class="title">
 				<?php 
-					$sqlConnection = mysqli_connect("localhost","root","");
+				global $data;
 				
-					if($sqlConnection) {
-						$pghDatabase = mysqli_select_db($sqlConnection,'proghub_data');
-					} else {
-						die("Connection was not established!".mysqli_error());
-					}
-					
-					$communitiesListQuery = mysqli_query($sqlConnection,"select * from communitieslist");
+					$communitiesListQuery = mysqli_query($data,"select * from communitieslist");
 					
 					//displays chosen community as title
 					if($_SESSION['status'] == "selected"){
 						echo "<label class='titleLabel'>".$_SESSION['commSelected']."</label>";
 					}
 					
-					mysqli_close($sqlConnection);
+					mysqli_close($data);
 				?>
 			</div>
 			
