@@ -7,18 +7,6 @@
 		<link rel="stylesheet" type="text/css" href="css/home.css">
 	</head>
 	
-	<?php
-
-		
-		//JUST GET SIGNED IN STATUS FROM USER DATABASE .
-		//define signed in status as false (default)
-		$signedInStatus = false;
-		$_SESSION['signedInStatus'] = $signedInStatus;
-		if(isset($_POST['loginBtn'])){
-			header("Location: login.php");
-		}
-		
-	?>
 
 	<body>
 			<!--LEFT SIDE-->

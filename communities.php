@@ -8,12 +8,6 @@
 		<link rel="stylesheet" type="text/css" href="css/communities.css">
 	</head>
 	
-	
-
-	<?php
-
-		$signedInStatus = false;
-	?>
 
 	<body>
 			<div class="title">
@@ -37,15 +31,9 @@
 				$communityCount = sizeof($communitiesArr);*/
 				
 				//use if with database
-				$sqlConnection = mysqli_connect("localhost","root","");
+				global $data;
 				
-				if($sqlConnection) {
-					$pghDatabase = mysqli_select_db($sqlConnection,'proghub_data');
-				} else {
-					die("Connection was not established!".mysqli_error());
-				}
-				
-				$communitiesListQuery = mysqli_query($sqlConnection,"select * from communitieslist");
+				$communitiesListQuery = mysqli_query($data,"select * from communitieslist");
 				
 				$communitiesArr = array();
 				$imgArr = array();
@@ -97,7 +85,7 @@
 						?>
 					</form>
 						<?php
-							mysqli_close($sqlConnection);
+							mysqli_close($data);
 						?>
 				</ul>
 			</div>
