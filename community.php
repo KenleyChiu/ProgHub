@@ -1,18 +1,17 @@
 <html>
+	<?php require_once 'config.php'?>
+	<?php require_once (ROOT_PATH .'\includes\header.php')?>
+	<?php require_once (ROOT_PATH .'\includes\navigation.php')?>
 	<head>
 		<title>Website Project</title>
 		<link rel="stylesheet" type="text/css" href="css/community.css">
 	</head>
 	
 	<?php
-		session_start();
 		$signedInStatus = false;
 	?>
 
 	<body>
-		<?php include 'header.php';?>
-
-		<?php include 'navigation.php';?>
 			
 			<div class="title">
 				<?php 

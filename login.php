@@ -1,11 +1,14 @@
 <html>
+	<?php require_once 'config.php'?>
+	<?php require_once (ROOT_PATH .'\includes\header.php')?>
+	<?php require_once (ROOT_PATH .'\includes\navigation.php')?>
 	<head>
 		<title>Website Project</title>
 		<link rel="stylesheet" type="text/css" href="css/login.css">
 	</head>
 	
 	<?php
-		session_start();
+
 		
 		//gets the signed in status from home.php
 		$signedInStatus = $_SESSION['signedInStatus'];
@@ -18,9 +21,6 @@
 	?>
 	
 	<body>
-		<?php include 'header.php';?>
-
-		<?php include 'navigation.php';?>
 			
 			<div class="title">
 				<label class="titleLabel"> LOGIN </label>
