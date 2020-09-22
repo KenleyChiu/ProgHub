@@ -7,16 +7,6 @@
 		<link rel="stylesheet" type="text/css" href="css/login.css">
 	</head>
 	
-	<?php
-		
-		
-		if(isset($_POST['logInAcc'])){
-			
-			header("Location: home.php");
-		}
-
-	?>
-	
 	<body>
 			
 			<div class="title">
@@ -31,6 +21,7 @@
 				
 				if(isset($_POST['logInAcc'])){
 					$username=$password="";
+					
 					if ($_SERVER["REQUEST_METHOD"] == "POST")
 					{
 						if(empty($_POST["username"])||empty($_POST["password"]))
@@ -38,16 +29,41 @@
 							$loginRegistrationError = "Fill up username and password";
 						}
 						else{
-							$loginRegistrationError=search($user,$_POST["username"],$_POST["password"]);
+							search($user,$_POST["username"],$_POST["password"]);
+							errorCheck($user,$_POST["username"],$_POST["password"]);
+							//$loginRegistrationError=search($user,$_POST["username"],$_POST["password"]);
+							if(!$userExists){
+								$loginRegistrationError = "No account found!";
+							}
+							else if(!$passwordIsCorrect){
+								$loginRegistrationError = "Username and Psername do not match!";
+							}
 						}
 					}
-
-
 				}
 				
+				function errorCheck($database,$name,$password){
+					global $userExists,$passwordIsCorrect;
+					$results = mysqli_query ($database,"select * from login");
+					$userExists = false;
+					$passwordIsCorrect = false;
+					
+					while($data=mysqli_fetch_array($results)){
+						$username = $data["Username"];
+						$loginPassword = $data["Password"];
+						
+						if($name == $username){
+							$userExists = true;
+							if($password == $loginPassword){
+								$passwordIsCorrect = true;
+								header("Location: PracticalsLogin.php");
+							}
+						} 
+					}
+				}
 				
 				function search($database,$name,$password)
-				{
+				{					
 					$statement = "select * from login Where Username='$name' AND Password ='$password'";
 					$results= mysqli_query($database,$statement);
 					if(!$results)
@@ -57,16 +73,19 @@
 					$data=mysqli_fetch_array($results);
 					if(empty($data))
 					{
-						return "Invalid username or password";
+						return;
 					}
 					else
 					{
 						$loginstatus = "update login set SignedInStatus='True' where Username='$name'";
 						mysqli_query($database,$loginstatus);
-						header("Location: home.php");
+						return;
 					}
-					return "There is something wrong";
+					return;
 				}
+				
+				
+				
 			?>
 			
 			<!--LOGIN FORM-->
@@ -78,6 +97,7 @@
 						<li><!--<label class="loginDetails"> Password: </label>-->
 						<input class="loginInput" type="text" name="password" Placeholder="Password.."/></li>
 						<li><input class="logInAcc" type="submit" name="logInAcc" value="Log In"/></li>
+						<li><span style="color:red"> <?php echo $loginRegistrationError;?> </span></li>
 					</form>
 					<form action="signup.php" method="post">					
 						<li><label class="loginDetails"> Don't have an account yet? </label>
