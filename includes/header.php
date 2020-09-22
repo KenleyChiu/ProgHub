@@ -39,7 +39,6 @@
                     $position = $users["Position"];
                     //echo "yep";
                     array_push($userArr,$username,$password,$signedInStatus,$position);
-                    $signedInStatus = $userArr[2];
                 }
 				
                 if($signedInStatus == "False"){
