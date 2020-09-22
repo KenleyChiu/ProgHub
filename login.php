@@ -8,13 +8,10 @@
 	</head>
 	
 	<?php
-
 		
-		//gets the signed in status from home.php
-		$signedInStatus = $_SESSION['signedInStatus'];
-		//if log in button is pressed, create a new session variable to be used in home.php and go to home.php
+		
 		if(isset($_POST['logInAcc'])){
-			$_SESSION['signedInLogin'] = true;
+			
 			header("Location: home.php");
 		}
 
