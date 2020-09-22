@@ -10,10 +10,10 @@
         </div>
         
         <div class="search">
-            <!--search-->
+            <!--search
             <form class="searchForm" action="search.php" method="get">
                 <input class="searchInput" type="text" name="search" Placeholder="Search" />
-            </form>
+            </form>-->
         </div>
         
         <div class="account">
@@ -27,12 +27,13 @@
 					$username = $users["Username"];
 					$password = $users["Password"];
 					$signedInStatus = $users["SignedInStatus"];
-					$position = $users["Position"];
+					$position = $users["Position"];  
 					if($signedInStatus == "True"){
 						array_push($userArr,$username,$password,$signedInStatus,$position);
 					} 
 					$_SESSION['signedInStatus'] = $signedInStatus;
 				}
+				
 			
                 if($_SESSION['signedInStatus'] == "False"){
                     echo "<form class='login' action='login.php' method='post'>";
