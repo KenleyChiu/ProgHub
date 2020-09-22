@@ -10,9 +10,9 @@
 	?>
 
 	<body>
-		<div class="mainGrid">
+		<!-- <div class="mainGrid"> -->
 			<!--HEADER-->
-			<div class="header">
+			<!-- <div class="header">
 				<div class="logo">
 					<a class="aLogo" href="home.php">
 					<img class="logoPgh" src="pictures/pgh.png">
@@ -20,33 +20,37 @@
 					</a>
 				</div>
 				
-				<div class="search">
+				<div class="search"> -->
 					<!--search-->
-					<form class="searchForm" action="search.php" method="get">
+					<!-- <form class="searchForm" action="search.php" method="get">
 						<input class="searchInput" type="text" name="search" Placeholder="Search" />
 					</form>
 				</div>
 				
-				<div class="account">
+				<div class="account"> -->
 					<!--<img src="user.png">-->
 					<!--<ul class="users">
 						<li><a href="#">Sign Up</a></li>
 						<li><a href="#">Log In</a></li>
 					</ul>-->
-					<?php 
-						if(!$signedInStatus){
-							echo "<form class='login' action='login.php' method='post'>";
-							echo "<input class='loginBtn' type='submit' value='Login'/>";
-							echo "</form>";
-							echo "<form class='signup' action='signup.php' method='post'>";
-							echo "<input class='signupBtn' type='submit' value='Sign Up'/>";
-							echo "</form>";
-						}
-					?>
+					 <!-- <?php 
+					// 	if(!$signedInStatus){
+					// 		echo "<form class='login' action='login.php' method='post'>";
+					// 		echo "<input class='loginBtn' type='submit' value='Login'/>";
+					// 		echo "</form>";
+					// 		echo "<form class='signup' action='signup.php' method='post'>";
+					// 		echo "<input class='signupBtn' type='submit' value='Sign Up'/>";
+					// 		echo "</form>";
+					// 	}
+					// ?>
 				</div>
-			</div>
-			
-			<!--NAVIGATION MENU-->
+			</div> -->
+			 
+			<?php include 'header.php';?>
+
+			<?php include 'navigation.php';?>
+
+			<!-- NAVIGATION MENU
 			<div class="menu">
 				<ul class="nav">
 					<li><form class="homeNav" action="home.php" method="get">
@@ -65,7 +69,7 @@
 						<input class="aboutBtn" type="submit" value="About"/>
 					</form></li>
 				</ul>
-			</div>
+			</div> -->
 			
 			<div class="title">
 				<label class="titleLabel"> COMMUNITIES </label>
