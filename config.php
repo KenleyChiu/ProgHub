@@ -1,5 +1,6 @@
 <?php 
 	session_start();
+	$signedInStatus = false;
 
 	// connect to database
        // coming soon...s
