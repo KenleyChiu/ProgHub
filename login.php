@@ -56,7 +56,6 @@
 							$userExists = true;
 							if($password == $loginPassword){
 								$passwordIsCorrect = true;
-								header("Location: home.php");
 							}
 						} 
 					}
@@ -79,13 +78,11 @@
 					{
 						$loginstatus = "update login set SignedInStatus='True' where Username='$name'";
 						mysqli_query($database,$loginstatus);
+						header("Location: home.php");
 						return;
 					}
 					return;
 				}
-				
-				
-				
 			?>
 			
 			<!--LOGIN FORM-->

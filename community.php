@@ -7,9 +7,6 @@
 		<link rel="stylesheet" type="text/css" href="css/community.css">
 	</head>
 	
-	<?php
-		$signedInStatus = false;
-	?>
 
 	<body>
 			<!--LEFT SIDE-->
