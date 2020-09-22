@@ -42,7 +42,6 @@
                     $signedInStatus = $userArr[2];
                 }
 				
-				
                 if($signedInStatus == "False"){
                     echo "<form class='login' action='login.php' method='post'>";
                     echo "<input class='loginBtn' type='submit' value='Login'/>";
@@ -56,9 +55,6 @@
 					echo "<form class='settings' action='settings.php' method='post'>";
                     echo "<input class='settingsBtn' type='submit' value='Settings'/>";
                     echo "</form>";
-					/*echo "<form class='logout' method='post'>";
-                    echo "<input class='logoutBtn' type='submit' name='logoutBtn' value='Logout'/>";
-                    echo "</form>";*/
 				}
 				
 				/*if(isset($_POST['logoutBtn'])){

@@ -140,22 +140,16 @@ body{
 }
 
 .account img{
-	margin-top: 10;
 	width: 35;
 	height: 35;
 	display: inline-block;
+	margin: 10 0 0 150;
 }
 
 label.username, .username:link, .username:visited{
 	font-size: 20px;
 	padding: 0 10 0 5;
 	color:  white;
-	display: inline-block;
-}
-
-.logout{
-	margin: 10 0 0 0;
-	/*margin:10 30 0 0;*/
 	display: inline-block;
 }
 
@@ -168,11 +162,7 @@ label.username, .username:link, .username:visited{
 	color: #D0FF36;
 }
 
-.logoutBtn{
-	color: #A464FF;
-}
-
-.logoutBtn, .settingsBtn{
+.settingsBtn{
 	text-decoration: none;
 	font-size: 15px;
 	padding: 3 4 3 4;
@@ -186,11 +176,7 @@ label.username, .username:link, .username:visited{
 	color: #D0FF36;
 }
 
-.logoutBtn:hover{
-	color: #A464FF;
-}
-
-.logoutBtn:hover, .settingsBtn:hover{
+.settingsBtn:hover{
 	background-color: gray;
 }
 

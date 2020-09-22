@@ -19,10 +19,9 @@ body{
 	"header header header"
 	"menu menu menu"
 	"title title title"
-	". headers data"
-	". communities data"
+	". settings1 data"
+	". settings2 data"
 	"footer footer footer";
-
 }
 
 /*.mainGrid div:nth-child(6){
@@ -169,7 +168,7 @@ label.username, .username:link, .username:visited{
 	color: #D0FF36;
 }
 
-.settingsBtn{
+.logoutBtn, .settingsBtn{
 	text-decoration: none;
 	font-size: 15px;
 	padding: 3 4 3 4;
@@ -183,7 +182,7 @@ label.username, .username:link, .username:visited{
 	color: #D0FF36;
 }
 
-.settingsBtn:hover{
+.logoutBtn:hover, .settingsBtn:hover{
 	background-color: gray;
 }
 
@@ -213,7 +212,7 @@ ul.nav li{
 	font-size: 17px;
 }
 
-.communityBtn{
+.usersBtn{
 	background-color: gray;
 	color: #D0FF36;
 }
@@ -241,47 +240,26 @@ label.titleLabel{
 	align-self: center;
 }
 
-.headers{
-	grid-area: headers;
+.settings1{
+	grid-area: settings1;
 }
 
-.communities{
-	grid-area: communities;
-	border: 1px solid black;
-	grid-template-rows: minmax(100px,500px);
+.settings2{
+	grid-area: settings2;
 }
 
-ul.communities{
-	border: 1px solid #E1E1E1;
-	margin-top: 0;
+.logout{
+	margin: 10 0 0 0;
+	/*margin:10 30 0 0;*/
+	display: inline-block;
 }
 
-ul.communities li{
-	border-bottom: 1px solid #E1E1E1;
-	margin-bottom: -1;
+.logoutBtn{
+	color: #A464FF;
 }
 
-.commsImg{
-	margin: 2 0 0 4;
-	width: 50px;
-	height: 50px;
-}
-
-label.commsLabel{
-	font-size: 20px;
-	padding: 10 0 0 10;
-	position: absolute;
-}
-
-.commsBtn{
-	border: 1px solid transparent;
-	background-color: transparent;
-	/*border: 1px solid black;*/
-	padding: 9 0 20 690;
-}
-
-.commsBtn:hover{
-	background-color: red;
+.logoutBtn:hover{
+	color: #A464FF;
 }
 
 .data{

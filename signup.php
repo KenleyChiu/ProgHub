@@ -26,7 +26,7 @@
 				$userRegistrationError = "";
 				
 				if(isset($_POST['signUpAcc'])){
-					global $username,$email,$age,$gender,$password,$confirmPassword;
+					$username,$email,$age,$gender,$password,$confirmPassword;
 					$username = $email = $age = $gender = $password = $confirmPassword = "";
 					
 					if ($_SERVER["REQUEST_METHOD"] == "POST") {
