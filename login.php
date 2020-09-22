@@ -36,7 +36,7 @@
 								$loginRegistrationError = "No account found!";
 							}
 							else if(!$passwordIsCorrect){
-								$loginRegistrationError = "Username and Psername do not match!";
+								$loginRegistrationError = "Username and Password do not match!";
 							}
 						}
 					}
@@ -56,7 +56,7 @@
 							$userExists = true;
 							if($password == $loginPassword){
 								$passwordIsCorrect = true;
-								header("Location: PracticalsLogin.php");
+								header("Location: home.php");
 							}
 						} 
 					}
