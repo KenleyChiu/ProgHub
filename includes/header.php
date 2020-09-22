@@ -30,16 +30,16 @@
                     $signedInStatus="False";
                 }
                 else{
-                    echo $users["Username"];
+                    //echo $users["Username"];
                     $username = $users["Username"];
                     $password = $users["Password"];
                     $signedInStatus = $users["SignedInStatus"];
                     $position = $users["Position"];
-                    echo "yep";
+                    //echo "yep";
                     array_push($userArr,$username,$password,$signedInStatus,$position);
                     $signedInStatus = $userArr[2];
                 }
-			
+				
                 if($signedInStatus == "False"){
                     echo "<form class='login' action='login.php' method='post'>";
                     echo "<input class='loginBtn' type='submit' value='Login'/>";

@@ -141,10 +141,6 @@ body{
 	color: #A464FF;
 }
 
-.signUpBtn:hover, .loginBtn:hover{
-	background-color: gray;
-}
-
 .menu{
 	grid-area: menu;
 	background-color: #323335;
