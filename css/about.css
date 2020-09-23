@@ -138,17 +138,15 @@ body{
 	background-color: gray;
 }
 
-.account img{
+/*.account img{
 	width: 35;
 	height: 35;
-	display: inline-block;
+	display: inline-flex;
 	margin: 10 0 0 150;
-}
+}*/
 
-label.username, .username:link, .username:visited{
-	font-size: 20px;
-	padding: 0 10 0 5;
-	color:  white;
+.username{
+	padding: 0 10 0 150;
 	display: inline-block;
 }
 
@@ -157,15 +155,15 @@ label.username, .username:link, .username:visited{
 	display: inline-block;
 }
 
-.settingsBtn{
-	color: #D0FF36;
+.usernameBtn{
+	color:#D0FF36;
 }
 
-.logoutBtn{
+.settingsBtn{
 	color: #A464FF;
 }
 
-.settingsBtn{
+.usernameBtn, .settingsBtn{
 	text-decoration: none;
 	font-size: 15px;
 	padding: 3 4 3 4;
@@ -175,8 +173,8 @@ label.username, .username:link, .username:visited{
 	background-color: #323335;
 }
 
-.settingsBtn:hover{
-	color: #D0FF36;
+.usernameBtn:hover{
+	background-color: gray;
 }
 
 .settingsBtn:hover{

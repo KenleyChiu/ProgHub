@@ -62,7 +62,10 @@
                     echo "<input class='signupBtn' type='submit' value='Sign Up'/>";
                     echo "</form>";
                 } else {
-					echo "<label class='username'><a class='username' href='userProfile.php' >".$userArr[0]." </a></label>";
+					//echo "<label class='username'><a class='username' href='userProfile.php' >".$userArr[0]." </a></label>";
+					echo "<form class='username' action='userProfile.php' method='post'>";
+                    echo "<input class='usernameBtn' type='submit' value='".$userArr[0]."'/>";
+                    echo "</form>";
 					echo "<form class='settings' action='settings.php' method='post'>";
                     echo "<input class='settingsBtn' type='submit' value='Settings'/>";
                     echo "</form>";
