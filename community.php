@@ -160,7 +160,10 @@
 					foreach($postArr as $post){
 						if(isset($_POST[$post["Title"]])){
 							$_SESSION['statusPost'] = "selected";
-							$_SESSION['postSelected'] = $post["Title"];
+							$_SESSION['TitlePost'] = $post["Title"];
+							$_SESSION['TextContentPost'] = $post["TextContent"];
+							$_SESSION['StarsPost'] = $post["Likes"];
+							$_SESSION['CommentsPost'] = $post["Comments"];
 							header("Location: post.php");
 						}
 					}

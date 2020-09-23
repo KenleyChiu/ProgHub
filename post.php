@@ -26,18 +26,24 @@
 				<a href="users.php"><img src="pictures/user.png"></a>
 				<label class="postUser"><a class="postUser" href="users.php" > Username </a></label><br><br>
 				<?php
+					if(isset($_POST['likeBtn'])){
+						$likesCount = $_SESSION['StarsPost'] + 1;
+						$addLikes = "update posts set Likes='".$likesCount."' where Title='".$_SESSION['TitlePost']."'";
+						mysqli_query($data,$addLikes);
+					}
+				
 					if($_SESSION['statusPost'] == "selected"){
-						echo "<label class='postTitle'>".$_SESSION['postSelected']."</label><br><br>";
+						echo "<label class='postTitle'>".$_SESSION['TitlePost']."</label><br><br>";
+						echo "<p class='postContent'>".$_SESSION['TextContentPost']."</p><br>";
+						echo "<input class='likeBtn' type='submit' name='likeBtn' value='Star'>";
+						echo "<label class='stars'>" .$_SESSION['StarsPost']." Stars </label>";
+						echo "<label class='comments'>" .$_SESSION['CommentsPost']." Comments </label>";
 					}
 				?>
-				<!--<label class="postTitle"> Title </label><br><br>-->
-				<p class="postContent"> Content </p><br>
 				<!--only if post has image/s
 					<img src="pictures/user.png"><br>
 				-->
-				<input class="likeBtn" type="submit" name="likeBtn" value="Star">
-				<label class="stars"> 0 Stars </label>
-				<label class="comments"> 0 Comments </label>
+				
 			</div>
 			
 			<?php 
