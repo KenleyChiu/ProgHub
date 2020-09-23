@@ -280,10 +280,25 @@ p.postContent{
 	color: black;
 }
 
+.likeBtn{
+	margin-left: 10;
+	text-decoration: none;
+	border: transparent;
+	border-radius: 8px;
+	background-color: #323335;
+	font-size: 15px;
+	padding: 3 4 3 4;
+	color: #F4EF43;
+}
+
+.likeBtn:hover{
+	background-color: gray;
+}
+
 label.stars{
 	font-size: 15px;
 	color:  black;
-	padding-left: 10;
+	padding-left: 5;
 }
 
 label.comments{

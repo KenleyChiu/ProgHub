@@ -7,42 +7,35 @@
 		<link rel="stylesheet" type="text/css" href="css/post.css">
 	</head>
 	
-	<?php
-
-		$signedInStatus = false;
-	?>
-
 	<body>
 			
 			<div class="title">
 				<?php 
-					$sqlConnection = mysqli_connect("localhost","root","");
-				
-					if($sqlConnection) {
-						$pghDatabase = mysqli_select_db($sqlConnection,'proghub_data');
-					} else {
-						die("Connection was not established!".mysqli_error());
-					}
-					
-					$communitiesListQuery = mysqli_query($sqlConnection,"select * from communitieslist");
+					global $data;
 					
 					//displays chosen community as title
 					if($_SESSION['status'] == "selected"){
 						echo "<label class='titleLabel'>".$_SESSION['commSelected']."</label>";
 					}
 					
-					mysqli_close($sqlConnection);
+					
 				?>
 			</div>
 				
 			<div class ="post">
 				<a href="users.php"><img src="pictures/user.png"></a>
 				<label class="postUser"><a class="postUser" href="users.php" > Username </a></label><br><br>
-				<label class="postTitle"> Title </label><br><br>
+				<?php
+					if($_SESSION['statusPost'] == "selected"){
+						echo "<label class='postTitle'>".$_SESSION['postSelected']."</label><br><br>";
+					}
+				?>
+				<!--<label class="postTitle"> Title </label><br><br>-->
 				<p class="postContent"> Content </p><br>
 				<!--only if post has image/s
 					<img src="pictures/user.png"><br>
 				-->
+				<input class="likeBtn" type="submit" name="likeBtn" value="Star">
 				<label class="stars"> 0 Stars </label>
 				<label class="comments"> 0 Comments </label>
 			</div>
@@ -69,6 +62,7 @@
 						<p class='postComment'> Comment </p><br>
 						<label class='stars'> 0 Stars </label>";
 					}
+					mysqli_close($data);
 				?>
 			</div>
 			

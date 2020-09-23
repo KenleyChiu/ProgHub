@@ -111,8 +111,12 @@
 					
 					$postsQuery = mysqli_query($data,"select * from posts");
 					
+					$postArr = array();
+					
+					$titleArr = array();
+					
 					while($posts = mysqli_fetch_array($postsQuery)){
-						$author = $posts["Author"];
+						/*$author = $posts["Author"];
 						$title = $posts["Title"];
 						$textContent = $posts["TextContent"];
 						$imageContent = $posts["ImageContent"];
@@ -120,18 +124,52 @@
 						$comments = $posts["Comments"];
 						$community = $posts["Community"];
 						$postType = $posts["PostType"];
-						$upload = $posts["Upload"];
-						array_push($postsArr,$author,$title,$textContent,$imageContent,$likes,$comments,$community,$postType,$upload);
+						$upload = $posts["Upload"];*/
+						//array_push($postsArr,$author,$title,$textContent,$imageContent,$likes,$comments,$community,$postType,$upload);
+						$postsArr["Author"] = $posts["Author"];
+						$postsArr["Title"] = $posts["Title"];
+						$postsArr["TextContent"] = $posts["TextContent"];
+						$postsArr["ImageContent"] = $posts["ImageContent"];
+						$postsArr["Likes"] = $posts["Likes"];
+						$postsArr["Comments"] = $posts["Comments"];
+						$postsArr["Community"] = $posts["Community"];
+						$postsArr["PostType"] = $posts["PostType"];
+						$postsArr["Upload"] = $posts["Upload"];
+						array_push($titleArr,$posts["Title"]);
+						array_push($postsArr,$postsArr["Author"],$postsArr["Title"],$postsArr["TextContent"],$postsArr["ImageContent"],$postsArr["Likes"],$postsArr["Comments"]
+						,$postsArr["Community"],$postsArr["PostType"],$postsArr["Upload"]);
+						array_push($postArr,$postsArr);
 						
 						echo "<div class='singlePost'>";
 						echo "<a href='users.php'><img src='pictures/user.png'></a>";
-						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$author." </a></label><br><br>";
-						echo "<label class='postTitle'><a class='postTitle' href='post.php' > ".$title." </a></label><br><br>";
-						echo "<label class='stars'> ".$likes." Stars </label>";
-						echo "<label class='comments'> ".$comments." Comments </label>";
+						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$postsArr["Author"]." </a></label><br><br>";
+						echo "<form method='post'>";
+						echo "<input class='postTitle' type='submit' name='".$postsArr["Title"]."' value='".$postsArr["Title"]."'/><br><br>";
+						echo "</form>";
+						echo "<label class='stars'> ".$postsArr["Likes"]." Stars </label>";
+						echo "<label class='comments'> ".$postsArr["Comments"]." Comments </label>";
 						echo "<br>";
 						echo "</div>";
 					}
+					
+					foreach($postArr as $post){
+						echo $post["Title"];
+					}
+					
+					/*foreach(array_values($postsArr) as $index => $data){
+						$postsArr[$index]["name"] = $data;
+						$postsArr[$index]["image"] = $imgArr[$index];
+					}*/
+					
+					
+					foreach($postArr as $post){
+						if(isset($_POST[$post["Title"]])){
+							$_SESSION['statusPost'] = "selected";
+							$_SESSION['postSelected'] = $post["Title"];
+							header("Location: post.php");
+						}
+					}
+					
 					mysqli_close($data);
 				?>
 			</div>
