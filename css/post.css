@@ -252,7 +252,7 @@ label.titleLabel{
 	margin: 10 0 0 0;
 }
 
-.post img{
+.user{
 	float: left;
 	margin: 0 0 0 0;
 	width: 35;
@@ -271,6 +271,14 @@ label.postTitle{
 	padding: 0 0 10 5;
 	color: black;
 	font-weight: bold;
+}
+
+.content{
+	margin-left: 10;
+	height: auto; 
+    width: auto; 
+    max-width: 700px; 
+    max-height: 700px;
 }
 
 p.postContent{

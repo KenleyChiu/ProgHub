@@ -158,7 +158,9 @@
 					foreach($postArr as $post){
 						if(isset($_POST[$post["Title"]])){
 							$_SESSION['statusPost'] = "selected";
+							$_SESSION['AuthorPost'] = $post["Author"];
 							$_SESSION['TitlePost'] = $post["Title"];
+							$_SESSION['ImageContentPost'] = $postsArr["ImageContent"];
 							$_SESSION['TextContentPost'] = $post["TextContent"];
 							$_SESSION['StarsPost'] = $post["Likes"];
 							$_SESSION['CommentsPost'] = $post["Comments"];
