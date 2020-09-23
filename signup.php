@@ -32,7 +32,14 @@
 					}
 					
 					if(!empty($username) && !empty($email) && !empty($age) && !empty($gender)){
-						if(!empty($confirmPassword) && !empty($password) && ($confirmPassword == $password)){
+						$statement = "select * from userdetails where Username = '$username'";
+						$result = mysqli_query($user,$statement);
+						$usernameQuery = mysqli_fetch_array($result);
+						if(!empty($usernameQuery))
+						{
+							$userRegistrationError = "Username is taken";
+						}
+						else if(!empty($confirmPassword) && !empty($password) && ($confirmPassword == $password)){
 							register($user,$username,$email,$age,$gender,$password,$confirmPassword);
 						} else {
 							$userRegistrationError = "Passwords do not match!";

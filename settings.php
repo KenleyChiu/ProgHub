@@ -21,27 +21,42 @@
 		$userRegistrationError = "";
 		
 		if(isset($_POST['updateAcc'])){
-			if(!empty($_POST['oldPassword']) && !empty($_POST['confirmPassword']) && ($_POST['oldPassword'] == $_POST['confirmPassword']) && ($_POST['oldPassword'] == $userarray[1])){
-				if(!empty($_POST['username'])){
-					$username = "update userdetails set Username='".$_POST['username']."' where Username='$userarray[0]'"; 
-					mysqli_query($user,$username);
-				}
-				if(!empty($_POST['newPassword'])){
+			$update =FALSE;
+			if(!empty($_POST['username'])){
+				$username = "update userdetails set Username='".$_POST['username']."' where Username='$userarray[0]'"; 
+				mysqli_query($user,$username);
+				$loginusername = "update login set Username='".$_POST['username']."' where Username='$userarray[0]'";
+				mysqli_query($user,$loginusername);
+				$userarray[0]=$_POST['username'];
+				$update = TRUE;
+			}
+			if(!empty($_POST['age'])){
+				$age = "update userdetails set Age='".$_POST['age']."' where Username='$userarray[0]'"; 
+				mysqli_query($user,$age);
+				$update = TRUE;
+			}
+			if(!empty($_POST['email'])){
+				$email = "update userdetails set Email='".$_POST['email']."' where Username='$userarray[0]'"; 
+				mysqli_query($user,$email);
+				$update = TRUE;
+			}
+			if(!empty($_POST['gender'])){
+				$gender = "update userdetails set Gender='".$_POST['gender']."' where Username='$userarray[0]'"; 
+				mysqli_query($user,$gender);
+				$update = TRUE;
+			}
+			if(!empty($_POST['oldPassword']) && ($_POST['oldPassword'] == $userarray[1])){
+				if(!empty($_POST['newPassword']) && !empty($_POST['confirmPassword']) && $_POST['confirmPassword'] == $_POST['newPassword']){
 					$password = "update userdetails set Password='".$_POST['newPassword']."' where Username='$userarray[0]'"; 
 					mysqli_query($user,$password);
+					$loginpassword = "update login set Password='".$_POST['newPassword']."' where Username='$userarray[0]'";
+					mysqli_query($user,$loginpassword);
+					$update = TRUE;
 				}
-				if(!empty($_POST['age'])){
-					$age = "update userdetails set Age='".$_POST['age']."' where Username='$userarray[0]'"; 
-					mysqli_query($user,$age);
-				}
-				if(!empty($_POST['email'])){
-					$email = "update userdetails set Email='".$_POST['email']."' where Username='$userarray[0]'"; 
-					mysqli_query($user,$email);
-				}
-				if(!empty($_POST['gender'])){
-					$gender = "update userdetails set Gender='".$_POST['gender']."' where Username='$userarray[0]'"; 
-					mysqli_query($user,$gender);
-				}
+			}
+
+			if($update)
+			{
 				$login = "update login set SignedInStatus='False' where Username='$userarray[0]'"; 
 				mysqli_query($user,$login);
 				header("Location: login.php");
