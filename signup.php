@@ -44,8 +44,8 @@
 				
 				function register($user,$username,$email,$age,$gender,$password,$confirmPassword){
 					//add to userdetails
-					$userdetailsQuery = "insert into userdetails values('".$username."','".$password."','".$age."','".$email."','".$password."',LOAD_FILE('pictures/user.png'),
-					'','0')";
+					//$userdetailsQuery = "insert into userdetails values('".$username."','".$password."','".$age."','".$email."','".$gender."',LOAD_FILE('C:/xampp/htdocs/ProgHub/pictures/user.png'),'','0')";
+					$userdetailsQuery = "insert into userdetails values('".$username."','".$password."','".$age."','".$email."','".$gender."','/pictures/user.png','','0')";
 					mysqli_query($user,$userdetailsQuery);
 					
 					//add to login

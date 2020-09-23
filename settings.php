@@ -22,7 +22,7 @@
 	?>
 
 	<body>
-
+			
 			
 			<div class="title">
 				<label class="titleLabel"> SETTINGS </label>

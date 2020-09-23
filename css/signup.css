@@ -195,7 +195,7 @@ label.titleLabel{
 }
 
 .signupForm{
-	grid-area: loginForm;
+	grid-area: signupForm;
 	justify-content: center;
 	/*background-color: #FBF7EF;*/
 	background-image: url("pictures/innerbg.jpg");
@@ -231,7 +231,6 @@ ul.signupForm li{
 	color: white;
 	font-size: 17px;
 	font-weight: bold;
-	
 }
 
 .signUpAcc:hover{

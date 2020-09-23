@@ -21,12 +21,13 @@
 				global $user;
 				$signedInStatus="False";
 				$usersQuery = mysqli_query($user,"select * from login WHERE SignedInStatus = 'True' ");
+				
+				//global arrays [login and userdetails]
 				$userArr = array();
-
+				$specificUserArr = array();
+				
                 $users = mysqli_fetch_array($usersQuery);
                 
-				
-				
 				if(empty($users))
                 {
                     $signedInStatus="False";
@@ -39,6 +40,18 @@
                     $position = $users["Position"];
                     //echo "yep";
                     array_push($userArr,$username,$password,$signedInStatus,$position);
+					
+					$userQuery = mysqli_query($user,"select * from userdetails WHERE Username = '".$username."'");
+					
+					$specificUser = mysqli_fetch_array($userQuery);
+					
+					$age = $specificUser["Age"];
+                    $email = $specificUser["Email"];
+                    $gender = $specificUser["Gender"];
+                    $image = $specificUser["Image"];
+					$bio = $specificUser["Bio"];
+					$likes = $specificUser["Likes"];
+					array_push($specificUserArr,$username,$password,$age,$email,$gender,$image,$bio,$likes);
                 }
 				
                 if($signedInStatus == "False"){
@@ -49,7 +62,7 @@
                     echo "<input class='signupBtn' type='submit' value='Sign Up'/>";
                     echo "</form>";
                 } else {
-					echo "<a href='users.php'><img src='pictures/user.png'></a>";
+					echo "<a href='users.php'><img src='data:image/jpeg;base64,".base64_encode($specificUserArr[5])."'></a>";
 					echo "<label class='username'><a class='username' href='users.php' >".$userArr[0]." </a></label>";
 					echo "<form class='settings' action='settings.php' method='post'>";
                     echo "<input class='settingsBtn' type='submit' value='Settings'/>";
