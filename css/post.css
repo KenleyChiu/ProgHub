@@ -295,10 +295,14 @@ p.postContent{
 	background-color: gray;
 }
 
+.starsForm{
+	display:inline;
+}
+
 label.stars{
 	font-size: 15px;
 	color:  black;
-	padding-left: 5;
+	padding-left: 10;
 }
 
 label.comments{

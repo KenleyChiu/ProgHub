@@ -24,7 +24,7 @@
 				
 				//global arrays [login and userdetails]
 				$userArr = array();
-				$specificUserArr = array();
+				//$specificUserArr = array();
 				
                 $users = mysqli_fetch_array($usersQuery);
                 
@@ -41,7 +41,7 @@
                     //echo "yep";
                     array_push($userArr,$username,$password,$signedInStatus,$position);
 					
-					$userdetailQuery = mysqli_query($user,"select * from userdetails WHERE Username = '$username'");
+					/*$userdetailQuery = mysqli_query($user,"select * from userdetails WHERE Username = '$username'");
 					
 					$specificUser = mysqli_fetch_array($userdetailQuery);
 					
@@ -51,7 +51,7 @@
                     $image = $specificUser["Image"];
 					$bio = $specificUser["Bio"];
 					$likes = $specificUser["Likes"];
-					array_push($specificUserArr,$username,$password,$age,$email,$gender,$image,$bio,$likes);
+					array_push($specificUserArr,$username,$password,$age,$email,$gender,$image,$bio,$likes);*/
                 }
 				
                 if($signedInStatus == "False"){

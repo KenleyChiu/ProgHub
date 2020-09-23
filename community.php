@@ -113,7 +113,6 @@
 					
 					$postArr = array();
 					
-					$titleArr = array();
 					
 					while($posts = mysqli_fetch_array($postsQuery)){
 						/*$author = $posts["Author"];
@@ -135,7 +134,6 @@
 						$postsArr["Community"] = $posts["Community"];
 						$postsArr["PostType"] = $posts["PostType"];
 						$postsArr["Upload"] = $posts["Upload"];
-						array_push($titleArr,$posts["Title"]);
 						array_push($postsArr,$postsArr["Author"],$postsArr["Title"],$postsArr["TextContent"],$postsArr["ImageContent"],$postsArr["Likes"],$postsArr["Comments"]
 						,$postsArr["Community"],$postsArr["PostType"],$postsArr["Upload"]);
 						array_push($postArr,$postsArr);
@@ -164,6 +162,7 @@
 							$_SESSION['TextContentPost'] = $post["TextContent"];
 							$_SESSION['StarsPost'] = $post["Likes"];
 							$_SESSION['CommentsPost'] = $post["Comments"];
+							$_SESSION['PostTypePost'] = $post["PostType"];
 							header("Location: post.php");
 						}
 					}

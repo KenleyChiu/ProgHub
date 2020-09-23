@@ -12,10 +12,12 @@
 			<div class="title">
 				<?php 
 					global $data;
+					$userarray=$GLOBALS["userArr"];
 					
+					$community = $_SESSION['commSelected'];
 					//displays chosen community as title
 					if($_SESSION['status'] == "selected"){
-						echo "<label class='titleLabel'>".$_SESSION['commSelected']."</label>";
+						echo "<label class='titleLabel'>".$community."</label>";
 					}
 					
 					
@@ -26,17 +28,32 @@
 				<a href="users.php"><img src="pictures/user.png"></a>
 				<label class="postUser"><a class="postUser" href="users.php" > Username </a></label><br><br>
 				<?php
+					$likesCount = $_SESSION['StarsPost'];
+					$postTitle = $_SESSION['TitlePost'];
+					$postPostType = $_SESSION['PostTypePost'];
+					
+					
 					if(isset($_POST['likeBtn'])){
-						$likesCount = $_SESSION['StarsPost'] + 1;
-						$addLikes = "update posts set Likes='".$likesCount."' where Title='".$_SESSION['TitlePost']."'";
-						mysqli_query($data,$addLikes);
+						$checkLikes = "select * from postlikes where Username='".$userarray[0]."' and Title='".$postTitle."'";
+						$liked = mysqli_query($data,$checkLikes);
+						$likeArr = mysqli_fetch_array($liked);
+						
+						if(empty($likeArr)){
+							$likesCount = $_SESSION['StarsPost'] + 1;
+							$addLikes = "update posts set Likes='".$likesCount."' where Title='".$postTitle."'";
+							mysqli_query($data,$addLikes);
+							
+							$addLikes2 = "insert into postlikes values('".$userarray[0]."','".$postTitle."','".$community."','".$postPostType."')";
+							mysqli_query($data,$addLikes2);
+						}
 					}
 				
 					if($_SESSION['statusPost'] == "selected"){
-						echo "<label class='postTitle'>".$_SESSION['TitlePost']."</label><br><br>";
+						echo "<label class='postTitle'>".$postTitle."</label><br><br>";
 						echo "<p class='postContent'>".$_SESSION['TextContentPost']."</p><br>";
-						echo "<input class='likeBtn' type='submit' name='likeBtn' value='Star'>";
-						echo "<label class='stars'>" .$_SESSION['StarsPost']." Stars </label>";
+						echo "<form class='starsForm' action='".$_SERVER['PHP_SELF']."' method='post'>";
+						echo "<input class='likeBtn' type='submit' name='likeBtn' value='Star'></form>";
+						echo "<label class='stars'>" .$likesCount." Stars </label>";
 						echo "<label class='comments'>" .$_SESSION['CommentsPost']." Comments </label>";
 					}
 				?>
@@ -65,8 +82,8 @@
 					for($x=0;$x<1;$x++){
 						echo "<a href='users.php'><img src='pictures/user.png'></a>
 						<label class='postUser'><a class='postUser' href='users.php' > Username </a></label><br><br>
-						<p class='postComment'> Comment </p><br>
-						<label class='stars'> 0 Stars </label>";
+						<p class='postComment'> Comment </p><br>";
+						//<label class='stars'> 0 Stars </label> //THIS IS EXTRA, IF THERE IS TIME
 					}
 					mysqli_close($data);
 				?>
