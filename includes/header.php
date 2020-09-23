@@ -54,6 +54,10 @@
 					echo "<form class='settings' action='settings.php' method='post'>";
                     echo "<input class='settingsBtn' type='submit' value='Settings'/>";
                     echo "</form>";
+					//dropdown menu not yet implementable
+					/*echo "<select name='userDropDown'>";
+					echo "<a href='settings.php'><option>Settings</option></a>";
+					echo "</select>";*/
 				}
 				
 				/*if(isset($_POST['logoutBtn'])){

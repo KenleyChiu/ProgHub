@@ -133,6 +133,10 @@ body{
 	background-color: #323335;
 }
 
+.signUpBtn:hover, .loginBtn:hover{
+	background-color: gray;
+}
+
 .loginBtn:hover{
 	color: #D0FF36;
 }

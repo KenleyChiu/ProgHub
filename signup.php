@@ -7,12 +7,6 @@
 		<link rel="stylesheet" type="text/css" href="css/signup.css">
 	</head>
 	
-	<?php
-
-		//gets the signed in status from home.php
-		$signedInStatus = $_SESSION['signedInStatus'];
-	?>
-	
 	<body>
 
 			

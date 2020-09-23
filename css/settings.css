@@ -19,8 +19,7 @@ body{
 	"header header header"
 	"menu menu menu"
 	"title title title"
-	". settings1 data"
-	". settings2 data"
+	". settingsForm ."
 	"footer footer footer";
 }
 
@@ -240,30 +239,87 @@ label.titleLabel{
 	align-self: center;
 }
 
-.settings1{
-	grid-area: settings1;
+.settingsForm{
+	grid-area: settingsForm;
+	justify-content: center;
+	/*background-color: #FBF7EF;*/
+	background-image: url("pictures/innerbg.jpg");
 }
 
-.settings2{
-	grid-area: settings2;
+label.settingsHeader{
+	font-weight: bold;
+	font-size:18;
+	display:inline-block;
+	margin: 50 0 0 261;
 }
 
-.logout{
+.settingsFormTable{
+	margin-left:auto; 
+	margin-right:auto;
+	border-spacing: 0 8;
+	margin-top: 10;
+}
+
+ul.updateForm{
+	/*border: 1px solid black;*/
+	display:block;
+	margin-bottom: 50;
+}
+
+ul.updateForm li{
+	margin-top: 8;
+	text-align: center;
+	align-self: center;
+}
+
+.settingsInput{
+	padding: 4 100 4 5;
+}
+
+.updateAcc{
+	padding: 6 105 6 105;
+	border-radius:5px;
+	background-color: #1668CD;
+	color: white;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.updateAcc:hover{
+	filter: contrast(120%);
+	filter: brightness(110%);
+}
+
+/*.signOutAcc{
+	display: inline;
+	border: 1px solid transparent;
+	background-color: transparent;
+	color: #0000EE;	
+}
+
+.signOutAcc:hover{
+	color: #A464FF;
+}*/
+
+.signout{
 	margin: 10 0 0 0;
 	/*margin:10 30 0 0;*/
-	display: inline-block;
+	display: inline;
 }
 
-.logoutBtn{
+.signoutBtn{
 	color: #A464FF;
+	text-decoration: none;
+	font-size: 15px;
+	padding: 3 4 3 4;
+	border: transparent;
+	border-radius: 8px;
+	background-color: #323335;
 }
 
-.logoutBtn:hover{
+.signoutBtn:hover{
 	color: #A464FF;
-}
-
-.data{
-	grid-area: data;
+	background-color: gray;
 }
 
 .footer{

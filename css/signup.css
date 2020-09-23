@@ -19,7 +19,7 @@ body{
 	"header header header"
 	"menu menu menu"
 	"title title title"
-	". loginForm ."
+	". signupForm ."
 	"footer footer footer";
 
 }
@@ -133,16 +133,16 @@ body{
 	background-color: #323335;
 }
 
+.signUpBtn:hover, .loginBtn:hover{
+	background-color: gray;
+}
+
 .loginBtn:hover{
 	color: #D0FF36;
 }
 
 .signUpBtn:hover{
 	color: #A464FF;
-}
-
-.signUpBtn:hover, .loginBtn:hover{
-	background-color: gray;
 }
 
 .menu{
@@ -240,11 +240,11 @@ ul.signupForm li{
 	filter: brightness(110%);
 }
 
-label.signinDetails{
+/*label.signinDetails{
 	margin-top: 50;
 	font-size: 15px;
 	display: inline;
-}
+}*/
 
 .loginAcc{
 	display: inline;

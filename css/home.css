@@ -142,7 +142,7 @@ body{
 .account img{
 	width: 35;
 	height: 35;
-	display: inline-block;
+	display: inline-flex;
 	margin: 10 0 0 150;
 }
 
