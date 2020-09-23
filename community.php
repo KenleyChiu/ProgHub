@@ -40,7 +40,6 @@
 				
 				$postArr = array();
 				
-				ob_start();
 				while($posts = mysqli_fetch_array($postsQuery)){
 					$postsArr["Author"] = $posts["Author"];
 					$postsArr["Title"] = $posts["Title"];
@@ -54,18 +53,6 @@
 					array_push($postsArr,$postsArr["Author"],$postsArr["Title"],$postsArr["TextContent"],$postsArr["ImageContent"],$postsArr["Likes"],$postsArr["Comments"]
 					,$postsArr["Community"],$postsArr["PostType"],$postsArr["Upload"]);
 					array_push($postArr,$postsArr);
-					
-					echo "<div class='singlePost'>";
-					echo "<a href='users.php'><img src='pictures/user.png'></a>";
-					echo "<label class='postUser'><a class='postUser' href='users.php' > ".$postsArr["Author"]." </a></label><br><br>";
-					echo "<form method='post'>";
-					echo "<input class='postTitleBtn' type='submit' name='".$postsArr["Title"]."' value='".$postsArr["Title"]."'/><br><br>";
-					echo "</form>";
-					//echo "<label class='postTitle'><a class='postTitle' href='' name='".$postsArr["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
-					echo "<label class='stars'> ".$postsArr["Likes"]." Stars </label>";
-					echo "<label class='comments'> ".$postsArr["Comments"]." Comments </label>";
-					echo "<br>";
-					echo "</div>";
 				}
 				
 				foreach($postArr as $post){
@@ -81,7 +68,23 @@
 						header("Location:post.php");
 					}
 				}
-				ob_end_flush();
+				
+				foreach(array_values($postArr) as $key => $post){
+					echo "<div class='singlePost'>";
+					echo "<a href='users.php'><img src='pictures/user.png'></a>";
+					echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label><br><br>";
+					echo "<form method='post'>";
+					echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
+					echo "</form>";
+					//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
+					echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
+					echo "<label class='comments'> ".$post["Comments"]." Comments </label>";
+					echo "<br>";
+					echo "</div>";
+				}
+				
+				
+				mysqli_close($data);
 			?>
 		
 		</div>
