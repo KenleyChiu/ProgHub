@@ -143,9 +143,10 @@
 						echo "<div class='singlePost'>";
 						echo "<a href='users.php'><img src='pictures/user.png'></a>";
 						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$postsArr["Author"]." </a></label><br><br>";
-						echo "<form method='post'>";
+						/*echo "<form method='post'>";
 						echo "<input class='postTitle' type='submit' name='".$postsArr["Title"]."' value='".$postsArr["Title"]."'/><br><br>";
-						echo "</form>";
+						echo "</form>";*/
+						echo "<label class='postTitle'><a class='postTitle' href='post.php' name='postTitle' > ".$postsArr["Title"]." </a></label><br>";
 						echo "<label class='stars'> ".$postsArr["Likes"]." Stars </label>";
 						echo "<label class='comments'> ".$postsArr["Comments"]." Comments </label>";
 						echo "<br>";
