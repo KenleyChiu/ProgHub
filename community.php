@@ -108,8 +108,8 @@
 			<div class ="post">
 				<?php 		
 					$postsArr = array();
-					
-					$postsQuery = mysqli_query($data,"select * from posts");
+					$community=$_SESSION['commSelected'];
+					$postsQuery = mysqli_query($data,"select * from posts where community = '$community'");
 					
 					$postArr = array();
 					

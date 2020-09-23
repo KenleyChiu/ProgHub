@@ -1,6 +1,6 @@
 <html>
 	<?php require_once 'config.php'?>
-	<?php require_once (ROOT_PATH .'\includes\header.php')?>
+	<?php require (ROOT_PATH .'\includes\header.php')?>
 	<?php require_once (ROOT_PATH .'\includes\navigation.php')?>
 	<head>
 		<title>Website Project</title>
