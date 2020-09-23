@@ -53,7 +53,8 @@
 					if($_SESSION['statusPost'] == "selected"){
 						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$postAuthor." </a></label><br><br>";
 						echo "<label class='postTitle'>".$postTitle."</label><br><br>";
-						echo "<img class='content' src='data:image/jpeg;base64,".base64_encode($postImageContent)."'><br>";
+						echo "<img src='".$postImageContent."'>" ;
+						//echo "<img class='content' src='data:image/jpeg;base64,".base64_encode($postImageContent)."'><br>";
 						echo "<p class='postContent'>".$_SESSION['TextContentPost']."</p><br>";
 						echo "<form class='starsForm' action='".$_SERVER['PHP_SELF']."' method='post'>";
 						echo "<input class='likeBtn' type='submit' name='likeBtn' value='Star'></form>";
