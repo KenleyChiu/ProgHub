@@ -10,6 +10,9 @@
 		<!-- TITLE -->
 		<div class="title">
 			<?php
+				global $user;
+				$userarray=$GLOBALS["userArr"];
+				
 				//displays chosen community as title
 				if($_SESSION['status'] == "selected"){
 					echo "<label class='titleLabel'>".$_SESSION['commSelected']."</label>";
@@ -77,20 +80,50 @@
 						$_SESSION['PostTypePost'] = $post["PostType"];
 						header("Location:post.php");
 					}
+					
+					if(isset($_POST['del'.$post["Title"].'Btn'])){
+						//delete post
+						$delPostQuery = "delete from posts where community='$community' and Title='".$post["Title"]."'";
+						mysqli_query($data,$delPostQuery);
+						
+						//delete comments on post
+						$delCommentsQuery = "delete from comments where community='$community' and Title='".$post["Title"]."'";
+						mysqli_query($data,$delCommentsQuery);
+						header("Location:community.php");
+					}
 				}
 				
-				foreach(array_values($postArr) as $key => $post){
-					echo "<div class='singlePost'>";
-					echo "<a href='users.php'><img src='pictures/user.png'></a>";
-					echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label><br>";
-					echo "<form method='post'>";
-					echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
-					echo "</form>";
-					//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
-					echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
-					echo "<label class='comments'> ".$post["Comments"]." Comments </label>";
-					echo "<br>";
-					echo "</div>";
+				if($userarray[3] == "User"){
+					foreach(array_values($postArr) as $key => $post){
+						echo "<div class='singlePost'>";
+						echo "<a href='users.php'><img src='pictures/user.png'></a>";
+						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label><br>";
+						echo "<form method='post'>";
+						echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
+						echo "</form>";
+						//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
+						echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
+						echo "<label class='comments'> ".$post["Comments"]." Comments </label>";
+						echo "<br>";
+						echo "</div>";
+					}
+				} else {
+					foreach(array_values($postArr) as $key => $post){
+						echo "<div class='singlePost'>";
+						echo "<a href='users.php'><img src='pictures/user.png'></a>";
+						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label>";
+						echo "<form class='deleteBtnForm' method='post'>";
+						echo "<input class='deleteBtn' type='submit' name='del".$post["Title"]."Btn' value='Delete'/><br><br>";
+						echo "</form>";
+						echo "<form method='post'>";
+						echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
+						echo "</form>";
+						//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
+						echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
+						echo "<label class='comments'> ".$post["Comments"]." Comments </label>";
+						echo "<br>";
+						echo "</div>";
+					}
 				}
 				
 				

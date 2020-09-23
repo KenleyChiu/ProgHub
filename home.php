@@ -20,7 +20,6 @@
 			</div>
 			
 			
-			
 			<!--MAIN SECTION-->
 			<div class="sections">
 				<label class="recent"><a href="#"> Recent </a></label>

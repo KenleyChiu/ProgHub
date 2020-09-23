@@ -56,7 +56,7 @@
 			<div class="communities">
 				<ul class="communities">
 					<form method="post">
-						<?php 							
+						<?php
 							//use if with database - prints all communities
 							foreach(array_values($communityArr) as $key => $community){
 								echo "<li><img class='commsImg' src='data:image/jpeg;base64,".base64_encode($community["image"])."'>

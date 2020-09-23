@@ -130,6 +130,7 @@ body{
 	border: transparent;
 	border-radius: 8px;
 	background-color: #323335;
+	cursor:pointer;
 }
 
 .loginBtn:hover{
@@ -177,6 +178,7 @@ body{
 	border: transparent;
 	border-radius: 8px;
 	background-color: #323335;
+	cursor:pointer;
 }
 
 .usernameBtn:hover{
@@ -211,6 +213,7 @@ ul.nav li{
 	border: 1px solid transparent;
 	background-color: #323335; 
 	font-size: 17px;
+	cursor:pointer;
 }
 
 .usersBtn{
@@ -252,7 +255,7 @@ label.settingsHeader{
 	font-weight: bold;
 	font-size:18;
 	display:inline-block;
-	margin: 50 0 0 261;
+	margin: 50 0 0 185;
 }
 
 .settingsFormTable{
@@ -267,6 +270,15 @@ label.settingsHeader{
 	margin: 2 0 0 4;
 	width: 150px;
 	height: 150px;
+}
+
+.imageInput{
+	cursor:pointer;
+}
+
+.radioInput{
+	padding: 4 0 4 5;
+	cursor:pointer;
 }
 
 ul.updateForm{
@@ -298,6 +310,7 @@ ul.updateForm li{
 	color: white;
 	font-size: 17px;
 	font-weight: bold;
+	cursor:pointer;
 }
 
 .updateAcc:hover{
@@ -330,6 +343,7 @@ ul.updateForm li{
 	border: transparent;
 	border-radius: 8px;
 	background-color: #323335;
+	cursor:pointer;
 }
 
 .signoutBtn:hover{

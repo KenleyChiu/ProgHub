@@ -132,6 +132,7 @@ body{
 	border: transparent;
 	border-radius: 8px;
 	background-color: #323335;
+	cursor:pointer;
 }
 
 .loginBtn:hover{
@@ -179,6 +180,7 @@ body{
 	border: transparent;
 	border-radius: 8px;
 	background-color: #323335;
+	cursor:pointer;
 }
 
 .usernameBtn:hover{
@@ -213,6 +215,7 @@ ul.nav li{
 	border: 1px solid transparent;
 	background-color: #323335; 
 	font-size: 17px;
+	cursor:pointer;
 }
 
 .communityBtn{
@@ -283,10 +286,11 @@ label.commsLabel{
 	background-color: transparent;
 	/*border: 1px solid black;*/
 	padding: 9 0 20 690;
+	cursor:pointer;
 }
 
 .commsBtn:hover{
-	background-color: red;
+	/*background-color: red;*/
 }
 
 .data{

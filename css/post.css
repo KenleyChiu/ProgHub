@@ -133,6 +133,7 @@ body{
 	border: transparent;
 	border-radius: 8px;
 	background-color: #323335;
+	cursor:pointer;
 }
 
 .loginBtn:hover{
@@ -180,6 +181,7 @@ body{
 	border: transparent;
 	border-radius: 8px;
 	background-color: #323335;
+	cursor:pointer;
 }
 
 .usernameBtn:hover{
@@ -214,6 +216,7 @@ ul.nav li{
 	border: 1px solid transparent;
 	background-color: #323335; 
 	font-size: 17px;
+	cursor:pointer;
 }
 
 .communityBtn{
@@ -299,6 +302,7 @@ p.postContent{
 	font-size: 15px;
 	padding: 3 4 3 4;
 	color: #F4EF43;
+	cursor:pointer;
 }
 
 .likeBtn:hover{
@@ -355,6 +359,10 @@ label.createComment{
 	padding: 2 0 100 5;
 }
 
+.imageInput{
+	cursor:pointer;
+}
+
 .commentBtn{
 	text-decoration: none;
 	border: transparent;
@@ -364,6 +372,7 @@ label.createComment{
 	padding: 3 4 3 4;
 	color: #D0FF36;
 	float: right;
+	cursor:pointer;
 }
 
 .commentBtn:hover{

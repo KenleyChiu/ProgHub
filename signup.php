@@ -73,7 +73,7 @@
 						<tr><td><label class="signupDetails"> Age: </label></td>
 						<td><input class="signupInput" type="text" name="age" size='30' Placeholder="Age.."/></td></tr>
 						<tr><td><label class="signupDetails"> Gender: </label></td>
-						<td><input class="signupInput" type="radio" name="gender" value="M"/> M <input class="signupInput" type="radio" name="gender" value="F"/> F </td></tr>
+						<td><input class="radioInput" type="radio" name="gender" value="M"/> M <input class="radioInput" type="radio" name="gender" value="F"/> F </td></tr>
 						<tr><td><label class="signupDetails"> Password: </label></td>
 						<td><input class="signupInput" type="password" name="password" size='30' Placeholder="Password.."/></td></tr>
 						<tr><td><label class="signupDetails"> Confirm Password: </label></td>

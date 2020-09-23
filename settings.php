@@ -89,7 +89,7 @@
 				<form method="post">
 					<table class="settingsFormTable">
 						<tr><td><img class="profileImg" src='data:image/jpeg;base64,<?php echo base64_encode($userDetailsarray[5]); ?>'></td>
-						<td><input class="settingsInput" type="file" name="displayPicture" /></td></tr>
+						<td><input class="imageInput" type="file" name="displayPicture" /></td></tr>
 						<tr><td valign="top"><label class="settingsDetails"> Bio: </label></td>
 						<td><textarea class="settingsInputBio"rows='7' cols='34' name='bio' Placeholder="Enter your bio.."></textarea>
 						<!--<input class="settingsInput" type="hidden" name="bio" value=" echo htmlspecialchars($_POST['bioText']); "/>-->
@@ -101,7 +101,7 @@
 						<tr><td><label class="settingsDetails"> Age: </label></td>
 						<td><input class="settingsInput" type="text" name="age" size='35' Placeholder="Age.."/></td></tr>
 						<tr><td><label class="settingsDetails"> Gender: </label></td>
-						<td><input class="settingsInput" type="radio" name="gender" value="M"/> M <input class="signupInput" type="radio" name="gender" value="F"/> F </td></tr>
+						<td><input class="radioInput" type="radio" name="gender" value="M"/> M <input class="radioInput" type="radio" name="gender" value="F"/> F </td></tr>
 						<tr><td><label class="settingsDetails"> Change Password: </label></td>
 						<td><input class="settingsInput" type="password" name="newPassword" size='35' Placeholder="New Password.."/></td></tr>
 						<tr><td><label class="settingsDetails"> Old Password: </label></td>
