@@ -23,6 +23,8 @@
 			<div class="title">
 				<?php 
 				global $data;
+				$userarray=$GLOBALS["userArr"];
+				$errorMessage=" ";
 				
 					$communitiesListQuery = mysqli_query($data,"select * from communitieslist");
 					
@@ -31,6 +33,53 @@
 						echo "<label class='titleLabel'>".$_SESSION['commSelected']."</label>";
 					}
 					
+					if(isset($_POST["createBtn"]))
+					{
+						$title=$content=" ";
+						if ($_SERVER["REQUEST_METHOD"] == "POST")
+						{
+							if(empty($_POST["createTitle"])||empty($_POST["createContent"]))
+							{
+								$errorMessage = "Fill up Title and Content";
+							}
+							else{
+								$title=$_POST["createTitle"];
+								$content=$_POST["createContent"];
+								$community=$_SESSION['commSelected'];
+								if(empty($_FILES["createImage"]["name"]))
+								{	
+									$statement="insert into posts(Author,Title,TextContent,Likes,Comments,Community,PostType,Upload) values('$userarray[0]','$title','$content',0,0,'$community','Thread',NOW())";
+									mysqli_query($data,$statement);
+								}
+								else
+								{
+									//get file info
+									$fileName = basename($_FILES["createImage"]["name"]); 
+									$fileType = pathinfo($fileName, PATHINFO_EXTENSION);
+									// Allow certain file formats 
+									$allowTypes = array('jpg','png','jpeg','gif'); 
+									if(in_array($fileType, $allowTypes)){ 
+										$image = $_FILES['createImage']['tmp_name']; 
+										$imgContent = addslashes(file_get_contents($image));
+										$statement="insert into posts(Author,Title,TextContent,Likes,Comments,Community,PostType,Upload,ImageContent) values('$userarray[0]','$title','$content',0,0,'$community','Thread',NOW(),'$imgContent')";
+										$status=mysqli_query($data,$statement);
+										if($status)
+										{
+											$errorMessage="File sucessfully Upload";
+										}else
+										{
+											$errorMessage="File upload Failed";
+
+										}
+									}
+									else{
+										$errorMessage="Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.";
+									}
+								}
+							}
+						}
+					}
+
 					mysqli_close($data);
 				?>
 			</div>
@@ -41,20 +90,20 @@
 				<label class="projects"><a href="#"> Projects </a></label>
 			</div>
 			
-			<?php 
-				$errorMessage = "sample error";
-			?>
 			
-			<div class="create">
-				<label class="createPost"> Create a Post </label>
-				<table class="createDetails">
-				<tr><td><input class="titleInput" type = "text" name = "createTitle" Placeholder="Title"/></td></tr>
-				<tr><td><input class="contentInput" type = "text" name = "createContent" Placeholder="Thread Discussion"/></td></tr>
-				<tr><td><input class="imageInput" type = "file" name = "createImage" Placeholder="Image Filepath"/></td></tr>
-				<tr><td><span style="color:red"> <?php echo $errorMessage;?> </span></td></tr>
-				<tr><td><input class="createBtn" type = "submit" name = "createBtn" value="Create Post"/></td></tr>
-			</table>
-			</div>
+				<div class="create">
+				<form method ="post" enctype="multipart/form-data">
+					<label class="createPost"> Create a Post </label>
+					<table class="createDetails">
+					<tr><td><input class="titleInput" type = "text" name = "createTitle" Placeholder="Title"/></td></tr>
+					<tr><td><input class="contentInput" type = "text" name = "createContent" Placeholder="Thread Discussion"/></td></tr>
+					<tr><td><input class="imageInput" type = "file" name = "createImage"></td></tr>
+					<tr><td><span style="color:red"> <?php echo $errorMessage;?> </span></td></tr>
+					<tr><td><input class="createBtn" type = "submit" name = "createBtn" value="Create Post"/></td></tr>
+				</table>
+				</form>
+				</div>
+			
 				
 			<div class ="post">
 				<a href="users.php"><img src="pictures/user.png"></a>
