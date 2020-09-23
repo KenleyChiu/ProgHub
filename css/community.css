@@ -419,6 +419,14 @@ label.postTitle, .postTitle:link, .postTitle:visited{
 	font-weight: bold;
 }
 
+.postTitleBtn{
+	border: 1px solid transparent;
+	margin-left: 10;
+	font-weight: bold;
+	font-size: 20px;
+	background-color: transparent;
+}
+
 label.stars{
 	font-size: 15px;
 	color:  black;
