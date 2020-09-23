@@ -36,7 +36,7 @@
 			{
 				if ($_SERVER["REQUEST_METHOD"] == "POST")
 				{
-					$title=$content=" ";
+					$title=$content=$statement=" ";
 					if(empty($_POST["createTitle"])||empty($_POST["createContent"])){
 						$errorMessage = "Fill up Title and Content";
 					}
@@ -48,6 +48,10 @@
 						{	
 							$statement="insert into posts(Author,Title,TextContent,Likes,Comments,Community,PostType,Upload) values('$userarray[0]','$title','$content','0','0','$community','Thread',NOW())";
 							mysqli_query($data,$statement);
+							header("Location:community.php");
+							exit();
+							
+							
 						}
 						else{
 							//get file info
@@ -66,7 +70,8 @@
 									move_uploaded_file($filetmp,$fileDestination);
 									$statement="insert into posts(Author,Title,TextContent,ImageContent,Likes,Comments,Community,PostType,Upload) values('$userarray[0]','$title','$content','$fileDestination','0','0','$community','Thread',NOW())";
 									mysqli_query($data,$statement);
-									$errorMessage="File Upload Sucess";
+									header("Location:community.php");
+									exit();
 								}else{
 									$errorMessage="File Upload Failed";
 								}
@@ -77,10 +82,10 @@
 						}
 					}
 				}
-				//header("Location:community.php");
+				
 			}
 			?>
-			<form method ="post" enctype="multipart/form-data">
+			<form method ="post" enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"];?>" >
 				<label class="createPost"> Create a Post </label>
 				<table class="createDetails">
 					<tr><td><input class="titleInput" type = "text" name = "createTitle" Placeholder="Title"/></td></tr>
