@@ -8,7 +8,7 @@
 	</head>
 	<?php
 		global $user;
-				
+		$userarray=$GLOBALS["userArr"];
 		$usersListQuery = mysqli_query($user,"select * from userdetails");
 		
 		$usersArr = array();
@@ -73,9 +73,11 @@
 								array_push($usersArr,$usersArr["Username"],$usersArr["Password"],$usersArr["Age"],$usersArr["Email"],$usersArr["Gender"],$usersArr["Image"]
 								,$usersArr["Bio"],$usersArr["Likes"]);
 								array_push($userArr,$usersArr);
-								echo "<li><img class='userImg' src='data:image/jpeg;base64,".base64_encode($usersArr["Image"])."'>
-								<label class='userLabel' name='".$usersArr["Username"]."'/>".$usersArr["Username"]."</label>
-								<input class='userBtn' type='submit' name='".$usersArr["Username"]."Btn' value=''/></li>";
+								if($usersArr["Username"] != $userarray[0]){
+									echo "<li><img class='userImg' src='data:image/jpeg;base64,".base64_encode($usersArr["Image"])."'>
+									<label class='userLabel' name='".$usersArr["Username"]."'/>".$usersArr["Username"]."</label>
+									<input class='userBtn' type='submit' name='".$usersArr["Username"]."Btn' value=''/></li>";
+								}
 							}
 							
 							foreach($userArr as $user){

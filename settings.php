@@ -10,6 +10,7 @@
 	<?php
 		global $user;
 		$userarray=$GLOBALS["userArr"];
+		$userDetailsarray=$GLOBALS["specificUserArr"];
 
 
 		if(isset($_POST['signoutBtn'])){
@@ -33,17 +34,27 @@
 			if(!empty($_POST['age'])){
 				$age = "update userdetails set Age='".$_POST['age']."' where Username='$userarray[0]'"; 
 				mysqli_query($user,$age);
-				$update = TRUE;
+				//$update = TRUE;
 			}
 			if(!empty($_POST['email'])){
 				$email = "update userdetails set Email='".$_POST['email']."' where Username='$userarray[0]'"; 
 				mysqli_query($user,$email);
-				$update = TRUE;
+				//$update = TRUE;
 			}
 			if(!empty($_POST['gender'])){
 				$gender = "update userdetails set Gender='".$_POST['gender']."' where Username='$userarray[0]'"; 
 				mysqli_query($user,$gender);
-				$update = TRUE;
+				//$update = TRUE;
+			}
+			if(!empty($_POST['displayPicture'])){
+				$image = "update userdetails set Image='".$_POST['displayPicture']."' where Username='$userarray[0]'"; 
+				mysqli_query($user,$image);
+				//$update = TRUE;
+			}
+			if(!empty($_POST['bio'])){
+				$bio = "update userdetails set Bio='".$_POST['bio']."' where Username='$userarray[0]'"; 
+				mysqli_query($user,$bio);
+				//$update = TRUE;
 			}
 			if(!empty($_POST['oldPassword']) && ($_POST['oldPassword'] == $userarray[1])){
 				if(!empty($_POST['newPassword']) && !empty($_POST['confirmPassword']) && $_POST['confirmPassword'] == $_POST['newPassword']){
@@ -60,6 +71,8 @@
 				$login = "update login set SignedInStatus='False' where Username='$userarray[0]'"; 
 				mysqli_query($user,$login);
 				header("Location: login.php");
+			} else {
+				header("Location: settings.php");
 			}
 		}
 	?>
@@ -75,20 +88,26 @@
 				<label class="settingsHeader"> Edit your information: </label>
 				<form method="post">
 					<table class="settingsFormTable">
+						<tr><td><img class="profileImg" src='data:image/jpeg;base64,<?php echo base64_encode($userDetailsarray[5]); ?>'></td>
+						<td><input class="settingsInput" type="file" name="displayPicture" /></td></tr>
+						<tr><td valign="top"><label class="settingsDetails"> Bio: </label></td>
+						<td><textarea class="settingsInputBio"rows='7' cols='34' name='bio' Placeholder="Enter your bio.."></textarea>
+						<!--<input class="settingsInput" type="hidden" name="bio" value=" echo htmlspecialchars($_POST['bioText']); "/>-->
+						<!--<input class="settingsInputBio" type="text" name="bio" size="25" Placeholder="Enter your bio.."/>--></td></tr>
 						<tr><td><label class="settingsDetails"> Username: </label></td>
-						<td><input class="settingsInput" type="text" name="username" Placeholder="Username.."/></td></tr>
+						<td><input class="settingsInput" type="text" name="username" size='35' Placeholder="Username.."/></td></tr>
 						<tr><td><label class="settingsDetails"> Email: </label></td>
-						<td><input class="settingsInput" type="email" name="email" Placeholder="Email.."/></td></tr>
+						<td><input class="settingsInput" type="email" name="email" size='35' Placeholder="Email.."/></td></tr>
 						<tr><td><label class="settingsDetails"> Age: </label></td>
-						<td><input class="settingsInput" type="text" name="age" Placeholder="Age.."/></td></tr>
+						<td><input class="settingsInput" type="text" name="age" size='35' Placeholder="Age.."/></td></tr>
 						<tr><td><label class="settingsDetails"> Gender: </label></td>
 						<td><input class="settingsInput" type="radio" name="gender" value="M"/> M <input class="signupInput" type="radio" name="gender" value="F"/> F </td></tr>
 						<tr><td><label class="settingsDetails"> Change Password: </label></td>
-						<td><input class="settingsInput" type="password" name="newPassword" Placeholder="New Password.."/></td></tr>
+						<td><input class="settingsInput" type="password" name="newPassword" size='35' Placeholder="New Password.."/></td></tr>
 						<tr><td><label class="settingsDetails"> Old Password: </label></td>
-						<td><input class="settingsInput" type="password" name="oldPassword" Placeholder="Old Password.."/></td></tr>
+						<td><input class="settingsInput" type="password" name="oldPassword" size='35' Placeholder="Old Password.."/></td></tr>
 						<tr><td><label class="settingsDetails"> Confirm Password: </label></td>
-						<td><input class="settingsInput" type="password" name="confirmPassword" Placeholder="Confirm Password.."/></td></tr>
+						<td><input class="settingsInput" type="password" name="confirmPassword" size='35' Placeholder="Confirm Change Password.."/></td></tr>
 						<tr><td></td><td><span style="color:red"> <?php echo $userRegistrationError;?> </span></td></tr>
 					</table>					
 				

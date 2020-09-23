@@ -90,9 +90,9 @@
 				<ul class="loginForm">
 					<form method="post">
 						<li><!--<label class="loginDetails"> Username: </label>-->
-						<input class="loginInput" type="text" name="username" Placeholder="Username.."/></li>
+						<input class="loginInput" type="text" name="username" size='30' Placeholder="Username.."/></li>
 						<li><!--<label class="loginDetails"> Password: </label>-->
-						<input class="loginInput" type="password" name="password" Placeholder="Password.."/></li>
+						<input class="loginInput" type="password" name="password" size='30' Placeholder="Password.."/></li>
 						<li><input class="logInAcc" type="submit" name="logInAcc" value="Log In"/></li>
 						<li><span style="color:red"> <?php echo $loginRegistrationError;?> </span></li>
 					</form>
