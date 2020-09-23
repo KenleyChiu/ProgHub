@@ -12,8 +12,6 @@
 		global $user;
 		$userarray=$GLOBALS["userArr"];
 		$userDetailsarray=$GLOBALS["specificUserArr"];
-		
-		
 	?>
 
 	<body>
@@ -23,8 +21,6 @@
 				<?php 
 					if($_SESSION['statusUser'] == "selected"){
 						echo "<label class='titleLabel'>".$_SESSION['userSelected']."</label>";
-						unset($_SESSION['statusUser']);
-						$_SESSION['statusUser'] = "notselected";
 					} else {
 						echo "<label class='titleLabel'>".$userarray[0]."</label>";
 					}
@@ -33,21 +29,66 @@
 			
 			<div class="profile">
 				<?php
-					echo "<table class='profileFormTable'>
+					/*echo "<table class='profileFormTable'>
 						<tr><td><img class='profileImg' src='data:image/jpeg;base64,".base64_encode($userDetailsarray[5])."'></td></tr>
 						<tr><td valign='top'><label class='profileDetails'> Bio: ".$userDetailsarray[6]." </label></td></tr>
 						<tr><td><label class='profileDetails'> Email: ".$userDetailsarray[3]." </label></td></tr>
 						<tr><td><label class='profileDetails'> Age: ".$userDetailsarray[2]." </label></td></tr>
 						<tr><td><label class='profileDetails'> Gender: ".$userDetailsarray[4]." </label></td></tr>
-					</table>";
+						<tr><td><label class='profileDetails'> Favorites: ".$userDetailsarray[7]." </label></td></tr>
+					</table>";*/
+					
+					$username = $_SESSION['UsernameUser'];
+					$age = $_SESSION['AgeUser'];
+					$email = $_SESSION['EmailUser'];
+					$gender = $_SESSION['GenderUser'];
+					$image = $_SESSION['ImageUser'];
+					$bio = $_SESSION['BioUser'];
+					$favorites = $_SESSION['LikesUser'];
 					
 					
 					if($_SESSION['statusUser'] == "selected"){
-						//echo "FAVORITE BUTTON";
+						if(isset($_POST['favoriteAcc'])){
+							$checkFavorites = "select * from userlikes where NameOfUser='".$_SESSION['userSelected']."'";
+							$liked= mysqli_query($data,$checkFavorites);
+							$favoriteArr = mysqli_fetch_array($liked);
+							
+							if(empty($favoriteArr)){
+								$favoritesCount = $_SESSION['StarsPost'] + 1;
+								$addLikes = "update posts set Likes='".$likesCount."' where Title='".$postTitle."'";
+								mysqli_query($data,$addLikes);
+								
+								$addLikes2 = "insert into postlikes values('".$userarray[0]."','".$postTitle."','".$community."','".$postPostType."')";
+								mysqli_query($data,$addLikes2);
+							}
+						
+						}
+						
+						echo "<table class='profileFormTable'>
+								<tr><td><img class='profileImg' src='data:image/jpeg;base64,".base64_encode($image)."'></td></tr>
+								<tr><td valign='top'><label class='profileDetails'> Bio: ".$bio." </label></td></tr>
+								<tr><td><label class='profileDetails'> Email: ".$email." </label></td></tr>
+								<tr><td><label class='profileDetails'> Age: ".$age." </label></td></tr>
+								<tr><td><label class='profileDetails'> Gender: ".$gender." </label></td></tr>
+								<tr><td><label class='profileDetails'> Favorites: ".$favorites." </label></td></tr>
+							</table>";
+						
+						echo "<form method='post'>
+							<ul class='favorite'>
+							<li><input class='favoriteAcc' type='submit' name='favoriteAcc' value='Favorite'/></li>
+							</form>
+						</ul>";
 						unset($_SESSION['statusUser']);
 						$_SESSION['statusUser'] = "notselected";
 					} else { 
-						//echo "DO NOT ECHOFAVORITE BUTTON";
+						echo "<table class='profileFormTable'>
+							<tr><td><img class='profileImg' src='data:image/jpeg;base64,".base64_encode($userDetailsarray[5])."'></td></tr>
+							<tr><td valign='top'><label class='profileDetails'> Bio: ".$userDetailsarray[6]." </label></td></tr>
+							<tr><td><label class='profileDetails'> Email: ".$userDetailsarray[3]." </label></td></tr>
+							<tr><td><label class='profileDetails'> Age: ".$userDetailsarray[2]." </label></td></tr>
+							<tr><td><label class='profileDetails'> Gender: ".$userDetailsarray[4]." </label></td></tr>
+							<tr><td><label class='profileDetails'> Favorites: ".$userDetailsarray[7]." </label></td></tr>
+						</table>";
 					}
 				?>
 				

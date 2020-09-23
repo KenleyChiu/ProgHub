@@ -246,21 +246,36 @@ label.titleLabel{
 }
 
 .profileFormTable{
-	margin: 10 0 0 10;
+	margin-top: 10;
 	border-spacing: 0 8;
-	
+	margin-left:auto; 
+	margin-right:auto;
 }
 
-ul.signupForm{
+ul.favorite{
 	/*border: 1px solid black;*/
 	display:block;
 	margin-bottom: 50;
 }
 
-ul.signupForm li{
+ul.favorite li{
 	margin-top: 8;
 	text-align: center;
 	align-self: center;
+}
+
+.favoriteAcc{
+	padding: 6 105 6 105;
+	border-radius:5px;
+	background-color: #1668CD;
+	color: white;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.favoriteAcc:hover{
+	filter: contrast(120%);
+	filter: brightness(110%);
 }
 
 .profileImg{
