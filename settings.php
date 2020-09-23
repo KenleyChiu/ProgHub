@@ -91,9 +91,7 @@
 						<tr><td><img class="profileImg" src='data:image/jpeg;base64,<?php echo base64_encode($userDetailsarray[5]); ?>'></td>
 						<td><input class="imageInput" type="file" name="displayPicture" /></td></tr>
 						<tr><td valign="top"><label class="settingsDetails"> Bio: </label></td>
-						<td><textarea class="settingsInputBio"rows='7' cols='34' name='bio' Placeholder="Enter your bio.."></textarea>
-						<!--<input class="settingsInput" type="hidden" name="bio" value=" echo htmlspecialchars($_POST['bioText']); "/>-->
-						<!--<input class="settingsInputBio" type="text" name="bio" size="25" Placeholder="Enter your bio.."/>--></td></tr>
+						<td><textarea class="settingsInputBio"rows='7' cols='34' name='bio' Placeholder="Enter your bio.."></textarea></td></tr>
 						<tr><td><label class="settingsDetails"> Username: </label></td>
 						<td><input class="settingsInput" type="text" name="username" size='35' Placeholder="Username.."/></td></tr>
 						<tr><td><label class="settingsDetails"> Email: </label></td>

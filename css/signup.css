@@ -131,6 +131,7 @@ body{
 	border: transparent;
 	border-radius: 8px;
 	background-color: #323335;
+	cursor: pointer;
 }
 
 .signUpBtn:hover, .loginBtn:hover{
@@ -169,6 +170,7 @@ ul.nav li{
 	border: 1px solid transparent;
 	background-color: #323335; 
 	font-size: 17px;
+	cursor: pointer;
 }
 
 .homeBtn:hover, .communityBtn:hover, .usersBtn:hover, .tagsBtn:hover, .aboutBtn:hover{
@@ -236,6 +238,7 @@ ul.signupForm li{
 	color: white;
 	font-size: 17px;
 	font-weight: bold;
+	cursor: pointer;
 }
 
 .signUpAcc:hover{
@@ -255,6 +258,7 @@ ul.signupForm li{
 	border: 1px solid transparent;
 	background-color: transparent;
 	color: #0000EE;	
+	cursor: pointer;
 }
 
 .loginAcc:hover{

@@ -279,6 +279,7 @@ label.commsLabel{
 	font-size: 20px;
 	padding: 10 0 0 10;
 	position: absolute;
+	cursor:pointer;
 }
 
 .commsBtn{

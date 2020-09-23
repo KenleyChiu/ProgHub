@@ -11,36 +11,10 @@
 		$userarray=$GLOBALS["userArr"];
 		$usersListQuery = mysqli_query($user,"select * from userdetails");
 		
+		//plural = just one user because user details
 		$usersArr = array();
-		//$usersImgArr = array();
+		//singular = array of users because collection of user details
 		$userArr = array();
-		
-		//add all data into arrays
-		/*while($users = mysqli_fetch_array($usersListQuery)){
-			$userName = $users["Username"];
-			$userImage = $users["Image"];			
-			array_push($usersArr,$userName);
-			array_push($usersImgArr,$userImage);
-			//array_push($userArr,$usersArr);
-			//array_push($usersArr,$userName);
-		}
-		
-		//make 2-dimensional array
-		foreach(array_values($usersArr) as $index => $user){
-			$userArr[$index]["username"] = $user;
-			$userArr[$index]["image"] = $usersImgArr[$index];
-		}
-		
-		$_SESSION['usersArr'] = $usersArr;
-		
-		//identifies which button has been pressed (which community has been picked)
-		foreach($usersArr as $user){
-			if(isset($_POST[$user.'Btn'])){
-				$_SESSION['statusUser'] = "selected";
-				$_SESSION['userSelected'] = $user;
-				header("Location: userProfile.php");
-			}
-		}*/
 		
 	?>
 	<body>
@@ -53,13 +27,7 @@
 			<div class="users">
 				<ul class="users">
 					<form method="post">
-						<?php 							
-							//use if with database - prints all communities
-							/*foreach(array_values($userArr) as $key => $user){
-								echo "<li><img class='userImg' src='data:image/jpeg;base64,".base64_encode($user["image"])."'>
-								<label class='userLabel' name='".$user["username"]."'/>".$user["username"]."</label>
-								<input class='userBtn' type='submit' name='".$user["username"]."Btn' value=''/></li>";
-							}*/
+						<?php 	
 							ob_start();
 							while($users = mysqli_fetch_array($usersListQuery)){
 								$usersArr["Username"] = $users["Username"];
@@ -73,7 +41,13 @@
 								array_push($usersArr,$usersArr["Username"],$usersArr["Password"],$usersArr["Age"],$usersArr["Email"],$usersArr["Gender"],$usersArr["Image"]
 								,$usersArr["Bio"],$usersArr["Likes"]);
 								array_push($userArr,$usersArr);
-								if($usersArr["Username"] != $userarray[0]){
+								if($signedInStatus == "True"){
+									if($usersArr["Username"] != $userarray[0]){
+										echo "<li><img class='userImg' src='data:image/jpeg;base64,".base64_encode($usersArr["Image"])."'>
+										<label class='userLabel' name='".$usersArr["Username"]."'/>".$usersArr["Username"]."</label>
+										<input class='userBtn' type='submit' name='".$usersArr["Username"]."Btn' value=''/></li>";
+									}
+								} else {
 									echo "<li><img class='userImg' src='data:image/jpeg;base64,".base64_encode($usersArr["Image"])."'>
 									<label class='userLabel' name='".$usersArr["Username"]."'/>".$usersArr["Username"]."</label>
 									<input class='userBtn' type='submit' name='".$usersArr["Username"]."Btn' value=''/></li>";

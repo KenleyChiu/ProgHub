@@ -274,6 +274,7 @@ label.userLabel{
 	padding: 10 0 0 10;
 	position: absolute;
 	color:black;
+	cursor:pointer;
 }
 
 .userBtn{

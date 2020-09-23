@@ -34,19 +34,24 @@
 					$postPostType = $_SESSION['PostTypePost'];
 					$postComment = $_SESSION['CommentsPost'];
 					
+					$errorMessage = " ";
 					
 					if(isset($_POST['likeBtn'])){
-						$checkLikes = "select * from postlikes where Username='".$userarray[0]."' and Title='".$postTitle."'";
-						$liked = mysqli_query($data,$checkLikes);
-						$likeArr = mysqli_fetch_array($liked);
-						
-						if(empty($likeArr)){
-							$likesCount = $_SESSION['StarsPost'] + 1;
-							$addLikes = "update posts set Likes='".$likesCount."' where Title='".$postTitle."'";
-							mysqli_query($data,$addLikes);
+						if($signedInStatus == "True"){
+							$checkLikes = "select * from postlikes where Username='".$userarray[0]."' and Title='".$postTitle."'";
+							$liked = mysqli_query($data,$checkLikes);
+							$likeArr = mysqli_fetch_array($liked);
 							
-							$addLikes2 = "insert into postlikes values('".$userarray[0]."','".$postTitle."','".$community."','".$postPostType."')";
-							mysqli_query($data,$addLikes2);
+							if(empty($likeArr)){
+								$likesCount = $_SESSION['StarsPost'] + 1;
+								$addLikes = "update posts set Likes='".$likesCount."' where Title='".$postTitle."'";
+								mysqli_query($data,$addLikes);
+								
+								$addLikes2 = "insert into postlikes values('".$userarray[0]."','".$postTitle."','".$community."','".$postPostType."')";
+								mysqli_query($data,$addLikes2);
+							}
+						} else {
+							$errorMessage = "You have to be logged in to do that!";
 						}
 					}
 				
@@ -68,19 +73,21 @@
 				
 			</div>
 			
-			<?php 
-				$errorMessage = "sample error";
-				
-				if(isset($_POST['commentBtn'])){						
-					if(!empty($_POST['commentContent'])){
-						$commentsCount = $_SESSION['CommentsPost'] + 1;
-						echo $commentsCount;
-						$addComment = "update posts set Comments='".$commentsCount."' where Title='".$postTitle."'";
-						mysqli_query($data,$addComment);
-						
-						$addComment2 = "insert into comments values('".$userarray[0]."','".$postTitle."','".$_POST['commentContent']."','','0','".$community."','".$postPostType."')";
-						//".$_POST['commentImage']."
-						mysqli_query($data,$addComment2);
+			<?php 				
+				if(isset($_POST['commentBtn'])){
+					if($signedInStatus == "True"){					
+						if(!empty($_POST['commentContent'])){
+							$commentsCount = $_SESSION['CommentsPost'] + 1;
+							echo $commentsCount;
+							$addComment = "update posts set Comments='".$commentsCount."' where Title='".$postTitle."'";
+							mysqli_query($data,$addComment);
+							
+							$addComment2 = "insert into comments values('".$userarray[0]."','".$postTitle."','".$_POST['commentContent']."','','0','".$community."','".$postPostType."')";
+							//".$_POST['commentImage']."
+							mysqli_query($data,$addComment2);
+						}
+					} else {
+						$errorMessage = "You have to be logged in to do that!";
 					}
 				}
 				

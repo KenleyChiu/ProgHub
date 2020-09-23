@@ -327,6 +327,19 @@ label.postTitle{
 	font-weight: bold;
 }
 
+.deleteBtnForm{
+	display:inline-block;
+	float:right;
+	margin-right:10;
+}
+
+.deleteBtn{
+	border: 1px solid transparent;
+	background-color: transparent;
+	cursor: pointer;
+	display:inline-block;
+}
+
 .postTitleBtn{
 	border: 1px solid transparent;
 	margin-left: 10;

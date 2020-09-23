@@ -92,29 +92,44 @@
 						header("Location:community.php");
 					}
 				}
-				
-				if($userarray[3] == "User"){
-					foreach(array_values($postArr) as $key => $post){
-						echo "<div class='singlePost'>";
-						echo "<a href='users.php'><img src='pictures/user.png'></a>";
-						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label><br>";
-						echo "<form method='post'>";
-						echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
-						echo "</form>";
-						//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
-						echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
-						echo "<label class='comments'> ".$post["Comments"]." Comments </label>";
-						echo "<br>";
-						echo "</div>";
+				if($signedInStatus == "True"){
+					if($userarray[3] == "User"){
+						foreach(array_values($postArr) as $key => $post){
+							echo "<div class='singlePost'>";
+							echo "<a href='users.php'><img src='pictures/user.png'></a>";
+							echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label><br>";
+							echo "<form method='post'>";
+							echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
+							echo "</form>";
+							//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
+							echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
+							echo "<label class='comments'> ".$post["Comments"]." Comments </label>";
+							echo "<br>";
+							echo "</div>";
+						}
+					} else {
+						foreach(array_values($postArr) as $key => $post){
+							echo "<div class='singlePost'>";
+							echo "<a href='users.php'><img src='pictures/user.png'></a>";
+							echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label>";
+							echo "<form class='deleteBtnForm' method='post'>";
+							echo "<input class='deleteBtn' type='submit' name='del".$post["Title"]."Btn' value='Delete'/><br><br>";
+							echo "</form>";
+							echo "<form method='post'>";
+							echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
+							echo "</form>";
+							//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
+							echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
+							echo "<label class='comments'> ".$post["Comments"]." Comments </label>";
+							echo "<br>";
+							echo "</div>";
+						}
 					}
 				} else {
 					foreach(array_values($postArr) as $key => $post){
 						echo "<div class='singlePost'>";
 						echo "<a href='users.php'><img src='pictures/user.png'></a>";
 						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label>";
-						echo "<form class='deleteBtnForm' method='post'>";
-						echo "<input class='deleteBtn' type='submit' name='del".$post["Title"]."Btn' value='Delete'/><br><br>";
-						echo "</form>";
 						echo "<form method='post'>";
 						echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
 						echo "</form>";
