@@ -28,12 +28,12 @@
 		<!-- CREATE POSTS -->
 		<div class="create">
 			<form method ="post" action="createPost.php">
-				<input class="createBtn" type = "submit" name = "createBtn" value="Create Post"/>
+				<input class="createBtn" type = "submit" name = "goTocreate" value="Create Post"/>
 			</form>
 		</div>
 				
 		<div class ="post">
-			<?php		
+			<?php	
 				$postsArr = array();
 				$community=$_SESSION['commSelected'];
 				$postsQuery = mysqli_query($data,"select * from posts where community = '$community'");
@@ -78,7 +78,7 @@
 						$_SESSION['StarsPost'] = $post["Likes"];
 						$_SESSION['CommentsPost'] = $post["Comments"];
 						$_SESSION['PostTypePost'] = $post["PostType"];
-						header("Location: post.php");
+						header("Location:post.php");
 					}
 				}
 				mysqli_close($data);
