@@ -73,7 +73,7 @@
 						$_SESSION['statusPost'] = "selected";
 						$_SESSION['AuthorPost'] = $post["Author"];
 						$_SESSION['TitlePost'] = $post["Title"];
-						$_SESSION['ImageContentPost'] = $postsArr["ImageContent"];
+						$_SESSION['ImageContentPost'] = $post["ImageContent"];
 						$_SESSION['TextContentPost'] = $post["TextContent"];
 						$_SESSION['StarsPost'] = $post["Likes"];
 						$_SESSION['CommentsPost'] = $post["Comments"];
