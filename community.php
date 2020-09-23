@@ -40,7 +40,7 @@
 				
 				$postArr = array();
 				
-				
+				ob_start();
 				while($posts = mysqli_fetch_array($postsQuery)){
 					$postsArr["Author"] = $posts["Author"];
 					$postsArr["Title"] = $posts["Title"];
@@ -81,7 +81,7 @@
 						header("Location:post.php");
 					}
 				}
-				mysqli_close($data);
+				ob_end_flush();
 			?>
 		
 		</div>
