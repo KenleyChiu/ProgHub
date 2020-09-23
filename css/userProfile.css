@@ -19,7 +19,7 @@ body{
 	"header header header"
 	"menu menu menu"
 	"title title title"
-	". profile data"
+	". profile ."
 	"footer footer footer";
 }
 
@@ -296,10 +296,6 @@ ul.favorite li{
 
 .profileDetails{
 	margin-left:20;
-}
-
-.data{
-	grid-area: data;
 }
 
 .footer{

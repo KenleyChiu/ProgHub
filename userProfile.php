@@ -30,16 +30,6 @@
 			
 			<div class="profile">
 				<?php
-					/*echo "<table class='profileFormTable'>
-						<tr><td><img class='profileImg' src='data:image/jpeg;base64,".base64_encode($userDetailsarray[5])."'></td></tr>
-						<tr><td valign='top'><label class='profileDetails'> Bio: ".$userDetailsarray[6]." </label></td></tr>
-						<tr><td><label class='profileDetails'> Email: ".$userDetailsarray[3]." </label></td></tr>
-						<tr><td><label class='profileDetails'> Age: ".$userDetailsarray[2]." </label></td></tr>
-						<tr><td><label class='profileDetails'> Gender: ".$userDetailsarray[4]." </label></td></tr>
-						<tr><td><label class='profileDetails'> Favorites: ".$userDetailsarray[7]." </label></td></tr>
-					</table>";*/
-					
-					
 					$age = $_SESSION['AgeUser'];
 					$email = $_SESSION['EmailUser'];
 					$gender = $_SESSION['GenderUser'];
@@ -47,23 +37,36 @@
 					$bio = $_SESSION['BioUser'];
 					$favorites = $_SESSION['LikesUser'];
 					
-					if($_SESSION['statusUser'] == "selected"){
-						if(isset($_POST['favoriteAcc'])){
-							$checkFavorites = "select * from userlikes where NameOfUser='".$_SESSION['userSelected']."'";
-							$liked= mysqli_query($data,$checkFavorites);
-							$favoriteArr = mysqli_fetch_array($liked);
+					$favoriteValue = "Favorite";
+					$checkFavorites = "select * from userlikes where NameOfUser='".$username."' and Fans='".$userarray[0]."'";
+					$likedQuery= mysqli_query($user,$checkFavorites);
+					$favoriteArr = mysqli_fetch_array($likedQuery);
+					
+					if(!empty($favoriteArr)){
+						$favoriteValue = "Unfavorite";
+					} else {
+						$favoriteValue = "Favorite";
+					}	
+						
+					if(isset($_POST['favoriteAcc'])){
+						if(empty($favoriteArr)){
+							$favoritesCount = $_SESSION['LikesUser'] + 1;
+							$favoriteAdd = "update userdetails set Likes='".$favoritesCount."' where Username='".$username."'";
+							mysqli_query($user,$favoriteAdd);
 							
-							if(empty($favoriteArr)){
-								$favoritesCount = $_SESSION['StarsPost'] + 1;
-								$addLikes = "update posts set Likes='".$likesCount."' where Title='".$postTitle."'";
-								mysqli_query($data,$addLikes);
-								
-								$addLikes2 = "insert into postlikes values('".$userarray[0]."','".$postTitle."','".$community."','".$postPostType."')";
-								mysqli_query($data,$addLikes2);
-							}
-						
+							$favoriteAdd2 = "insert into userlikes values('".$username."','".$userarray[0]."')";
+							mysqli_query($user,$favoriteAdd2);
+						} else {
+							$favoritesCount = $_SESSION['LikesUser'] - 1;
+							$favoriteMinus = "update userdetails set Likes='".$favoritesCount."' where Username='".$username."'";
+							mysqli_query($user,$favoriteMinus);
+							
+							$favoriteMinus2 = "delete from userlikes where NameOfUser='".$username."' and Fans='".$userarray[0]."'";
+							mysqli_query($user,$favoriteMinus2);
 						}
-						
+					}
+					
+					if($_SESSION['statusUser'] == "selected"){
 						echo "<table class='profileFormTable'>
 								<tr><td align='center'><img class='profileImg' src='data:image/jpeg;base64,".base64_encode($image)."'></td></tr>
 								<tr><td ><label class='profileDetails'> Bio: ".$bio." </label></td></tr>
@@ -73,9 +76,9 @@
 								<tr><td><label class='profileDetails'> Favorites: ".$favorites." </label></td></tr>
 							</table>";
 						
-						echo "<form method='post'>
+						echo "<form action='".$_SERVER['PHP_SELF']."' method='post'>
 							<ul class='favorite'>
-							<li><input class='favoriteAcc' type='submit' name='favoriteAcc' value='Favorite'/></li>
+							<li><input class='favoriteAcc' type='submit' name='favoriteAcc' value='".$favoriteValue."'/></li>
 							</form>
 						</ul>";
 						unset($_SESSION['statusUser']);
@@ -92,10 +95,6 @@
 					}
 				?>
 				
-			</div>
-			
-			<div class="data">
-				<!--Data-->
 			</div>
 			
 			<!--FOOTER-->

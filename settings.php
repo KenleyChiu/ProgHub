@@ -127,10 +127,6 @@
 				
 			</div>
 			
-			<div class="data">
-				<!--Data-->
-			</div>
-			
 			<!--FOOTER-->
 			<div class="footer">
 				

@@ -247,11 +247,11 @@ ul.info li{
 
 .sections{
 	grid-area: sections;
-	border: 1px solid black;
-	padding: 15;
-	margin: 10 60 20 0;
+	padding: 10;
+	margin: 10 60 0 40;
 	/*transform: translate(0px, 30px);*/
 	height: 20%;
+	
 }
 
 label.recent, a:link, a:visited{
@@ -283,7 +283,7 @@ label.popular a:hover{
 .post{
 	grid-area: post;
 	grid-auto-rows:minmax(190px, auto);
-	margin: 0 60 0 0;
+	margin: 0 60 0 50;
 }
 
 .singlePost{
@@ -359,7 +359,7 @@ ul.data{
 	width: 275px;
 }
 
-.discussionsNum{
+.threadsNum{
 	margin-top: 25;
 }
 
@@ -367,7 +367,7 @@ ul.data{
 	margin-top: 5;
 }
 
-.discussionsNum, .projectsNum{
+.threadsNum, .projectsNum{
 	font-size: 18px;
 }
 

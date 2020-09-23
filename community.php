@@ -18,16 +18,26 @@
 			?>		
 		</div>
 		
+		<!--LEFT SIDE-->
+		<div class="searchPosts">
+			<ul class="searchPost">
+				<li><label class="searchPosts"> Search Posts </label></li>
+				<li><form class="searchForm" action="search.php" method="get">
+					<input class="searchPostInput" type="text" name="searchPostInput" Placeholder="Search" /></li>
+		</div>
+		
+		<div class="searchPosts2">
+			<li><input class="searchPostBtn" type="submit" name="searchPostBtn" value="Search" /></li>
+				</form>
+			</ul>
+		</div>
+		
 		<!-- DIVIDER BEWTEEN THREAD AND PROJECT -->
 		<div class="headers">
 			<label class="threads"><a href="#"> Threads </a></label>
 			<span class="divider1"> </span>
 			<label class="projects"><a href="#"> Projects </a></label>
-		</div>
-			
-		<!-- CREATE POSTS -->
-		<div class="create">
-			<form method ="post" action="createPost.php">
+			<form class="createBtnForm" method ="post" action="createPost.php">
 				<input class="createBtn" type = "submit" name = "goTocreate" value="Create Post"/>
 			</form>
 		</div>
@@ -72,7 +82,7 @@
 				foreach(array_values($postArr) as $key => $post){
 					echo "<div class='singlePost'>";
 					echo "<a href='users.php'><img src='pictures/user.png'></a>";
-					echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label><br><br>";
+					echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label><br>";
 					echo "<form method='post'>";
 					echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
 					echo "</form>";
@@ -84,13 +94,24 @@
 				}
 				
 				
-				mysqli_close($data);
 			?>
 		
 		</div>
+		
+		<?php
+			$threadQuery = mysqli_query($data,"select * from posts where Community='$community' and PostType='Thread'");
+			$threadsCount = mysqli_num_rows($threadQuery);
+			$projectQuery = mysqli_query($data,"select * from posts where Community='$community' and PostType='Project'");
+			$projectsCount = mysqli_num_rows($projectQuery);
+			
+			mysqli_close($data);
+		?>
 			
 		<div class="data">
-				Data
+			<ul class="data">
+				<li class="threadsNum">Total Threads: <?php echo $threadsCount; ?></li>
+				<li class="projectsNum">Total Projects: <?php echo $projectsCount; ?></li>
+			</ul>
 		</div>
 			
 		<div class="footer">

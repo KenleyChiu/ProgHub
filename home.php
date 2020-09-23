@@ -33,6 +33,7 @@
 					$postsQuery = mysqli_query($data,"select * from posts order by Upload DESC");					
 					$postsArr = array();
 					$postArr = array();
+					
 					//$y = 0;
 					while($posts = mysqli_fetch_array($postsQuery)){
 						$postsArr["Author"] = $posts["Author"];
@@ -68,7 +69,7 @@
 					foreach(array_values($postArr) as $key => $post){
 						echo "<div class='singlePost'>";
 						echo "<a href='users.php'><img src='pictures/user.png'></a>";
-						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label><br><br>";
+						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label><br>";
 						echo "<form method='post'>";
 						echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
 						echo "</form>";
@@ -82,15 +83,17 @@
 			</div>
 			
 			<?php
-				$totalDiscussions = 5;
-				$totalProjects = 10;
+				$threadQuery = mysqli_query($data,"select * from posts where PostType='Thread'");
+				$threadsCount = mysqli_num_rows($threadQuery);
+				$projectQuery = mysqli_query($data,"select * from posts where PostType='Project'");
+				$projectsCount = mysqli_num_rows($projectQuery);
 			?>
 			
 			<!--RIGHT SIDE-->
 			<div class="data">
 				<ul class="data">
-					<li class="discussionsNum">Total Discussions: <?php echo $totalDiscussions; ?></li>
-					<li class="projectsNum">Total Projects: <?php echo $totalProjects; ?></li>
+					<li class="threadsNum">Total Threads: <?php echo $threadsCount; ?></li>
+					<li class="projectsNum">Total Projects: <?php echo $projectsCount; ?></li>
 				</ul>
 			</div>
 			

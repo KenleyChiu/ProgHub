@@ -20,8 +20,7 @@ body{
 	"menu menu menu"
 	"title title title"
 	"searchPosts headers data"
-	"searchPosts create data"
-	"searchPosts post data"
+	"searchPosts2 post data"
 	"footer footer footer";
 
 }
@@ -228,7 +227,6 @@ ul.nav li{
 
 .searchPosts{
 	grid-area: searchPosts;
-	margin: 0 0 0 0;
 }
 
 label.searchPosts{
@@ -257,6 +255,11 @@ ul.searchPost{
 	margin: 5 0 0 0;
 }
 
+.searchPosts2{
+	grid-area: searchPosts2;
+	margin-right: 60;
+}
+
 .searchPostBtn{
 	text-decoration: none;
 	border: transparent;
@@ -266,13 +269,12 @@ ul.searchPost{
 	padding: 3 4 3 4;
 	color: #D0FF36;
 	float: right;
-	margin-top: 5;
+	margin-top: -15;
 }
 
 .searchPostBtn:hover{
 	background-color: gray;
 }
-
 
 .title{
 	grid-area: title;
@@ -296,13 +298,15 @@ label.titleLabel{
 	grid-area: headers;
 	padding: 10 0 20 0;
 	margin-top: 10;
-	/*transform: translate(0px, 30px);*/
 	height: 20%;
 	position: relative;
+	/*border: 1px solid black;*/
 }
-section{
+
+/*section{
 	position: relative;
 }
+
 section:first-of-type {
     display: block;
 }
@@ -311,11 +315,12 @@ section:first-of-type {
 	display:inline-block;
 	font-size: 22px;
 	cursor: pointer;
-}
+}*/
 
 label.threads, a:link, a:visited{
 	font-size: 22px;
-	color:  black;
+	color: black;
+	display: inline;
 }
 
 label.threads a:hover{
@@ -333,15 +338,16 @@ label.threads a:hover{
 label.projects, a:link, a:visited{
 	font-size: 22px;
 	color:  black;
+	display:inline-block;
 }
 
 label.projects a:hover{
 	color: gray;
 }
 
-.create{
-	grid-area: create;
-	padding: 5;
+.createBtnForm{
+	display:inline-block;
+	float: right;
 }
 
 .createBtn{
@@ -352,7 +358,6 @@ label.projects a:hover{
 	font-size: 17px;
 	padding: 7;
 	color: #D0FF36;
-	float: right;
 }
 
 .createBtn:hover{
@@ -367,6 +372,7 @@ label.projects a:hover{
 	background-color: white;
 	padding: 10 0 10 10;
 	margin: 10 0 0 0;*/
+	margin-top: -20;
 }
 
 .singlePost{
@@ -428,6 +434,28 @@ label.comments{
 
 .data{
 	grid-area: data;
+}
+
+ul.data{
+	margin: 10 40 0 50;
+	background-color: white;
+	height: 100px;
+	border-radius: 10px	;
+	border: 1px solid #E1E1E1;
+	text-align: center;
+	width: 275px;
+}
+
+.threadsNum{
+	margin-top: 25;
+}
+
+.projectsNum{
+	margin-top: 5;
+}
+
+.threadsNum, .projectsNum{
+	font-size: 18px;
 }
 
 .footer{

@@ -323,7 +323,7 @@ ul.updateForm li{
 }
 
 .signoutBtn{
-	color: #A464FF;
+	color: #A464FF; /*#0000EE*/
 	text-decoration: none;
 	font-size: 15px;
 	padding: 3 4 3 4;
@@ -333,7 +333,6 @@ ul.updateForm li{
 }
 
 .signoutBtn:hover{
-	color: #A464FF;
 	background-color: gray;
 }
 
