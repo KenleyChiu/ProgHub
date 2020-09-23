@@ -1,0 +1,395 @@
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	font-family: Courier New;
+}
+
+body{
+	background-color: #F5F8FD;
+}
+
+.mainGrid{
+	display: grid;
+	/*grid-template-columns: repeat(3, 2fr);*/
+	grid-template-columns: 1fr 2fr 1fr;
+	grid-template-rows: auto;
+	grid-template-areas:
+	"header header header"
+	"menu menu menu"
+	"title title title"
+	"searchPosts headers data"
+	"searchPosts create data"
+	"footer footer footer";
+
+}
+
+/*.mainGrid div:nth-child(6){
+	background-color:red;
+}
+
+.mainGrid div:nth-child(4){
+	background-color:blue;
+}*/
+
+.maingrid > div {
+	/*border: 1px solid black;*/
+}
+
+.header{
+	grid-area: header;
+	display: grid;
+	/*grid-template-columns: repeat(3, 1fr);*/
+	grid-template-columns: 1fr 150px 1fr;
+	grid-template-areas:
+	"logo logo account"
+	"search search account";
+	background-image: url('pictures/header6.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0% 100%;
+}
+
+.header > div{
+	/*border: 1px solid black;*/
+}
+
+.logo{
+	grid-area: logo;
+	padding-top: 30;
+}
+
+.logoPgh{
+	/*transform: translate(400px,10px);*/
+	width: 50px;
+	height: 50px;
+	margin-left: 300;
+
+}
+
+.proghub {
+	width: 150px;
+	height: 45px;
+	margin-left: 10;
+}
+
+.search{
+	grid-area: search;
+	padding: 10 0 10 0;
+	/*border-bottom:: 1px solid black;*/
+}
+
+.searchForm{
+	display: inline;
+}
+
+.searchInput{
+	padding: 7 5 7 30;
+	box-sizing: border-box;
+	width: 400;
+	background-image: url("pictures/search.png");
+	background-position: 10px 8px;
+	background-size: 12px 12px;
+	background-repeat: no-repeat;
+	border-radius: 10px;
+	margin: 0 0 0 300;
+}
+
+.searchInput:focus{
+	border:1px solid transparent;
+	border-radius: 10px;
+}
+
+.account{
+	grid-area: account;
+}
+
+.signup{
+	margin: 10 20 0 0;
+	/*margin:10 30 0 0;*/
+	display: inline-block;
+}
+
+.login{
+	margin: 20 20 0 150;
+	display: inline-block;
+}
+
+.logInBtn{
+	color: #D0FF36;
+}
+
+.signUpBtn{
+	color: #A464FF;
+}
+
+.signUpBtn, .logInBtn{
+	text-decoration: none;
+	font-size: 15px;
+	padding: 3 4 3 4;
+	/*border:1px solid #C1E9FF;*/
+	border: transparent;
+	border-radius: 8px;
+	background-color: #323335;
+}
+
+.loginBtn:hover{
+	color: #D0FF36;
+}
+
+.signUpBtn:hover{
+	color: #A464FF;
+}
+
+.signUpBtn:hover, .loginBtn:hover{
+	background-color: gray;
+}
+
+.account img{
+	width: 35;
+	height: 35;
+	display: inline-block;
+	margin: 10 0 0 150;
+}
+
+label.username, .username:link, .username:visited{
+	font-size: 20px;
+	padding: 0 10 0 5;
+	color:  white;
+	display: inline-block;
+}
+
+.settings{
+	margin: 20 20 0 0;
+	display: inline-block;
+}
+
+.settingsBtn{
+	color: #D0FF36;
+}
+
+.settingsBtn{
+	text-decoration: none;
+	font-size: 15px;
+	padding: 3 4 3 4;
+	/*border:1px solid #C1E9FF;*/
+	border: transparent;
+	border-radius: 8px;
+	background-color: #323335;
+}
+
+.settingsBtn:hover{
+	color: #D0FF36;
+}
+
+.settingsBtn:hover{
+	background-color: gray;
+}
+
+.menu{
+	grid-area: menu;
+	background-color: #323335;
+
+}
+
+ul.nav{
+	height: 40;
+	margin-left: 350;	
+}
+
+ul.nav li{
+	margin-top: 10;
+	display: inline-block;
+}
+
+.homeBtn, .communityBtn, .usersBtn, .tagsBtn, .aboutBtn{
+	margin-left: 5;
+	padding: 5 5 4 5;
+	color: #D0FF36;
+	border-radius: 10px 10px 0 0;
+	border: 1px solid transparent;
+	background-color: #323335; 
+	font-size: 17px;
+}
+
+.communityBtn{
+	background-color: gray;
+	color: #D0FF36;
+}
+
+.homeBtn:hover, .communityBtn:hover, .usersBtn:hover, .tagsBtn:hover, .aboutBtn:hover{
+	background-color: gray;
+	/*color: #A464FF;*/
+}
+
+.searchPosts{
+	grid-area: searchPosts;
+	margin: 0 0 0 0;
+}
+
+label.searchPosts{
+	font-size:15px;
+	font-weight: bold;
+}
+
+ul.searchPost{
+	/*background-color: white;
+	border-radius: 10px	;
+	border: 1px solid #E1E1E1;*/
+	display: block;
+	margin: 0 50 0 30;
+	padding: 0 0 20 0;
+}
+
+.searchPostInput{
+	padding: 7 5 7 30;
+	box-sizing: border-box;
+	width: 300;
+	background-image: url("pictures/search.png");
+	background-position: 10px 8px;
+	background-size: 12px 12px;
+	background-repeat: no-repeat;
+	border-radius: 10px;
+	margin: 5 0 0 0;
+}
+
+.searchPostBtn{
+	text-decoration: none;
+	border: transparent;
+	border-radius: 8px;
+	background-color: #323335;
+	font-size: 15px;
+	padding: 3 4 3 4;
+	color: #D0FF36;
+	float: right;
+	margin-top: 5;
+}
+
+.searchPostBtn:hover{
+	background-color: gray;
+}
+
+
+.title{
+	grid-area: title;
+	margin-top: 5;
+	height: 100;
+	background-color: #A464FF;
+	border: 1px solid black;
+	border-radius: 20px 20px 0 0;
+	width: 55%;
+	justify-self: center;
+	justify-content: center;
+	display: flex;
+}
+
+label.titleLabel{
+	font-size: 40px;
+	align-self: center;
+}
+
+.headers{
+	grid-area: headers;
+	padding: 10 0 20 0;
+	margin-top: 10;
+	/*transform: translate(0px, 30px);*/
+	height: 20%;
+	position: relative;
+}
+section{
+	position: relative;
+}
+section:first-of-type {
+    display: block;
+}
+
+.headers ul li{
+	display:inline-block;
+	font-size: 22px;
+	cursor: pointer;
+}
+
+label.threads, a:link, a:visited{
+	font-size: 22px;
+	color:  black;
+}
+
+label.threads a:hover{
+	color: gray;
+}
+
+.divider1{
+	display: inline-block;
+	width: 2px;
+	background-color: black;
+	height: 1em;
+	margin: 0 10 0 10;
+}
+
+label.projects, a:link, a:visited{
+	font-size: 22px;
+	color:  black;
+}
+
+label.projects a:hover{
+	color: gray;
+}
+
+.create{
+	grid-area: create;
+	border: 1px solid black;
+	padding: 5;
+}
+
+label.createPost{
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.createDetails{
+	margin-left: 10;
+}
+
+.createDetails, td{
+	padding-bottom: 5;
+}
+
+.titleInput, .contentInput{
+	border-radius: 5px;
+	width: 720;
+	border: 1px solid black;
+}
+
+.titleInput{
+	padding: 2 0 2 5;
+}
+
+.contentInput{
+	padding: 2 0 100 5;
+}
+
+.createBtn{
+	text-decoration: none;
+	border: transparent;
+	border-radius: 8px;
+	background-color: #323335;
+	font-size: 15px;
+	padding: 3 4 3 4;
+	color: #D0FF36;
+	float: right;
+}
+
+.createBtn:hover{
+	background-color: gray;
+}
+
+
+.data{
+	grid-area: data;
+}
+
+.footer{
+	grid-area: footer;
+	margin: 40;
+}
