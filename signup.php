@@ -62,15 +62,15 @@
 						<tr><td><label class="signupDetails"> Username: </label></td>
 						<td><input class="signupInput" type="text" name="username" Placeholder="Username.."/></td></tr>
 						<tr><td><label class="signupDetails"> Email: </label></td>
-						<td><input class="signupInput" type="text" name="email" Placeholder="Email.."/></td></tr>
+						<td><input class="signupInput" type="email" name="email" Placeholder="Email.."/></td></tr>
 						<tr><td><label class="signupDetails"> Age: </label></td>
 						<td><input class="signupInput" type="text" name="age" Placeholder="Age.."/></td></tr>
 						<tr><td><label class="signupDetails"> Gender: </label></td>
 						<td><input class="signupInput" type="radio" name="gender" value="M"/> M <input class="signupInput" type="radio" name="gender" value="F"/> F </td></tr>
 						<tr><td><label class="signupDetails"> Password: </label></td>
-						<td><input class="signupInput" type="text" name="password" Placeholder="Password.."/></td></tr>
+						<td><input class="signupInput" type="password" name="password" Placeholder="Password.."/></td></tr>
 						<tr><td><label class="signupDetails"> Confirm Password: </label></td>
-						<td><input class="signupInput" type="text" name="confirmPassword" Placeholder="Confirm Password.."/></td></tr>
+						<td><input class="signupInput" type="password" name="confirmPassword" Placeholder="Confirm Password.."/></td></tr>
 						<tr><td></td><td><span style="color:red"> <?php echo $userRegistrationError;?> </span></td></tr>
 					</table>					
 				

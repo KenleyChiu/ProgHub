@@ -92,7 +92,7 @@
 						<li><!--<label class="loginDetails"> Username: </label>-->
 						<input class="loginInput" type="text" name="username" Placeholder="Username.."/></li>
 						<li><!--<label class="loginDetails"> Password: </label>-->
-						<input class="loginInput" type="text" name="password" Placeholder="Password.."/></li>
+						<input class="loginInput" type="password" name="password" Placeholder="Password.."/></li>
 						<li><input class="logInAcc" type="submit" name="logInAcc" value="Log In"/></li>
 						<li><span style="color:red"> <?php echo $loginRegistrationError;?> </span></li>
 					</form>
