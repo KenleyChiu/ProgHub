@@ -19,8 +19,9 @@
 			
 			<div class="title">
 				<?php 
+					$username = $_SESSION['UsernameUser'];
 					if($_SESSION['statusUser'] == "selected"){
-						echo "<label class='titleLabel'>".$_SESSION['userSelected']."</label>";
+						echo "<label class='titleLabel'>".$username."</label>";
 					} else {
 						echo "<label class='titleLabel'>".$userarray[0]."</label>";
 					}
@@ -38,14 +39,13 @@
 						<tr><td><label class='profileDetails'> Favorites: ".$userDetailsarray[7]." </label></td></tr>
 					</table>";*/
 					
-					$username = $_SESSION['UsernameUser'];
+					
 					$age = $_SESSION['AgeUser'];
 					$email = $_SESSION['EmailUser'];
 					$gender = $_SESSION['GenderUser'];
 					$image = $_SESSION['ImageUser'];
 					$bio = $_SESSION['BioUser'];
 					$favorites = $_SESSION['LikesUser'];
-					
 					
 					if($_SESSION['statusUser'] == "selected"){
 						if(isset($_POST['favoriteAcc'])){
@@ -65,8 +65,8 @@
 						}
 						
 						echo "<table class='profileFormTable'>
-								<tr><td><img class='profileImg' src='data:image/jpeg;base64,".base64_encode($image)."'></td></tr>
-								<tr><td valign='top'><label class='profileDetails'> Bio: ".$bio." </label></td></tr>
+								<tr><td align='center'><img class='profileImg' src='data:image/jpeg;base64,".base64_encode($image)."'></td></tr>
+								<tr><td ><label class='profileDetails'> Bio: ".$bio." </label></td></tr>
 								<tr><td><label class='profileDetails'> Email: ".$email." </label></td></tr>
 								<tr><td><label class='profileDetails'> Age: ".$age." </label></td></tr>
 								<tr><td><label class='profileDetails'> Gender: ".$gender." </label></td></tr>
@@ -81,9 +81,9 @@
 						unset($_SESSION['statusUser']);
 						$_SESSION['statusUser'] = "notselected";
 					} else { 
-						echo "<table class='profileFormTable'>
-							<tr><td><img class='profileImg' src='data:image/jpeg;base64,".base64_encode($userDetailsarray[5])."'></td></tr>
-							<tr><td valign='top'><label class='profileDetails'> Bio: ".$userDetailsarray[6]." </label></td></tr>
+						echo "<table class='profileFormTableUser'>
+							<tr><td align='center'><img class='profileImg' src='data:image/jpeg;base64,".base64_encode($userDetailsarray[5])."'></td></tr>
+							<tr><td ><label class='profileDetails'> Bio: ".$userDetailsarray[6]." </label></td></tr>
 							<tr><td><label class='profileDetails'> Email: ".$userDetailsarray[3]." </label></td></tr>
 							<tr><td><label class='profileDetails'> Age: ".$userDetailsarray[2]." </label></td></tr>
 							<tr><td><label class='profileDetails'> Gender: ".$userDetailsarray[4]." </label></td></tr>
