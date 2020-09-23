@@ -80,7 +80,7 @@
 						}
 					}
 
-					mysqli_close($data);
+					
 				?>
 			</div>
 			
@@ -106,11 +106,34 @@
 			
 				
 			<div class ="post">
-				<a href="users.php"><img src="pictures/user.png"></a>
-				<label class="postUser"><a class="postUser" href="users.php" > Username </a></label><br><br>
-				<label class="postTitle"><a class="postTitle" href="post.php" > Title </a></label><br><br>
-				<label class="stars"> 0 Stars </label>
-				<label class="comments"> 0 Comments </label>
+				<?php 		
+					$postsArr = array();
+					
+					$postsQuery = mysqli_query($data,"select * from posts");
+					
+					while($posts = mysqli_fetch_array($postsQuery)){
+						$author = $posts["Author"];
+						$title = $posts["Title"];
+						$textContent = $posts["TextContent"];
+						$imageContent = $posts["ImageContent"];
+						$likes = $posts["Likes"];
+						$comments = $posts["Comments"];
+						$community = $posts["Community"];
+						$postType = $posts["PostType"];
+						$upload = $posts["Upload"];
+						array_push($postsArr,$author,$title,$textContent,$imageContent,$likes,$comments,$community,$postType,$upload);
+						
+						echo "<div class='singlePost'>";
+						echo "<a href='users.php'><img src='pictures/user.png'></a>";
+						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$author." </a></label><br><br>";
+						echo "<label class='postTitle'><a class='postTitle' href='post.php' > ".$title." </a></label><br><br>";
+						echo "<label class='stars'> ".$likes." Stars </label>";
+						echo "<label class='comments'> ".$comments." Comments </label>";
+						echo "<br>";
+						echo "</div>";
+					}
+					mysqli_close($data);
+				?>
 			</div>
 			
 			<div class="data">

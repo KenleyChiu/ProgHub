@@ -62,7 +62,7 @@
                     echo "<input class='signupBtn' type='submit' value='Sign Up'/>";
                     echo "</form>";
                 } else {
-					//echo "<a href='users.php'><img src='data:image/jpeg;base64,".base64_encode($specificUserArr[5])."'></a>";
+					//echo "<a href='users.php'><img src='data:image/charset=utf8;base64,".base64_encode($specificUserArr[5])."'/></a>";
 					echo "<a href='users.php'><img src='pictures/user.png'></a>";
 					echo "<label class='username'><a class='username' href='users.php' >".$userArr[0]." </a></label>";
 					echo "<form class='settings' action='settings.php' method='post'>";
