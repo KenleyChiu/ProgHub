@@ -19,11 +19,8 @@ body{
 	"header header header"
 	"menu menu menu"
 	"title title title"
-	"searchPosts headers data"
-	"searchPosts create data"
-	"searchPosts post data"
+	". profile data"
 	"footer footer footer";
-
 }
 
 /*.mainGrid div:nth-child(6){
@@ -214,7 +211,7 @@ ul.nav li{
 	font-size: 17px;
 }
 
-.communityBtn{
+.usersBtn{
 	background-color: gray;
 	color: #D0FF36;
 }
@@ -223,54 +220,6 @@ ul.nav li{
 	background-color: gray;
 	/*color: #A464FF;*/
 }
-
-.searchPosts{
-	grid-area: searchPosts;
-	margin: 0 0 0 0;
-}
-
-label.searchPosts{
-	font-size:15px;
-	font-weight: bold;
-}
-
-ul.searchPost{
-	/*background-color: white;
-	border-radius: 10px	;
-	border: 1px solid #E1E1E1;*/
-	display: block;
-	margin: 0 50 0 30;
-	padding: 0 0 20 0;
-}
-
-.searchPostInput{
-	padding: 7 5 7 30;
-	box-sizing: border-box;
-	width: 300;
-	background-image: url("pictures/search.png");
-	background-position: 10px 8px;
-	background-size: 12px 12px;
-	background-repeat: no-repeat;
-	border-radius: 10px;
-	margin: 5 0 0 0;
-}
-
-.searchPostBtn{
-	text-decoration: none;
-	border: transparent;
-	border-radius: 8px;
-	background-color: #323335;
-	font-size: 15px;
-	padding: 3 4 3 4;
-	color: #D0FF36;
-	float: right;
-	margin-top: 5;
-}
-
-.searchPostBtn:hover{
-	background-color: gray;
-}
-
 
 .title{
 	grid-area: title;
@@ -290,153 +239,38 @@ label.titleLabel{
 	align-self: center;
 }
 
-.headers{
-	grid-area: headers;
-	border: 1px solid black;
-	padding: 10 0 20 10;
-	margin-top: 10;
-	/*transform: translate(0px, 30px);*/
-	height: 20%;
+.profile{
+	grid-area: profile;
+	background-image: url("pictures/innerbg.jpg");
+	text-align:center;
 }
 
-label.threads, a:link, a:visited{
-	font-size: 22px;
-	color:  black;
+.profileFormTable{
+	margin: 10 0 0 10;
+	border-spacing: 0 8;
+	
 }
 
-label.threads a:hover{
-	color: gray;
+ul.signupForm{
+	/*border: 1px solid black;*/
+	display:block;
+	margin-bottom: 50;
 }
 
-.divider1{
-	display: inline-block;
-	width: 2px;
-	background-color: black;
-	height: 1.2em;
-	margin: 0 10 0 10;
+ul.signupForm li{
+	margin-top: 8;
+	text-align: center;
+	align-self: center;
 }
 
-label.projects, a:link, a:visited{
-	font-size: 22px;
-	color:  black;
+.profileImg{
+	margin: 2 0 0 4;
+	width: 200px;
+	height: 200px;
 }
 
-label.projects a:hover{
-	color: gray;
-}
-
-.create{
-	grid-area: create;
-	border: 1px solid black;
-	padding: 5;
-}
-
-label.createPost{
-	font-weight: bold;
-	font-size: 20px;
-}
-
-.createDetails{
-	margin-left: 10;
-}
-
-.createDetails, td{
-	padding-bottom: 5;
-}
-
-.titleInput, .contentInput{
-	border-radius: 5px;
-	width: 720;
-	border: 1px solid black;
-}
-
-.titleInput{
-	padding: 2 0 2 5;
-}
-
-.contentInput{
-	padding: 2 0 100 5;
-}
-
-.createBtn{
-	text-decoration: none;
-	border: transparent;
-	border-radius: 8px;
-	background-color: #323335;
-	font-size: 15px;
-	padding: 3 4 3 4;
-	color: #D0FF36;
-	float: right;
-}
-
-.createBtn:hover{
-	background-color: gray;
-}
-
-.post{
-	grid-area: post;
-	grid-auto-rows:minmax(190px, auto);
-	/*border: 1px solid black;
-	border-radius: 5px;
-	background-color: white;
-	padding: 10 0 10 10;
-	margin: 10 0 0 0;*/
-}
-
-.singlePost{
-	border: 1px solid black;
-	border-radius: 5px;
-	background-color: white;
-	padding: 10 0 10 10;
-	margin: 10 0 0 0;
-}
-
-.singlePost img{
-	float: left;
-	margin: 0 0 0 0;
-	width: 35;
-	height: 35;
-}
-
-/*.post img{
-	float: left;
-	margin: 0 0 0 0;
-	width: 35;
-	height: 35;
-}*/
-
-label.postUser, .postUser:link, .postUser:visited{
-	font-size: 17px;
-	padding: 0 0 10 5;
-	color:  black;
-	line-height: 2;
-}
-
-label.postTitle, .postTitle:link, .postTitle:visited{
-	font-size: 25px;
-	padding: 0 0 10 5;
-	color: black;
-	font-weight: bold;
-}
-
-.postTitleBtn{
-	border: 1px solid transparent;
-	margin-left: 10;
-	font-weight: bold;
-	font-size: 20px;
-	background-color: transparent;
-}
-
-label.stars{
-	font-size: 15px;
-	color:  black;
-	padding-left: 10;
-}
-
-label.comments{
-	font-size: 15px;
-	color: black;
-	padding-left: 5;
+.profileDetails{
+	margin-left:20;
 }
 
 .data{

@@ -19,7 +19,6 @@ body{
 	"header header header"
 	"menu menu menu"
 	"title title title"
-	". headers data"
 	". users data"
 	"footer footer footer";
 }
@@ -240,12 +239,47 @@ label.titleLabel{
 	align-self: center;
 }
 
-.headers{
-	grid-area: headers;
-}
-
 .users{
 	grid-area: users;
+	border: 1px solid black;
+	grid-template-rows: minmax(100px,500px);
+	/*background-image: url("pictures/innerbg.jpg");
+	background-color: white;*/
+	margin-top: 10;
+}
+
+ul.users{
+	border: 1px solid #E1E1E1;
+	margin-top: 0;
+}
+
+ul.users li{
+	border-bottom: 1px solid #E1E1E1;
+	margin-bottom: -1;
+}
+
+.userImg{
+	margin: 2 0 0 4;
+	width: 50px;
+	height: 50px;
+}
+
+label.userLabel{
+	font-size: 20px;
+	padding: 10 0 0 10;
+	position: absolute;
+	color:black;
+}
+
+.userBtn{
+	border: 1px solid transparent;
+	background-color: transparent;
+	/*border: 1px solid black;*/
+	padding: 9 0 20 690;
+}
+
+.userBtn:hover{
+	background-color: red;
 }
 
 .data{
