@@ -24,7 +24,7 @@
 				
 				//global arrays [login and userdetails]
 				$userArr = array();
-				$specificUserArr = array();
+				//$specificUserArr = array();
 				
                 $users = mysqli_fetch_array($usersQuery);
                 
@@ -41,7 +41,7 @@
                     //echo "yep";
                     array_push($userArr,$username,$password,$signedInStatus,$position);
 					
-					$userQuery = mysqli_query($user,"select * from userdetails WHERE Username = '".$username."'");
+					/*$userQuery = mysqli_query($user,"select * from userdetails WHERE Username = '".$username."'");
 					
 					$specificUser = mysqli_fetch_array($userQuery);
 					
@@ -51,7 +51,7 @@
                     $image = $specificUser["Image"];
 					$bio = $specificUser["Bio"];
 					$likes = $specificUser["Likes"];
-					array_push($specificUserArr,$username,$password,$age,$email,$gender,$image,$bio,$likes);
+					array_push($specificUserArr,$username,$password,$age,$email,$gender,$image,$bio,$likes);*/
                 }
 				
                 if($signedInStatus == "False"){
@@ -62,7 +62,8 @@
                     echo "<input class='signupBtn' type='submit' value='Sign Up'/>";
                     echo "</form>";
                 } else {
-					echo "<a href='users.php'><img src='data:image/jpeg;base64,".base64_encode($specificUserArr[5])."'></a>";
+					//echo "<a href='users.php'><img src='data:image/jpeg;base64,".base64_encode($specificUserArr[5])."'></a>";
+					echo "<a href='users.php'><img src='pictures/user.png'></a>";
 					echo "<label class='username'><a class='username' href='users.php' >".$userArr[0]." </a></label>";
 					echo "<form class='settings' action='settings.php' method='post'>";
                     echo "<input class='settingsBtn' type='submit' value='Settings'/>";
@@ -78,8 +79,6 @@
 					$query = mysqli_query($user,$login);
 					header("Location: home.php");
 				}*/
-				
-				
             ?>
         </div>
     </div>

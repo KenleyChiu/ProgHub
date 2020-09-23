@@ -48,7 +48,7 @@
 								$community=$_SESSION['commSelected'];
 								if(empty($_FILES["createImage"]["name"]))
 								{	
-									$statement="insert into posts(Author,Title,TextContent,Likes,Comments,Community,PostType,Upload) values('$userarray[0]','$title','$content',0,0,'$community','Thread',NOW())";
+									$statement="insert into posts(Author,Title,TextContent,Likes,Comments,Community,PostType,Upload) values('$userarray[0]','$title','$content','0','0','$community','Thread',NOW())";
 									mysqli_query($data,$statement);
 								}
 								else
@@ -61,7 +61,7 @@
 									if(in_array($fileType, $allowTypes)){ 
 										$image = $_FILES['createImage']['tmp_name']; 
 										$imgContent = addslashes(file_get_contents($image));
-										$statement="insert into posts(Author,Title,TextContent,Likes,Comments,Community,PostType,Upload,ImageContent) values('$userarray[0]','$title','$content',0,0,'$community','Thread',NOW(),'$imgContent')";
+										$statement="insert into posts(Author,Title,TextContent,ImageContent,Likes,Comments,Community,PostType,Upload) values('$userarray[0]','$title','$content','$imgContent','0','0','$community','Thread',NOW())";
 										$status=mysqli_query($data,$statement);
 										if($status)
 										{
