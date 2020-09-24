@@ -2,6 +2,7 @@
 	<?php require_once 'config.php'?>
 	<?php require_once (ROOT_PATH .'\includes\header.php')?>
 	<?php require_once (ROOT_PATH .'\includes\navigation.php')?>
+	<?php require_once (ROOT_PATH .'\includes\getauthorImage.php')?>
 	<head>
 		<title>Website Project</title>
 		<link rel="stylesheet" type="text/css" href="css/post.css">
@@ -15,6 +16,7 @@
 					$userarray=$GLOBALS["userArr"];
 					
 					$community = $_SESSION['commSelected'];
+					$imagesArray= $GLOBALS["allUserImages"];
 					//displays chosen community as title
 					if($_SESSION['status'] == "selected"){
 						echo "<label class='titleLabel'>".$community."</label>";
@@ -31,7 +33,7 @@
 			</div>
 				
 			<div class ="post">
-				<a href="users.php"><img class='user' src="pictures/user.png"></a>
+				
 				<?php
 					$likesCount = $_SESSION['StarsPost'];
 					$postAuthor = $_SESSION['AuthorPost'];
@@ -40,7 +42,8 @@
 					$postPostType = $_SESSION['PostTypePost'];
 					$commentsCount = $_SESSION['CommentsPost'];
 					$errorMessage = " ";
-					
+					$profilePic= searchAuthor($postAuthor,$imagesArray);
+					echo "<a href='users.php'><img src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
 					if(isset($_POST['likeBtn'])){
 						if($signedInStatus == "True"){
 							$checkLikes = "select * from postlikes where Username='".$userarray[0]."' and Title='".$postTitle."'";
@@ -116,7 +119,7 @@
 							$errorMessage = "You have to be logged in to do that!";
 						}
 					}
-				
+					
 					if($_SESSION['statusPost'] == "selected"){
 						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$postAuthor." </a></label><br><br>";
 						echo "<label class='postTitle'>".$postTitle."</label><br><br>";
