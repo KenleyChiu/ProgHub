@@ -63,6 +63,7 @@
 							$_SESSION['TextContentPost'] = $post["TextContent"];
 							$_SESSION['StarsPost'] = $post["Likes"];
 							$_SESSION['CommentsPost'] = $post["Comments"];
+							$_SESSION['commSelected'] = $post["Community"];
 							$_SESSION['PostTypePost'] = $post["PostType"];
 							header("Location:post.php");
 						}
