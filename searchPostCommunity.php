@@ -20,7 +20,7 @@
 			?>		
 		</div>
 		
-		<!--LEFT SIDE-->
+		<!-- LEFT SIDE
 		<div class="searchPosts">
 			<ul class="searchPost">
 				<li><label class="searchPosts"> Search Posts </label></li>
@@ -32,7 +32,7 @@
 			<li><input class="searchPostBtn" type="submit" name="searchPostBtn" value="Search" /></li>
 				</form>
 			</ul>
-		</div>
+		</div> -->
 		
 		<!-- DIVIDER BEWTEEN THREAD AND PROJECT -->
 		<div class="headers">

@@ -33,7 +33,6 @@
 					$postImageContent = $_SESSION['ImageContentPost'];
 					$postPostType = $_SESSION['PostTypePost'];
 					$commentsCount = $_SESSION['CommentsPost'];
-					
 					$errorMessage = " ";
 					
 					if(isset($_POST['likeBtn'])){
@@ -125,11 +124,7 @@
 					}
 
 					
-				?>
-				<!--only if post has image/s
-					<img src="pictures/user.png"><br>
-				-->
-				
+				?>				
 			</div>
 			
 			<?php 				

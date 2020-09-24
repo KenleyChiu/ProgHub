@@ -51,8 +51,6 @@
 								mysqli_query($data,$statement);
 								header("Location:community.php");
 								exit();
-								
-								
 							}
 							else{
 								//get file info
