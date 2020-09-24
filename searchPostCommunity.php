@@ -22,7 +22,15 @@
 				$postsArr = array();
 				$postArr = array();
 				
-				$postsQuery = mysqli_query($data,"select * from posts where community = '$community' and Title like '%".$_POST['searchPostInput']."%'");
+				if(empty($_POST['searchPostInput'])){
+					$postsQuery = mysqli_query($data,"select * from posts where community = '$community' and Title=''");
+					$resultsQuery = mysqli_query($data,"select * from posts where Community='$community' and Title=''");
+					$resultsCount = mysqli_num_rows($resultsQuery);
+				} else {
+					$postsQuery = mysqli_query($data,"select * from posts where community = '$community' and Title like '%".$_POST['searchPostInput']."%'");
+					$resultsQuery = mysqli_query($data,"select * from posts where Community='$community' and Title like '%".$_POST['searchPostInput']."%'");
+					$resultsCount = mysqli_num_rows($resultsQuery);
+				}				
 				
 				while($posts = mysqli_fetch_array($postsQuery)){
 					$postsArr["Author"] = $posts["Author"];
@@ -65,8 +73,7 @@
 				}
 				
 				
-				$resultsQuery = mysqli_query($data,"select * from posts where Community='$community' and Title like '%".$_POST['searchPostInput']."%'");
-				$resultsCount = mysqli_num_rows($resultsQuery);
+				
 			?>		
 		</div>
 		

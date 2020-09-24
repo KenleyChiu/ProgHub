@@ -9,7 +9,17 @@
 	<?php
 		global $user;
 		$userarray=$GLOBALS["userArr"];
-		$usersListQuery = mysqli_query($user,"select * from userdetails where Username like '%".$_POST['searchUserInput']."%'");
+		
+		
+		if(empty($_POST['searchUserInput'])){
+			$usersListQuery = mysqli_query($user,"select * from userdetails where Username=''");
+			$resultsQuery = mysqli_query($user,"select * from login where Username=''");
+			$resultsCount = mysqli_num_rows($resultsQuery);
+		} else {
+			$usersListQuery = mysqli_query($user,"select * from userdetails where Username like '%".$_POST['searchUserInput']."%'");
+			$resultsQuery = mysqli_query($user,"select * from login where Username like '%".$_POST['searchUserInput']."%'");
+			$resultsCount = mysqli_num_rows($resultsQuery);
+		}
 		
 		//plural = just one user because user details
 		$usersArr = array();
@@ -19,10 +29,7 @@
 		$usersQuery = mysqli_query($user,"select * from login where Position='User'");
 		$usersCount = mysqli_num_rows($usersQuery);
 		$adminsQuery = mysqli_query($user,"select * from login where Position='Admin'");
-		$adminsCount = mysqli_num_rows($adminsQuery);
-		
-		$resultsQuery = mysqli_query($user,"select * from login where Username like '%".$_POST['searchUserInput']."%'");
-		$resultsCount = mysqli_num_rows($resultsQuery);
+		$adminsCount = mysqli_num_rows($adminsQuery);		
 	?>
 	<body>
 			
@@ -60,14 +67,18 @@
 								array_push($userArr,$usersArr);
 								if($signedInStatus == "True"){
 									if($usersArr["Username"] != $userarray[0]){
+										echo "<div class='singleUser'>";
 										echo "<li><img class='userImg' src='data:image/jpeg;base64,".base64_encode($usersArr["Image"])."'>
 										<label class='userLabel' name='".$usersArr["Username"]."'/>".$usersArr["Username"]."</label>
 										<input class='userBtn' type='submit' name='".$usersArr["Username"]."Btn' value=''/></li>";
+										echo "</div>";
 									}
 								} else {
+									echo "<div class='singleUser'>";
 									echo "<li><img class='userImg' src='data:image/jpeg;base64,".base64_encode($usersArr["Image"])."'>
 									<label class='userLabel' name='".$usersArr["Username"]."'/>".$usersArr["Username"]."</label>
 									<input class='userBtn' type='submit' name='".$usersArr["Username"]."Btn' value=''/></li>";
+									echo "</div>";
 								}
 							}
 							
@@ -88,23 +99,6 @@
 							
 						?>
 					</form>
-				</ul>
-			</div>
-			
-			<div class="data">
-				<ul class="data">
-					<?php
-						if($signedInStatus == "True"){
-							if($userarray[3] == "User"){
-								echo "<li class='usersNum'>Total Users: ".$usersCount." </li>";
-							} else {
-								echo "<li class='usersNum'>Total Users: ".$usersCount." </li>";
-								echo "<li class='adminNum'>Total Admins: ".$adminsCount." </li>";
-							}
-						} else {
-							echo "<li class='usersNum'>Total Users: ".$usersCount." </li>";
-						}
-					?>
 				</ul>
 			</div>
 			

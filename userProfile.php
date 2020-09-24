@@ -28,6 +28,16 @@
 				?>
 			</div>
 			
+			<div class="back">
+				<form class="backForm" action="users.php" method="post">
+					<?php 
+						if($_SESSION['statusUser'] == "selected"){
+							echo "<input class='backBtn' type='submit' name='backBtn' value='Back to Users' />";
+						}
+					?>
+				</form>
+			</div>
+			
 			<div class="profile">
 				<?php
 					$age = $_SESSION['AgeUser'];

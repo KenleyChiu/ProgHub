@@ -271,7 +271,7 @@ ul.searchUser{
 	padding: 3 4 3 4;
 	color: #D0FF36;
 	float: right;
-	margin-top: -15;
+	margin-top: -60;
 	cursor:pointer;
 }
 
@@ -299,20 +299,28 @@ label.titleLabel{
 
 .users{
 	grid-area: users;
-	border: 1px solid black;
+	/*border: 1px solid black;*/
 	grid-template-rows: minmax(100px,500px);
 	/*background-image: url("pictures/innerbg.jpg");
 	background-color: white;*/
 	margin-top: 10;
 }
 
+.singleUser{
+	border: 1px solid black;
+	background-color: white;
+	padding: 5 0 5 10;
+	margin: 10 0 0 0;
+	border-radius: 5px;
+}
+
 ul.users{
-	border: 1px solid #E1E1E1;
+	/*border: 1px solid #E1E1E1;*/
 	margin-top: 0;
 }
 
 ul.users li{
-	border-bottom: 1px solid #E1E1E1;
+	/*border-bottom: 1px solid #E1E1E1;*/
 	margin-bottom: -1;
 }
 
@@ -334,7 +342,7 @@ label.userLabel{
 	border: 1px solid transparent;
 	background-color: transparent;
 	/*border: 1px solid black;*/
-	padding: 9 0 20 690;
+	padding: 10 0 20 690;
 	cursor:pointer;
 }
 

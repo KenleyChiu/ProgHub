@@ -26,6 +26,7 @@
 			
 				
 				$communitiesListQuery = mysqli_query($data,"select * from communitieslist");
+				$communitiesCount = mysqli_num_rows($communitiesListQuery);
 				
 				$communitiesArr = array();
 				$imgArr = array();
@@ -63,9 +64,11 @@
 						<?php
 							//use if with database - prints all communities
 							foreach(array_values($communityArr) as $key => $community){
+								echo "<div class='singleCommunity'>";
 								echo "<li><img class='commsImg' src='data:image/jpeg;base64,".base64_encode($community["image"])."'>
 								<label class='commsLabel' name='".$community["name"]."'/>".$community["name"]."</label>
 								<input class='commsBtn' type='submit' name='".$community["name"]."Btn' value=''/></li>";
+								echo "</div>";
 							}
 							$_SESSION['searchedPost'] = "False";
 						?>
@@ -77,7 +80,9 @@
 			</div>
 			
 			<div class="data">
-				<!--Data-->
+				<ul class="data">
+					<li class='communitiesNum'>Total Communities: <?php echo $communitiesCount; ?> </li>
+				</ul>
 			</div>
 			
 			<!--FOOTER-->

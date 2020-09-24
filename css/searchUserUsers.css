@@ -19,8 +19,8 @@ body{
 	"header header header"
 	"menu menu menu"
 	"title title title"
-	"back headers data"
-	". users data"
+	"back headers ."
+	". users ."
 	"footer footer footer";
 }
 
@@ -281,19 +281,27 @@ label.titleLabel{
 
 .users{
 	grid-area: users;
-	border: 1px solid black;
+	/*border: 1px solid black;*/
 	grid-template-rows: minmax(100px,500px);
 	/*background-image: url("pictures/innerbg.jpg");
 	background-color: white;*/
 }
 
+.singleUser{
+	border: 1px solid black;
+	background-color: white;
+	padding: 5 0 5 10;
+	margin: 10 0 0 0;
+	border-radius: 5px;
+}
+
 ul.users{
-	border: 1px solid #E1E1E1;
+	/*border: 1px solid #E1E1E1;*/
 	margin-top: 0;
 }
 
 ul.users li{
-	border-bottom: 1px solid #E1E1E1;
+	/*border-bottom: 1px solid #E1E1E1;*/
 	margin-bottom: -1;
 }
 
@@ -321,32 +329,6 @@ label.userLabel{
 
 .userBtn:hover{
 	/*background-color: red;*/
-}
-
-.data{
-	grid-area: data;
-}
-
-ul.data{
-	margin: 10 40 0 50;
-	background-color: white;
-	height: 100px;
-	border-radius: 10px	;
-	border: 1px solid #E1E1E1;
-	text-align: center;
-	width: 275px;
-}
-
-.usersNum{
-	margin-top: 25;
-}
-
-.adminNum{
-	margin-top: 5;
-}
-
-.usersNum, .adminNum{
-	font-size: 18px;
 }
 
 .footer{

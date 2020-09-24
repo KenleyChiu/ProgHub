@@ -61,14 +61,18 @@
 								array_push($userArr,$usersArr);
 								if($signedInStatus == "True"){
 									if($usersArr["Username"] != $userarray[0]){
+										echo "<div class='singleUser'>";
 										echo "<li><img class='userImg' src='data:image/jpeg;base64,".base64_encode($usersArr["Image"])."'>
 										<label class='userLabel' name='".$usersArr["Username"]."'/>".$usersArr["Username"]."</label>
 										<input class='userBtn' type='submit' name='".$usersArr["Username"]."Btn' value=''/></li>";
+										echo "</div>";
 									}
 								} else {
+									echo "<div class='singleUser'>";
 									echo "<li><img class='userImg' src='data:image/jpeg;base64,".base64_encode($usersArr["Image"])."'>
 									<label class='userLabel' name='".$usersArr["Username"]."'/>".$usersArr["Username"]."</label>
 									<input class='userBtn' type='submit' name='".$usersArr["Username"]."Btn' value=''/></li>";
+									echo "</div>";
 								}
 							}
 							

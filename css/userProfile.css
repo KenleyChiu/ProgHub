@@ -19,7 +19,7 @@ body{
 	"header header header"
 	"menu menu menu"
 	"title title title"
-	". profile ."
+	"back profile ."
 	"footer footer footer";
 }
 
@@ -237,6 +237,27 @@ ul.nav li{
 	justify-self: center;
 	justify-content: center;
 	display: flex;
+}
+
+.back{
+	grid-area: back;
+	text-align: center;
+}
+
+.backBtn{
+	text-decoration: none;
+	border: transparent;
+	border-radius: 8px;
+	background-color: #323335;
+	font-size: 15px;
+	padding: 3 4 3 4;
+	color: #D0FF36;
+	cursor:pointer;
+	margin-top: 20;
+}
+
+.backBtn:hover{
+	background-color: gray;
 }
 
 label.titleLabel{
