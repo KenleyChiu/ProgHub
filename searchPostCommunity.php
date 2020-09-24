@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<title>Website Project</title>
-		<link rel="stylesheet" type="text/css" href="css/searchPost.css">
+		<link rel="stylesheet" type="text/css" href="css/searchPostCommunity.css">
 	</head>
 	<body>
 		<!-- TITLE -->
@@ -166,9 +166,9 @@
 		</div>
 		
 		<?php
-			$threadQuery = mysqli_query($data,"select * from posts where Community='$community' and PostType='Thread'");
+			$threadQuery = mysqli_query($data,"select * from posts where Community='$community' and Title like '%".$_POST['searchPostInput']."%' and PostType='Thread'");
 			$threadsCount = mysqli_num_rows($threadQuery);
-			$projectQuery = mysqli_query($data,"select * from posts where Community='$community' and PostType='Project'");
+			$projectQuery = mysqli_query($data,"select * from posts where Community='$community' and Title like '%".$_POST['searchPostInput']."%' and PostType='Project'");
 			$projectsCount = mysqli_num_rows($projectQuery);
 			
 			mysqli_close($data);

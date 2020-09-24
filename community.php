@@ -24,7 +24,7 @@
 		<div class="searchPosts">
 			<ul class="searchPost">
 				<li><label class="searchPosts"> Search Posts </label></li>
-				<li><form class="searchForm" action="searchPost.php" method="post">
+				<li><form class="searchForm" action="searchPostCommunity.php" method="post">
 					<input class="searchPostInput" type="text" name="searchPostInput" Placeholder="Search" /></li>
 		</div>
 		
