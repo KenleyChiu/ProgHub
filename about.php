@@ -9,7 +9,7 @@
 	
 	<?php
 
-		$signedInStatus = false;
+	
 	?>
 
 	<body>

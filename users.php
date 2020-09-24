@@ -27,7 +27,8 @@
 			<div class="users">
 				<ul class="users">
 					<form method="post">
-						<?php 	
+						<?php
+								
 							ob_start();
 							while($users = mysqli_fetch_array($usersListQuery)){
 								$usersArr["Username"] = $users["Username"];

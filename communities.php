@@ -10,6 +10,9 @@
 	
 
 	<body>
+		<?php
+			
+		?>
 			<div class="title">
 				<label class="titleLabel"> COMMUNITIES </label>
 			</div>
@@ -20,6 +23,7 @@
 			
 			<?php
 				global $data;
+			
 				
 				$communitiesListQuery = mysqli_query($data,"select * from communitieslist");
 				

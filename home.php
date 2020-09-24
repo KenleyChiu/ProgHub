@@ -29,7 +29,9 @@
 			</div>
 			
 			<div class ="post">
-				<?php 
+				<?php
+					
+
 					$postsQuery = mysqli_query($data,"select * from posts order by Upload DESC");					
 					$postsArr = array();
 					$postArr = array();
