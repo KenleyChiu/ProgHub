@@ -47,7 +47,7 @@
 						<?php
 							ob_start();
 							while($users = mysqli_fetch_array($usersListQuery)){
-								$usersArr = array();
+								
 								$usersArr["Username"] = $users["Username"];
 								$usersArr["Password"] = $users["Password"];
 								$usersArr["Age"] = $users["Age"];

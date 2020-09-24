@@ -137,7 +137,7 @@
 					mysqli_query($data,$postlikes);
 					$posts= "update posts set Author='".$_POST['username']."' where Author='$userarray[0]'";
 					mysqli_query($data,$posts);
-					$posts= "update comments set Username='".$_POST['username']."' where Username='$userarray[0]'";
+					$posts= "update commentpost set Username='".$_POST['username']."' where Username='$userarray[0]'";
 					mysqli_query($data,$posts);
 					$userarray[0]=$_POST['username'];
 					$update = 0;

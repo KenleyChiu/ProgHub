@@ -210,8 +210,8 @@
 							mysqli_query($data,$delPostQuery);
 							
 							//delete comments on post
+							$delCommentsQuery = "delete from commentpost where community='".$post["Community"]."' and Title='".$post["Title"]."'";
 							mysqli_query($data,$delCommentsQuery);
-							$delCommentsQuery = "delete from comments where community='".$post["Community"]."' and Title='".$post["Title"]."'";
 							header("Location:home.php");
 						}
 						

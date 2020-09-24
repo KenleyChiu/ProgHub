@@ -16,16 +16,16 @@
 		$userArr = array();
 		
 		if(isset($_POST['searchUserInput'])){
-			if(empty($_POST['searchUserInput'])){
-				$usersListQuery = mysqli_query($user,"select * from userdetails where Username=''");
+		if(empty($_POST['searchUserInput'])){
+			$usersListQuery = mysqli_query($user,"select * from userdetails where Username=''");
 			$resultsQuery = mysqli_query($user,"select * from login where Username=''");
 			$resultsCount = mysqli_num_rows($resultsQuery);
-			} else {
-				$usersListQuery = mysqli_query($user,"select * from userdetails where Username like '%".$_POST['searchUserInput']."%'");
+		} else {
+			$usersListQuery = mysqli_query($user,"select * from userdetails where Username like '%".$_POST['searchUserInput']."%'");
 			$resultsQuery = mysqli_query($user,"select * from login where Username like '%".$_POST['searchUserInput']."%'");
 			$resultsCount = mysqli_num_rows($resultsQuery);
-			}
-		} else {
+		}
+		}else {
 			$usersListQuery = mysqli_query($user,"select * from userdetails where Username like '%".$_POST['searchUserInput']."%'");
 			$resultsQuery = mysqli_query($user,"select * from login where Username like '%".$_POST['searchUserInput']."%'");
 			$resultsCount = mysqli_num_rows($resultsQuery);
