@@ -40,7 +40,21 @@
 			<label class="threads"><a href="#"> Threads </a></label>
 			<span class="divider1"> </span>
 			<label class="projects"><a href="#"> Projects </a></label>
-			<form class="createBtnForm" method ="post" action="createPost.php">
+			<?php
+			$signin=$GLOBALS["signedInStatus"];
+			if(isset($_POST["goTocreate"]))
+			{
+				if($signedInStatus== "True"){
+					header("Location: createPost.php");
+					exit();
+				}
+				else{
+					header("Location: login.php");
+					exit();
+				}
+			}
+			?>
+			<form class="createBtnForm" method ="post" action=>
 				<input class="createBtn" type = "submit" name = "goTocreate" value="Create Post"/>
 			</form>
 		</div>

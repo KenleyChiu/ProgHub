@@ -34,46 +34,65 @@
 			if(!empty($_POST['age'])){
 				$age = "update userdetails set Age='".$_POST['age']."' where Username='$userarray[0]'"; 
 				mysqli_query($user,$age);
+				$userRegistrationError = "Change Sucessful";
 				//$update = TRUE;
 			}
 			if(!empty($_POST['email'])){
 				$email = "update userdetails set Email='".$_POST['email']."' where Username='$userarray[0]'"; 
 				mysqli_query($user,$email);
+				$userRegistrationError = "Change Sucessful";
 				//$update = TRUE;
 			}
 			if(!empty($_POST['gender'])){
 				$gender = "update userdetails set Gender='".$_POST['gender']."' where Username='$userarray[0]'"; 
 				mysqli_query($user,$gender);
+				$userRegistrationError = "Change Sucessful";
 				//$update = TRUE;
 			}
 			if(!empty($_POST['displayPicture'])){
+				
 				$image = "update userdetails set Image='".$_POST['displayPicture']."' where Username='$userarray[0]'"; 
 				mysqli_query($user,$image);
+				$userRegistrationError = "Change Sucessful";
 				//$update = TRUE;
 			}
 			if(!empty($_POST['bio'])){
 				$bio = "update userdetails set Bio='".$_POST['bio']."' where Username='$userarray[0]'"; 
 				mysqli_query($user,$bio);
+				$userRegistrationError = "Change Sucessful";
 				//$update = TRUE;
 			}
-			if(!empty($_POST['oldPassword']) && ($_POST['oldPassword'] == $userarray[1])){
-				if(!empty($_POST['newPassword']) && !empty($_POST['confirmPassword']) && $_POST['confirmPassword'] == $_POST['newPassword']){
-					$password = "update userdetails set Password='".$_POST['newPassword']."' where Username='$userarray[0]'"; 
-					mysqli_query($user,$password);
-					$loginpassword = "update login set Password='".$_POST['newPassword']."' where Username='$userarray[0]'";
-					mysqli_query($user,$loginpassword);
-					$update = TRUE;
+			if(!empty($_POST['oldPassword'])){
+				if($_POST['oldPassword'] == $userarray[1])
+				{
+					if(!empty($_POST['newPassword']) && !empty($_POST['confirmPassword']) && $_POST['confirmPassword'] == $_POST['newPassword']){
+						$password = "update userdetails set Password='".$_POST['newPassword']."' where Username='$userarray[0]'"; 
+						mysqli_query($user,$password);
+						$loginpassword = "update login set Password='".$_POST['newPassword']."' where Username='$userarray[0]'";
+						mysqli_query($user,$loginpassword);
+						$update = TRUE;
+					}else {
+						$userRegistrationError = "New Password and Confirm Password do not match";
+					}
+					
+				}else {
+					$userRegistrationError = "Incorrect Old Password";
 				}
+				
+				
 			}
+		
+
 
 			if($update)
 			{
 				$login = "update login set SignedInStatus='False' where Username='$userarray[0]'"; 
 				mysqli_query($user,$login);
 				header("Location: login.php");
-			} else {
-				header("Location: settings.php");
-			}
+			} 
+			// else {
+			// 	header("Location: settings.php");
+			// }
 		}
 	?>
 
