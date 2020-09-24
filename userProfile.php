@@ -57,6 +57,7 @@
 								
 								$favoriteAdd2 = "insert into userlikes values('".$username."','".$userarray[0]."')";
 								mysqli_query($user,$favoriteAdd2);
+								header("Location:users.php");
 							} else {
 								$favoritesCount = $_SESSION['LikesUser'] - 1;
 								$favoriteMinus = "update userdetails set Likes='".$favoritesCount."' where Username='".$username."'";
@@ -64,7 +65,9 @@
 								
 								$favoriteMinus2 = "delete from userlikes where NameOfUser='".$username."' and Fans='".$userarray[0]."'";
 								mysqli_query($user,$favoriteMinus2);
+								header("Location:users.php");
 							}
+							
 						}
 						
 						
@@ -78,7 +81,7 @@
 									<tr><td><label class='profileDetails'> Favorites: ".$favorites." </label></td></tr>
 								</table>";
 							
-							echo "<form action='".$_SERVER['PHP_SELF']."' method='post'>
+							echo "<form method='post'>
 								<ul class='favorite'>
 								<li><input class='favoriteAcc' type='submit' name='favoriteAcc' value='".$favoriteValue."'/></li>
 								</form>
@@ -105,6 +108,8 @@
 							<tr><td><label class='profileDetails'> Favorites: ".$favorites." </label></td></tr>
 						</table>";
 					}
+					
+					
 				?>
 				
 			</div>
