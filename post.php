@@ -77,7 +77,7 @@
 									$comment= $_POST["commentContent"];
 									if(empty($_FILES["commentImage"]["name"]))
 									{	
-										$statement="Insert into comments(Username,Title,TextComment,Likes,Community,PostType,Upload) values ('$userarray[0]','$postTitle','$comment','0','$community','Thread',NOW())";
+										$statement="Insert into comments values ('$userarray[0]','$postTitle','$comment','','0','$community','Thread',NOW())";
 										mysqli_query($data,$statement);
 										$commentsCount++;
 										$addComment = "update posts set Comments='".$commentsCount."' where Title='".$postTitle."'";
@@ -135,9 +135,6 @@
 				?>				
 			</div>
 			
-			<?php 				
-				
-			?>
 			
 			<div class="comment">
 				<label class="createComment"> Write a Comment </label>
@@ -154,17 +151,19 @@
 			<div class ="postComments">
 				<?php 
 				
-					$commentsQuery = "select * from comments where Community='$community'";
+					$commentsQuery = "select * from comments where Community='$community' and Title = '$postTitle'";
 					$commentsArr = mysqli_query($data,$commentsQuery);
-					$comments = mysqli_fetch_array($commentsArr);
 					
-					
-					// while(!empty($comments)){
-					// 	echo "<a href='users.php'><img src='pictures/user.png'></a>";
-					// 	echo "<label class='postUser'><a class='postUser' href='users.php' > ".$comments['Username']." </a></label><br><br>";
-					// 	echo "<p class='postComment'> Comment </p><br>";
-					// 	//<label class='stars'> 0 Stars </label> //THIS IS EXTRA, IF THERE IS TIME
-					// }
+					while($comments = mysqli_fetch_array($commentsArr)){
+						$profilePic=searchAuthor($comments['Username'],$imagesArray);
+						echo "<div class='singlePost'>";
+					 	echo "<a href='users.php'><img src='pictures/user.png'></a>";
+						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$comments['Username']." </a></label><br><br>";
+						echo "<img class='postImg' src='".$comments['ImageComment']."'/><br>" ;
+						echo "<p class='postComment'>".$comments['TextComment']." </p><br>";
+						echo "</div>";
+					 	//<label class='stars'> 0 Stars </label> //THIS IS EXTRA, IF THERE IS TIME
+					}
 					mysqli_close($data);
 				?>
 			</div>
