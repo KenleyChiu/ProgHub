@@ -52,7 +52,7 @@
 				<ul class="users">
 					<form method="post">
 						<?php
-							ob_start();
+							// ob_start();
 							while($users = mysqli_fetch_array($usersListQuery)){
 								$usersArr["Username"] = $users["Username"];
 								$usersArr["Password"] = $users["Password"];
@@ -95,7 +95,7 @@
 									header("Location: userProfile.php");
 								}
 							}
-							ob_end_flush();
+							// ob_end_flush();
 							
 						?>
 					</form>
