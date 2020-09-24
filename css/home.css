@@ -297,25 +297,44 @@ label.popular a:hover{
 	margin: 10 0 0 0;
 }
 
-.userImg{
-	float: left;
-	margin: 0 0 0 0;
-	width: 35;
-	height: 35;
+.userBtnForm{
+	/*display:inline-block;*/
+	float:left;
+	/*margin-right:10;*/
 }
 
-/*.post img{
+.userBtn{
+	border: 1px solid transparent;
+	background-color: transparent;
+	cursor: pointer;
+	/*display:inline-block;*/
+	position:absolute;
+	padding: 10 25 10 10;
+	margin-left: 5;
+	margin-bottom: 15;
+}
+
+.userImg{
 	float: left;
-	margin: 0 0 0 0;
 	width: 35;
 	height: 35;
-}*/
+	position:absolute;
+	margin-left: 5;
+}
 
-label.postUser{
-	font-size: 17px;
-	padding: 0 0 10 10;
+.postBtnForm{
+	display: inline-block;
+}
+
+.postUserBtn{
+	font-size: 20px;
+	padding: 0 0 0 50;
 	color:  black;
 	line-height: 2.5;
+	background-color: transparent;
+	border: 1px solid transparent;
+	cursor:pointer;
+	position: relative;
 }
 
 label.postTitle{
@@ -328,20 +347,23 @@ label.postTitle{
 }
 
 .deleteBtnForm{
-	/*display:inline-block;*/
-	float:right;
+	/*display:inline-block;
+	float:right;*/
 	margin-right:10;
+	float:right;
 }
 
 .deleteBtn{
 	border: 1px solid transparent;
 	background-color: transparent;
 	cursor: pointer;
-	/*display:inline-block;*/
-	position:absolute;
+	/*display:inline-block;
+	position:absolute;*/
 	padding: 10;
 	margin-left: 11;
 	margin-bottom: 15;
+	float:right;
+	position: absolute;
 }
 
 .delImg{
