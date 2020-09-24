@@ -402,19 +402,21 @@ label.projects a:hover{
 	height: 35;
 }*/
 
-label.postUser, .postUser:link, .postUser:visited{
+label.postUser{
 	font-size: 17px;
 	padding: 0 0 10 5;
 	color:  black;
 	line-height: 2;
-	display:inline-block;
 }
 
-label.postTitle, .postTitle:link, .postTitle:visited{
+label.postTitle{
 	font-size: 25px;
 	padding: 0 0 10 5;
 	color: black;
 	font-weight: bold;
+	padding-left: 15;
+	margin-top: 5;
+	line-height: 1.2;
 }
 
 .deleteBtnForm{

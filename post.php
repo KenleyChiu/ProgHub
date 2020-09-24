@@ -43,7 +43,7 @@
 					$commentsCount = $_SESSION['CommentsPost'];
 					$errorMessage = " ";
 					$profilePic= searchAuthor($postAuthor,$imagesArray);
-					echo "<a href='users.php'><img src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
+					echo "<a href='users.php'><img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
 					if(isset($_POST['likeBtn'])){
 						if($signedInStatus == "True"){
 							$checkLikes = "select * from postlikes where Username='".$userarray[0]."' and Title='".$postTitle."'";
@@ -123,9 +123,8 @@
 					if($_SESSION['statusPost'] == "selected"){
 						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$postAuthor." </a></label><br><br>";
 						echo "<label class='postTitle'>".$postTitle."</label><br><br>";
-						echo "<img src='".$postImageContent."'>" ;
-						//echo "<img class='content' src='data:image/jpeg;base64,".base64_encode($postImageContent)."'><br>";
-						echo "<p class='postContent'>".$_SESSION['TextContentPost']."</p><br>";
+						echo "<img class='postImg' src='".$postImageContent."'/><br>" ;
+						echo "<br><p class='postContent'>".$_SESSION['TextContentPost']."</p><br>";
 						echo "<form class='starsForm' action='".$_SERVER['PHP_SELF']."' method='post'>";
 						echo "<input class='likeBtn' type='submit' name='likeBtn' value='Star'></form>";
 						echo "<label class='stars'>" .$likesCount." Stars </label>";
