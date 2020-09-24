@@ -38,7 +38,7 @@
 					
 					$postArr = array();
 					
-					//$y = 0;
+					$y = 0;
 					while($posts = mysqli_fetch_array($postsQuery)){
 						$postsArr = array();
 						$postsArr["Author"] = $posts["Author"];
@@ -54,7 +54,8 @@
 						array_push($postsArr,$postsArr["Author"],$postsArr["Title"],$postsArr["TextContent"],$postsArr["ImageContent"],$postsArr["Likes"],$postsArr["Comments"]
 						,$postsArr["Community"],$postsArr["PostType"],$postsArr["Upload"]);
 						array_push($postArr,$postsArr);
-						//$y++;
+						$y++;
+						if($y == 5) break;
 					} 
 					
 					foreach($postArr as $post){
