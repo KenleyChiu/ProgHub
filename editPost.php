@@ -31,9 +31,10 @@
 			global $data;
 			$userarray=$GLOBALS["userArr"];
             $errorMessage="";
-            $firstTitle="";
-            $firstContent="";
-            $firstImage="";
+            $firstTitle=$_SESSION['TitlePost'];
+            $firstContent=$_SESSION['TextPost'];
+            $firstImage=$_SESSION['ImagePost'];
+            $author= $_SESSION['AuthorPost'];
 			
 			if(isset($_POST["editBtn"]))
 			{
@@ -50,10 +51,10 @@
 							$community=$_SESSION['commSelected'];
 							if(empty($_FILES["editImage"]["name"]))
 							{	
-                                $titleUpdate="update posts set Title = '$title' Where Author = '$author' and Title = '$firstTitle'";
-                                mysqli_query($data,$statement);
+                                $titleUpdate="Update posts set Title = '$title' Where Author = '$author' and Title = '$firstTitle'";
+                                $result=mysqli_query($data,$titleUpdate);
                                 $contentUpdate="update posts set TextContent = '$content' Where Author = '$author' and Title = '$title'";
-                                mysqli_query($data,$statement);
+                                mysqli_query($data,$contentUpdate);
 								header("Location:community.php");
 								exit();
 							}
@@ -73,11 +74,11 @@
 										$fileDestination ='upload/'.$fileNameNew;
 										move_uploaded_file($filetmp,$fileDestination);
 										$titleUpdate="update posts set Title = '$title' Where Author = '$author' and Title = '$firstTitle'";
-                                        mysqli_query($data,$statement);
+                                        mysqli_query($data,$titleUpdate);
                                         $contentUpdate="update posts set TextContent = '$content' Where Author = '$author' and Title = '$title'";
-                                        mysqli_query($data,$statement);
-                                        $contentUpdate="update posts set ImageContent = '$fileDestination' Where Author = '$author' and Title = '$title'";
-                                        mysqli_query($data,$statement);
+                                        mysqli_query($data,$contentUpdate);
+                                        $FileUpdate="update posts set ImageContent = '$fileDestination' Where Author = '$author' and Title = '$title'";
+                                        mysqli_query($data,$FileUpdate);
 										header("Location:community.php");
 										exit();
 									}else{

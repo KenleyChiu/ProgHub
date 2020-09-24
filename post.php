@@ -43,6 +43,21 @@
 					$postPostType = $_SESSION['PostTypePost'];
 					$commentsCount = $_SESSION['CommentsPost'];
 					$errorMessage = " ";
+					if(isset($_POST['editBtn'])){
+						//use this for new session
+						$_SESSION['AuthorPost'] = $postAuthor;
+						$_SESSION['TitlePost'] = $postTitle;
+						$_SESSION['ImagePost'] = $postImageContent;
+						$_SESSION['TextPost'] = $postTextContent;
+						
+						/* //or try this (using previous session)
+						$_SESSION['AuthorPost'];
+						$_SESSION['TitlePost'];
+						$_SESSION['TextContentPost'];
+						$_SESSION['ImageContentPost'];*/
+						
+						header("Location: editPost.php");
+					}
 					$profilePic= searchAuthor($postAuthor,$imagesArray);
 					echo "<a href='users.php'><img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
 					if(isset($_POST['likeBtn'])){
@@ -121,21 +136,7 @@
 						}
 					}
 					
-					if(isset($_POST['editBtn'])){
-						//use this for new session
-						$_SESSION['AuthorPost'] = $postAuthor;
-						$_SESSION['TitlePost'] = $postTitle;
-						$_SESSION['ImagePost'] = $postImageContent;
-						$_SESSION['TextPost'] = $postTextContent;
-						
-						/* //or try this (using previous session)
-						$_SESSION['AuthorPost'];
-						$_SESSION['TitlePost'];
-						$_SESSION['TextContentPost'];
-						$_SESSION['ImageContentPost'];*/
-						
-						header("Location: editPost.php");
-					}
+					
 					
 					if($_SESSION['statusPost'] == "selected"){
 						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$postAuthor." </a></label>";						
