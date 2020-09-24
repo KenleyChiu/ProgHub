@@ -23,14 +23,7 @@
 			
 			<?php
 				global $data;
-				$userArray=$GLOBALS["userArr"];
-				
-				if($userArray[2]==FALSE)
-				{
-					header("Location:login.php");
-					exit();
-					
-				}
+			
 				
 				$communitiesListQuery = mysqli_query($data,"select * from communitieslist");
 				
