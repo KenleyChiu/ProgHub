@@ -87,13 +87,7 @@
 					if($signedInStatus == "True"){
 						if($userarray[3] == "User"){
 							foreach(array_values($postArr) as $key => $post){
-								foreach($imagesArray as $arr)
-								{
-									if($post['Author'] == $arr[0]){
-										$profilePic=$arr[1];
-										break;
-									}
-								}
+								$profilePic=searchAuthor($post["Author"],$imagesArray);
 								echo "<div class='singlePost'>";
 								echo "<a href='users.php'><img src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
 								echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label>";
@@ -113,13 +107,7 @@
 							}
 						} else {
 							foreach(array_values($postArr) as $key => $post){
-								foreach($imagesArray as $arr)
-								{
-									if($post['Author'] == $arr[0]){
-										$profilePic=$arr[1];
-										break;
-									}
-								}
+								$profilePic=searchAuthor($post["Author"],$imagesArray);
 								echo "<div class='singlePost'>";
 								echo "<a href='users.php'><img src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
 								echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label>";

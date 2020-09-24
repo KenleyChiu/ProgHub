@@ -14,5 +14,16 @@
         array_push($specificUserImages,$author,$image);
         array_push($allUserImages,$specificUserImages);
     }
+
+
+    function searchAuthor($post,$imagesArray)
+    {
+        foreach($imagesArray as $arr)
+        {
+            if($post == $arr[0]){
+                return $arr[1];
+            }
+        }
+    }
     
 ?>
