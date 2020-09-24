@@ -84,31 +84,50 @@
 					,$postsArr["Community"],$postsArr["PostType"],$postsArr["Upload"]);
 					array_push($postArr,$postsArr);
 				}
-				
-				foreach($postArr as $post){
-					if(isset($_POST[$post["Title"]])){
-						$_SESSION['statusPost'] = "selected";
-						$_SESSION['AuthorPost'] = $post["Author"];
-						$_SESSION['TitlePost'] = $post["Title"];
-						$_SESSION['ImageContentPost'] = $post["ImageContent"];
-						$_SESSION['TextContentPost'] = $post["TextContent"];
-						$_SESSION['StarsPost'] = $post["Likes"];
-						$_SESSION['CommentsPost'] = $post["Comments"];
-						$_SESSION['PostTypePost'] = $post["PostType"];
-						header("Location:post.php");
-					}
-					
-					if(isset($_POST['del'.$post["Title"].'Btn'])){
-						//delete post
-						$delPostQuery = "delete from posts where community='$community' and Title='".$post["Title"]."'";
-						mysqli_query($data,$delPostQuery);
-						
-						//delete comments on post
-						$delCommentsQuery = "delete from commentspost where community='$community' and Title='".$post["Title"]."'";
-						mysqli_query($data,$delCommentsQuery);
-						header("Location:community.php");
+
+				// echo $postArr[1][8];
+				if(isset($_POST['goToPost']))
+				{
+					foreach($postArr as $post){
+						if($post['Title']==$_POST['goToPost'])
+						{
+							$_SESSION['statusPost'] = "selected";
+							$_SESSION['AuthorPost'] = $post["Author"];
+							$_SESSION['TitlePost'] = $post["Title"];
+							$_SESSION['ImageContentPost'] = $post["ImageContent"];
+							$_SESSION['TextContentPost'] = $post["TextContent"];
+							$_SESSION['StarsPost'] = $post["Likes"];
+							$_SESSION['CommentsPost'] = $post["Comments"];
+							$_SESSION['PostTypePost'] = $post["PostType"];
+							header("Location:post.php");
+						}
 					}
 				}
+				// foreach($postArr as $post){
+				// 	if(isset($_POST[$post[1]])){
+				// 		echo "hello";
+				// 		$_SESSION['statusPost'] = "selected";
+				// 		$_SESSION['AuthorPost'] = $post["Author"];
+				// 		$_SESSION['TitlePost'] = $post["Title"];
+				// 		$_SESSION['ImageContentPost'] = $post["ImageContent"];
+				// 		$_SESSION['TextContentPost'] = $post["TextContent"];
+				// 		$_SESSION['StarsPost'] = $post["Likes"];
+				// 		$_SESSION['CommentsPost'] = $post["Comments"];
+				// 		$_SESSION['PostTypePost'] = $post["PostType"];
+				// 		// header("Location:post.php");
+				// 	}
+					
+				// 	if(isset($_POST['del'.$post["Title"].'Btn'])){
+				// 		//delete post
+				// 		$delPostQuery = "delete from posts where community='$community' and Title='".$post["Title"]."'";
+				// 		mysqli_query($data,$delPostQuery);
+						
+				// 		//delete comments on post
+				// 		$delCommentsQuery = "delete from commentspost where community='$community' and Title='".$post["Title"]."'";
+				// 		mysqli_query($data,$delCommentsQuery);
+				// 		header("Location:community.php");
+				// 	}
+				// }
 				$profilePic="";
 				if($signedInStatus == "True"){
 					if($userarray[3] == "User"){
@@ -123,7 +142,7 @@
 								echo "</form>";
 							}
 							echo "<form method='post'>";
-							echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
+							echo "<input class='postTitleBtn' type='submit' name='goToPost' value='".$post["Title"]."'/><br><br>";
 							echo "</form>";
 							//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
 							echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
@@ -141,7 +160,7 @@
 							echo "<input class='deleteBtn' type='submit' name='del".$post["Title"]."Btn' value='Delete'/><br><br>";
 							echo "</form>";
 							echo "<form method='post'>";
-							echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
+							echo "<input class='postTitleBtn' type='submit' name='goToPost' value='".$post["Title"]."'/><br><br>";
 							echo "</form>";
 							//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
 							echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
@@ -156,7 +175,7 @@
 						echo "<a href='users.php'><img src='pictures/user.png'></a>";
 						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label>";
 						echo "<form method='post'>";
-						echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
+						echo "<input class='postTitleBtn' type='submit' name='goToPost' value='".$post["Title"]."'/><br><br>";
 						echo "</form>";
 						//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
 						echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
@@ -165,7 +184,6 @@
 						echo "</div>";
 					}
 				}
-				
 				
 			?>
 		
