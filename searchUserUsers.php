@@ -4,12 +4,12 @@
 	<?php require_once (ROOT_PATH .'\includes\navigation.php')?>
 	<head>
 		<title>Website Project</title>
-		<link rel="stylesheet" type="text/css" href="css/users.css">
+		<link rel="stylesheet" type="text/css" href="css/searchUserUsers.css">
 	</head>
 	<?php
 		global $user;
 		$userarray=$GLOBALS["userArr"];
-		$usersListQuery = mysqli_query($user,"select * from userdetails");
+		$usersListQuery = mysqli_query($user,"select * from userdetails where Username like '%".$_POST['searchUserInput']."%'");
 		
 		//plural = just one user because user details
 		$usersArr = array();
@@ -20,6 +20,9 @@
 		$usersCount = mysqli_num_rows($usersQuery);
 		$adminsQuery = mysqli_query($user,"select * from login where Position='Admin'");
 		$adminsCount = mysqli_num_rows($adminsQuery);
+		
+		$resultsQuery = mysqli_query($user,"select * from login where Username like '%".$_POST['searchUserInput']."%'");
+		$resultsCount = mysqli_num_rows($resultsQuery);
 	?>
 	<body>
 			
@@ -28,17 +31,14 @@
 			</div>
 			
 			<!--LEFT SIDE-->
-			<div class="searchUsers">
-				<ul class="searchUser">
-					<li><label class="searchusers"> Search Users </label></li>
-					<li><form class="searchForm" action="searchUserUsers.php" method="post">
-						<input class="searchUserInput" type="text" name="searchUserInput" Placeholder="Search" /></li>
+			<div class="back">
+				<form class="backForm" action="users.php" method="post">
+					<input class="backBtn" type="submit" name="backBtn" value="Back to Users" />
+				</form>
 			</div>
 			
-			<div class="searchUsers2">
-				<li><input class="searchUserBtn" type="submit" name="searchUserBtn" value="Search" /></li>
-					</form>
-				</ul>
+			<div class="headers">
+				<label class="searchResults"> <?php echo $resultsCount; ?> Results found</label>
 			</div>
 			
 			<div class="users">
@@ -47,7 +47,6 @@
 						<?php
 							ob_start();
 							while($users = mysqli_fetch_array($usersListQuery)){
-								$usersArr = array();
 								$usersArr["Username"] = $users["Username"];
 								$usersArr["Password"] = $users["Password"];
 								$usersArr["Age"] = $users["Age"];

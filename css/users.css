@@ -19,7 +19,8 @@ body{
 	"header header header"
 	"menu menu menu"
 	"title title title"
-	". users data"
+	"searchUsers users data"
+	"searchUsers2 users data"
 	"footer footer footer";
 }
 
@@ -226,6 +227,58 @@ ul.nav li{
 	/*color: #A464FF;*/
 }
 
+.searchUsers{
+	grid-area: searchUsers;
+}
+
+label.searchUsers{
+	font-size:15px;
+	font-weight: bold;
+}
+
+ul.searchUser{
+	/*background-color: white;
+	border-radius: 10px	;
+	border: 1px solid #E1E1E1;*/
+	display: block;
+	margin: 0 50 0 30;
+	padding: 0 0 20 0;
+}
+
+.searchUserInput{
+	padding: 7 5 7 30;
+	box-sizing: border-box;
+	width: 300;
+	background-image: url("pictures/search.png");
+	background-position: 10px 8px;
+	background-size: 12px 12px;
+	background-repeat: no-repeat;
+	border-radius: 10px;
+	margin: 5 0 0 0;
+}
+
+.searchUsers2{
+	grid-area: searchUsers2;
+	margin-right: 60;
+}
+
+.searchUserBtn{
+	text-decoration: none;
+	border: transparent;
+	border-radius: 8px;
+	background-color: #323335;
+	font-size: 15px;
+	padding: 3 4 3 4;
+	color: #D0FF36;
+	float: right;
+	margin-top: -15;
+	cursor:pointer;
+}
+
+.searchUserBtn:hover{
+	background-color: gray;
+}
+
 .title{
 	grid-area: title;
 	margin-top: 5;
@@ -291,6 +344,28 @@ label.userLabel{
 
 .data{
 	grid-area: data;
+}
+
+ul.data{
+	margin: 10 40 0 50;
+	background-color: white;
+	height: 100px;
+	border-radius: 10px	;
+	border: 1px solid #E1E1E1;
+	text-align: center;
+	width: 275px;
+}
+
+.usersNum{
+	margin-top: 25;
+}
+
+.adminNum{
+	margin-top: 5;
+}
+
+.usersNum, .adminNum{
+	font-size: 18px;
 }
 
 .footer{
