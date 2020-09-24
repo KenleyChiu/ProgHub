@@ -90,12 +90,13 @@
 							foreach(array_values($postArr) as $key => $post){
 								$profilePic=searchAuthor($post["Author"],$imagesArray);
 								echo "<div class='singlePost'>";
-								echo "<a href='users.php'><img src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
+								echo "<a href='users.php'><img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
 								echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label>";
 								if($post["Author"] == $userarray[0]){
+									echo "<img class='delImg' src='pictures/delete.png'/>";
 									echo "<form class='deleteBtnForm' method='post'>";
-									echo "<input class='deleteBtn' type='submit' name='del".$post["Title"]."Btn' value='Delete'/><br><br>";
-									echo "</form>";
+									echo "<input class='deleteBtn' type='submit' name='del".$post["Title"]."Btn' value=''/><br><br>";
+									echo "</form>";									
 								}
 								echo "<form method='post'>";
 								echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
@@ -110,10 +111,11 @@
 							foreach(array_values($postArr) as $key => $post){
 								$profilePic=searchAuthor($post["Author"],$imagesArray);
 								echo "<div class='singlePost'>";
-								echo "<a href='users.php'><img src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
+								echo "<img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'>";
 								echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label>";
+								echo "<img class='delImg' src='pictures/delete.png'/>";
 								echo "<form class='deleteBtnForm' method='post'>";
-								echo "<input class='deleteBtn' type='submit' name='del".$post["Title"]."Btn' value='Delete'/><br><br>";
+								echo "<input class='deleteBtn' type='submit' name='del".$post["Title"]."Btn' value=''/><br><br>";
 								echo "</form>";
 								echo "<form method='post'>";
 								echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
