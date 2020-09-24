@@ -16,6 +16,47 @@
 		//singular = array of users because collection of user details
 		$userArr = array();
 		
+		
+		/*function fillUserArray($users,$usersArr,$userArr){
+		
+		}*/
+		
+		function displayIfUser($usersArr,$userarray){
+			if($usersArr["Username"] != $userarray[0]){
+				echo "<div class='singleUser'>";
+				echo "<li><img class='userImg' src='data:image/jpeg;base64,".base64_encode($usersArr["Image"])."'>
+				<label class='userLabel' name='".$usersArr["Username"]."'/>".$usersArr["Username"]."</label>
+				<input class='userBtn' type='submit' name='".$usersArr["Username"]."Btn' value=''/></li>";
+				echo "</div>";
+			}
+			return;
+		}
+		
+		function displayIfAdmin($usersArr){
+			echo "<div class='singleUser'>";
+			echo "<li><img class='userImg' src='data:image/jpeg;base64,".base64_encode($usersArr["Image"])."'>
+			<label class='userLabel' name='".$usersArr["Username"]."'/>".$usersArr["Username"]."</label>
+			<input class='userBtn' type='submit' name='".$usersArr["Username"]."Btn' value=''/></li>";
+			echo "</div>";
+			return;
+		}
+		
+		function toUserProfile($user){
+			if(isset($_POST[$user["Username"].'Btn'])){
+				$_SESSION['statusUser'] = "selected";
+				$_SESSION['UsernameUser'] = $user["Username"];
+				$_SESSION['AgeUser'] = $user["Age"];
+				$_SESSION['EmailUser'] = $user["Email"];
+				$_SESSION['GenderUser'] = $user["Gender"];
+				$_SESSION['ImageUser'] = $user["Image"];
+				$_SESSION['BioUser'] = $user["Bio"];
+				$_SESSION['LikesUser'] = $user["Likes"];
+				header("Location: userProfile.php");
+			}
+		}
+		
+		
+		
 		$usersQuery = mysqli_query($user,"select * from login where Position='User'");
 		$usersCount = mysqli_num_rows($usersQuery);
 		$adminsQuery = mysqli_query($user,"select * from login where Position='Admin'");
@@ -48,6 +89,8 @@
 							ob_start();
 							while($users = mysqli_fetch_array($usersListQuery)){
 								
+								//fillUserArray($users,$usersArr,$userArr);
+								
 								$usersArr["Username"] = $users["Username"];
 								$usersArr["Password"] = $users["Password"];
 								$usersArr["Age"] = $users["Age"];
@@ -60,34 +103,14 @@
 								,$usersArr["Bio"],$usersArr["Likes"]);
 								array_push($userArr,$usersArr);
 								if($signedInStatus == "True"){
-									if($usersArr["Username"] != $userarray[0]){
-										echo "<div class='singleUser'>";
-										echo "<li><img class='userImg' src='data:image/jpeg;base64,".base64_encode($usersArr["Image"])."'>
-										<label class='userLabel' name='".$usersArr["Username"]."'/>".$usersArr["Username"]."</label>
-										<input class='userBtn' type='submit' name='".$usersArr["Username"]."Btn' value=''/></li>";
-										echo "</div>";
-									}
+									displayIfUser($usersArr,$userarray);
 								} else {
-									echo "<div class='singleUser'>";
-									echo "<li><img class='userImg' src='data:image/jpeg;base64,".base64_encode($usersArr["Image"])."'>
-									<label class='userLabel' name='".$usersArr["Username"]."'/>".$usersArr["Username"]."</label>
-									<input class='userBtn' type='submit' name='".$usersArr["Username"]."Btn' value=''/></li>";
-									echo "</div>";
+									displayIfAdmin($usersArr);
 								}
 							}
 							
 							foreach($userArr as $user){
-								if(isset($_POST[$user["Username"].'Btn'])){
-									$_SESSION['statusUser'] = "selected";
-									$_SESSION['UsernameUser'] = $user["Username"];
-									$_SESSION['AgeUser'] = $user["Age"];
-									$_SESSION['EmailUser'] = $user["Email"];
-									$_SESSION['GenderUser'] = $user["Gender"];
-									$_SESSION['ImageUser'] = $user["Image"];
-									$_SESSION['BioUser'] = $user["Bio"];
-									$_SESSION['LikesUser'] = $user["Likes"];
-									header("Location: userProfile.php");
-								}
+								toUserProfile($user);
 							}
 							ob_end_flush();
 						?>
