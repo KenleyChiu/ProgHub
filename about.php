@@ -9,7 +9,14 @@
 	
 	<?php
 
-		$signedInStatus = false;
+		$userArray=$GLOBALS["userArr"];
+						
+		if($userArray[2]==FALSE)
+		{
+			header("Location:login.php");
+			exit();
+			
+		}
 	?>
 
 	<body>

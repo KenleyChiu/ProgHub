@@ -27,7 +27,15 @@
 			<div class="users">
 				<ul class="users">
 					<form method="post">
-						<?php 	
+						<?php
+							$userArray=$GLOBALS["userArr"];
+				
+							if($userArray[2]==FALSE)
+							{
+								header("Location:login.php");
+								exit();
+								
+							}	
 							ob_start();
 							while($users = mysqli_fetch_array($usersListQuery)){
 								$usersArr["Username"] = $users["Username"];
