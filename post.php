@@ -123,8 +123,8 @@
 					if($_SESSION['statusPost'] == "selected"){
 						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$postAuthor." </a></label><br><br>";
 						echo "<label class='postTitle'>".$postTitle."</label><br><br>";
-						echo "<img class='postImg' src='".$postImageContent."'/><br>" ;
 						echo "<br><p class='postContent'>".$_SESSION['TextContentPost']."</p><br>";
+						echo "<img class='postImg' src='".$postImageContent."'/><br>" ;
 						echo "<form class='starsForm' action='".$_SERVER['PHP_SELF']."' method='post'>";
 						echo "<input class='likeBtn' type='submit' name='likeBtn' value='Star'></form>";
 						echo "<label class='stars'>" .$likesCount." Stars </label>";
@@ -157,10 +157,10 @@
 					while($comments = mysqli_fetch_array($commentsArr)){
 						$profilePic=searchAuthor($comments['Username'],$imagesArray);
 						echo "<div class='singleComment'>";
-					 	echo "<a href='users.php'><img class='commentUserImg' src='pictures/user.png'></a>";
+						echo "<a href='users.php'><img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
 						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$comments['Username']." </a></label><br><br>";
-						echo "<img class='commentImg' src='".$comments['ImageComment']."'/><br><br>" ;
 						echo "<p class='postComment'>".$comments['TextComment']." </p><br>";
+						echo "<img class='commentImg' src='".$comments['ImageComment']."'/><br><br>" ;
 						echo "</div>";
 					 	//<label class='stars'> 0 Stars </label> //THIS IS EXTRA, IF THERE IS TIME
 					}
