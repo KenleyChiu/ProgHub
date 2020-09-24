@@ -131,7 +131,7 @@
 					echo "<form class='postBtnForm' method='post'>";
 					echo "<input class='postUserBtn' type='submit' name='userBtn' value='".$post["Author"]."'/>";
 					echo "</form>";
-					echo "<img class='delImg' src='pictures/delete.png'/>";
+					// echo "<img class='delImg' src='pictures/delete.png'/>";
 					// echo "<form class='deleteBtnForm' method='post'>";
 					// echo "<input class='deleteBtn' type='submit' name='deleteBtn' value='".$post["Title"]."'/><br><br>";
 					// echo "</form>";
@@ -183,8 +183,14 @@
 		<!--LEFT SIDE-->
 		<div class="searchPosts">
 			<ul class="searchPost">
+				<?php if(!empty($_POST["searchPostInput"]))
+				{
+					$_SESSION['searchPostInput'] = $_POST["searchPostInput"];
+					header('Location: searchPostCommunity.php');
+				}	 
+				?>
 				<li><label class="searchPosts"> Search Posts </label></li>
-				<li><form class="searchForm" action="searchPostCommunity.php" method="post">
+				<li><form class="searchForm" method="post">
 					<input class="searchPostInput" type="text" name="searchPostInput" Placeholder="Search" /></li>
 		</div>
 		
@@ -235,7 +241,7 @@
 						// mysqli_query($data,$delCommentsQuery);
 						// header("Location:community.php");
 					
-					
+					// go to user.php
 					if(isset($_POST['userBtn'])){
 						foreach($userArr as $user){
 							if($_POST['userBtn'] == $user["Username"]){
