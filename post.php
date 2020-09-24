@@ -75,32 +75,75 @@
 			
 			<?php 				
 				if(isset($_POST['commentBtn'])){
-					if($signedInStatus == "True"){					
-						if(!empty($_POST['commentContent'])){
-							$commentsCount = $_SESSION['CommentsPost'] + 1;
-							echo $commentsCount;
-							$addComment = "update posts set Comments='".$commentsCount."' where Title='".$postTitle."'";
-							mysqli_query($data,$addComment);
-							
-							$addComment2 = "insert into comments values('".$userarray[0]."','".$postTitle."','".$_POST['commentContent']."','','0','".$community."','".$postPostType."')";
-							//".$_POST['commentImage']."
-							mysqli_query($data,$addComment2);
+					if($signedInStatus == "True"){		
+						$comment="";
+						$errorMessage="";
+						if ($_SERVER["REQUEST_METHOD"] == "POST")
+						{
+							if(empty($_POST['commentContent']))
+							{
+								$errorMessage = "Fill up Comment";
+							}
+							else{
+								$comment= $_POST["commentContent"];
+								if(empty($_FILES["commentImage"]["name"]))
+								{	
+									$statement="Insert into comments(Username,TextComment,Likes,Community,PostType,Upload) values ('$userarray[0]','$comment','0','$community','Thread',NOW())";
+									mysqli_query($data,$statement);
+								}else{
+										//get file info
+									$fileName = $_FILES["commentImage"]["name"];
+									$fileError= $_FILES["commentImage"]["error"];
+									$filetmp = $_FILES["commentImage"]["tmp_name"];
+									$fileExt = explode('.',$fileName);
+									$fileActualExt = strtolower(end($fileExt));
+									// Allow certain file formats 
+									$allowTypes = array('jpg','png','jpeg','gif'); 
+									if(in_array($fileActualExt, $allowTypes)){ 
+										if($fileError === 0){
+											$fileNameNew = $fileExt[0].".".$fileActualExt;
+											$fileDestination ='upload/'.$fileNameNew;
+											move_uploaded_file($filetmp,$fileDestination);
+											$statement = "Insert into comments values ('$userarray[0]','$comment','$fileDestination','0','$community','Thread',NOW())";
+											$status=mysqli_query($data,$statement);
+											if($status){
+												$errorMessage="File sucessfully Upload";
+											}else{
+												$errorMessage="File upload Failed";
+											}
+										}else{
+											$errorMessage = "Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.";
+										}
+									}
+								}
+							}
 						}
-					} else {
+						// if(!empty($_POST['commentContent'])){
+						// 	$commentsCount = $_SESSION['CommentsPost'] + 1;
+						// 	echo $commentsCount;
+						// 	$addComment = "update posts set Comments='".$commentsCount."' where Title='".$postTitle."'";
+						// 	mysqli_query($data,$addComment);
+							
+						// 	$addComment2 = "insert into comments values('".$userarray[0]."','".$postTitle."','".$_POST['commentContent']."','','0','".$community."','".$postPostType."')";
+						// 	//".$_POST['commentImage']."
+						// 	mysqli_query($data,$addComment2);
+						// }
+				 	}else {
 						$errorMessage = "You have to be logged in to do that!";
 					}
 				}
-				
 			?>
 			
 			<div class="comment">
 				<label class="createComment"> Write a Comment </label>
-				<table class="commentDetails">
-				<tr><td><input class="commentInput" type = "text" name = "commentContent" Placeholder="Write a comment.."/></td></tr>
-				<tr><td><input class="imageInput" type = "file" name = "commentImage" Placeholder="Image Filepath"/></td></tr>
-				<tr><td><span style="color:red"> <?php echo $errorMessage;?> </span></td></tr>
-				<tr><td><form action=" <?php echo $_SERVER['PHP_SELF']; ?>" method='post'><input class="commentBtn" type = "submit" name = "commentBtn" value="Post Comment"/></form></td></tr>
-			</table>
+				<form method= "post" enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"];?>">
+					<table class="commentDetails">
+					<tr><td><input class="commentInput" type = "text" name = "commentContent" Placeholder="Write a comment.."/></td></tr>
+					<tr><td><input class="imageInput" type = "file" name = "commentImage" Placeholder="Image Filepath"/></td></tr>
+					<tr><td><span style="color:red"> <?php echo $errorMessage;?> </span></td></tr>
+					<tr><td><form action=" <?php echo $_SERVER['PHP_SELF']; ?>" method='post'><input class="commentBtn" type = "submit" name = "commentBtn" value="Post Comment"/></form></td></tr>
+				</table>
+				</form>
 			</div>
 			
 			<div class ="postComments">
@@ -111,12 +154,12 @@
 					$comments = mysqli_fetch_array($commentsArr);
 					
 					
-					while(!empty($comments)){
-						echo "<a href='users.php'><img src='pictures/user.png'></a>";
-						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$comments['Username']." </a></label><br><br>";
-						echo "<p class='postComment'> Comment </p><br>";
-						//<label class='stars'> 0 Stars </label> //THIS IS EXTRA, IF THERE IS TIME
-					}
+					// while(!empty($comments)){
+					// 	echo "<a href='users.php'><img src='pictures/user.png'></a>";
+					// 	echo "<label class='postUser'><a class='postUser' href='users.php' > ".$comments['Username']." </a></label><br><br>";
+					// 	echo "<p class='postComment'> Comment </p><br>";
+					// 	//<label class='stars'> 0 Stars </label> //THIS IS EXTRA, IF THERE IS TIME
+					// }
 					mysqli_close($data);
 				?>
 			</div>
