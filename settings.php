@@ -8,10 +8,10 @@
 	</head>
 	
 	<?php
-		global $user;
+		global $user,$data;
 		$userarray=$GLOBALS["userArr"];
 		$userDetailsarray=$GLOBALS["specificUserArr"];
-
+		
 
 		if(isset($_POST['signoutBtn'])){
 			$login = "update login set SignedInStatus='False' where Username='$userarray[0]'"; 
@@ -21,78 +21,149 @@
 		
 		$userRegistrationError = "";
 		
+		
 		if(isset($_POST['updateAcc'])){
-			$update =FALSE;
-			if(!empty($_POST['username'])){
-				$username = "update userdetails set Username='".$_POST['username']."' where Username='$userarray[0]'"; 
-				mysqli_query($user,$username);
-				$loginusername = "update login set Username='".$_POST['username']."' where Username='$userarray[0]'";
-				mysqli_query($user,$loginusername);
-				$userarray[0]=$_POST['username'];
-				$update = TRUE;
-			}
-			if(!empty($_POST['age'])){
-				$age = "update userdetails set Age='".$_POST['age']."' where Username='$userarray[0]'"; 
-				mysqli_query($user,$age);
-				$userRegistrationError = "Change Sucessful";
-				//$update = TRUE;
-			}
-			if(!empty($_POST['email'])){
-				$email = "update userdetails set Email='".$_POST['email']."' where Username='$userarray[0]'"; 
-				mysqli_query($user,$email);
-				$userRegistrationError = "Change Sucessful";
-				//$update = TRUE;
-			}
-			if(!empty($_POST['gender'])){
-				$gender = "update userdetails set Gender='".$_POST['gender']."' where Username='$userarray[0]'"; 
-				mysqli_query($user,$gender);
-				$userRegistrationError = "Change Sucessful";
-				//$update = TRUE;
-			}
-			if(!empty($_POST['displayPicture'])){
-				
-				$image = "update userdetails set Image='".$_POST['displayPicture']."' where Username='$userarray[0]'"; 
-				mysqli_query($user,$image);
-				$userRegistrationError = "Change Sucessful";
-				//$update = TRUE;
-			}
-			if(!empty($_POST['bio'])){
-				$bio = "update userdetails set Bio='".$_POST['bio']."' where Username='$userarray[0]'"; 
-				mysqli_query($user,$bio);
-				$userRegistrationError = "Change Sucessful";
-				//$update = TRUE;
+			$update = 2;
+			$changeUsername = FALSE;
+			$changePassword = FALSE;
+			$changeEmail = FALSE;
+			$changeAge = FALSE;
+			$changeImage = FALSE;
+			$changeBio = FALSE;
+			$changeGender = FALSE;
+			$error = FALSE;
+			// Error Checking
+			if(!empty($_FILES["displayPicture"]["name"])){
+
+				//get file info
+				$fileName = basename($_FILES["displayPicture"]["name"]); 
+				$fileType = pathinfo($fileName, PATHINFO_EXTENSION);
+				// Allow certain file formats 
+				$allowTypes = array('jpg','png','jpeg','gif'); 
+				if(in_array($fileType, $allowTypes)){ 
+					$changeImage= TRUE;
+				}else{
+					$userRegistrationError= "Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.";
+					$error = TRUE;
+				}
 			}
 			if(!empty($_POST['oldPassword'])){
 				if($_POST['oldPassword'] == $userarray[1])
 				{
 					if(!empty($_POST['newPassword']) && !empty($_POST['confirmPassword']) && $_POST['confirmPassword'] == $_POST['newPassword']){
-						$password = "update userdetails set Password='".$_POST['newPassword']."' where Username='$userarray[0]'"; 
-						mysqli_query($user,$password);
-						$loginpassword = "update login set Password='".$_POST['newPassword']."' where Username='$userarray[0]'";
-						mysqli_query($user,$loginpassword);
-						$update = TRUE;
+						$changePassword = TRUE;
 					}else {
 						$userRegistrationError = "New Password and Confirm Password do not match";
+						$error = TRUE;
 					}
 					
 				}else {
 					$userRegistrationError = "Incorrect Old Password";
+					$error = TRUE;
+				}
+			}
+			if(!empty($_POST['username'])){
+				$statement = "select * from login where Username='".$_POST['username']."'";
+				$result = mysqli_query($user,$statement);
+				$userTaken = mysqli_fetch_array($result);
+				if(empty($userTaken))
+				{
+					$changeUsername = TRUE;
+				}
+				else{
+					$userRegistrationError = "Username is Taken";
+					$error = TRUE;
+				}
+			}
+			if(!empty($_POST['age'])){
+				$changeAge = TRUE;
+			}
+			if(!empty($_POST['email'])){
+				$changeEmail = TRUE;
+			}
+			if(!empty($_POST['gender'])){
+				$changeGender = TRUE;
+			}
+			
+			if(!empty($_POST['bio'])){
+				$changeBio = TRUE;
+			}
+
+			//Store to Database if no error message
+			if($error == FALSE){
+				
+				if($changeAge == TRUE){
+					$age = "update userdetails set Age='".$_POST['age']."' where Username='$userarray[0]'"; 
+					mysqli_query($user,$age);
+					$update = 1;
+				}
+				if($changeEmail == TRUE){
+					$email = "update userdetails set Email='".$_POST['email']."' where Username='$userarray[0]'"; 
+					mysqli_query($user,$email);
+					$update = 1;
+				}
+				if($changeGender == TRUE){
+					$gender = "update userdetails set Gender='".$_POST['gender']."' where Username='$userarray[0]'"; 
+					mysqli_query($user,$gender);
+					$update = 1;
+				}
+				if($changeBio == TRUE){
+					$bio = "update userdetails set Bio='".$_POST['bio']."' where Username='$userarray[0]'"; 
+					mysqli_query($user,$bio);
+					$update = 1;
+				}
+				if($changeImage == TRUE){
+					$image = $_FILES['displayPicture']['tmp_name']; 
+					$imgContent = addslashes(file_get_contents($image));
+					$statement= "update userdetails set Image = '$imgContent' where Username= '$userarray[0]'";
+					mysqli_query($user,$statement);
+					$update = 1;
+				}
+				if($changePassword == TRUE){
+					$password = "update userdetails set Password='".$_POST['newPassword']."' where Username='$userarray[0]'"; 
+					mysqli_query($user,$password);
+					$loginpassword = "update login set Password='".$_POST['newPassword']."' where Username='$userarray[0]'";
+					mysqli_query($user,$loginpassword);
+					$update = 0;
+				}
+				if($changeUsername == TRUE){
+					$username = "update userdetails set Username='".$_POST['username']."' where Username='$userarray[0]'"; 
+					mysqli_query($user,$username);
+					$loginusername = "update login set Username='".$_POST['username']."' where Username='$userarray[0]'";
+					mysqli_query($user,$loginusername);
+					$userlikes = "update userlikes set Fans='".$_POST['username']."' where Fans='$userarray[0]'";
+					mysqli_query($user,$userlikes);
+					$postlikes= "update postlikes set Username='".$_POST['username']."' where Username='$userarray[0]'";
+					mysqli_query($data,$postlikes);
+					$posts= "update posts set Author='".$_POST['username']."' where Author='$userarray[0]'";
+					mysqli_query($data,$posts);
+					$posts= "update comments set Username='".$_POST['username']."' where Username='$userarray[0]'";
+					mysqli_query($data,$posts);
+					$userarray[0]=$_POST['username'];
+					$update = 0;
 				}
 				
-				
 			}
-		
+				
 
-
-			if($update)
+			if($update == 0 )
 			{
 				$login = "update login set SignedInStatus='False' where Username='$userarray[0]'"; 
 				mysqli_query($user,$login);
 				header("Location: login.php");
-			} 
-			// else {
-			// 	header("Location: settings.php");
-			// }
+				exit();
+			}
+			else if($update == 1) 
+			{
+				header("Location: userProfile.php");
+				exit();
+			}
+			else{
+				if(empty($userRegistrationError)){
+					$userRegistrationError = "Fill up data to edit";
+				}
+				
+			}
 		}
 	?>
 
@@ -105,7 +176,7 @@
 			
 			<div class="settingsForm">
 				<label class="settingsHeader"> Edit your information: </label>
-				<form method="post">
+				<form method="post" enctype="multipart/form-data">
 					<table class="settingsFormTable">
 						<tr><td><img class="profileImg" src='data:image/jpeg;base64,<?php echo base64_encode($userDetailsarray[5]); ?>'></td>
 						<td><input class="imageInput" type="file" name="displayPicture" /></td></tr>
