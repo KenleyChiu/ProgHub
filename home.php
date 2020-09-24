@@ -9,6 +9,7 @@
 	<?php
 		global $data;
 		$userarray=$GLOBALS["userArr"];
+		$userDetailsarray=$GLOBALS["specificUserArr"];
 	?>
 	<body>
 		
@@ -83,7 +84,7 @@
 						if($userarray[3] == "User"){
 							foreach(array_values($postArr) as $key => $post){
 								echo "<div class='singlePost'>";
-								echo "<a href='users.php'><img src='pictures/user.png'></a>";
+								echo "<a href='users.php'><img src='data:image/jpeg;base64,".base64_encode($userDetailsarray[5])."'></a>";
 								echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label>";
 								if($post["Author"] == $userarray[0]){
 									echo "<form class='deleteBtnForm' method='post'>";
@@ -102,7 +103,7 @@
 						} else {
 							foreach(array_values($postArr) as $key => $post){
 								echo "<div class='singlePost'>";
-								echo "<a href='users.php'><img src='pictures/user.png'></a>";
+								echo "<a href='users.php'><img src='data:image/jpeg;base64,".base64_encode($userDetailsarray[5])."'></a>";
 								echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label>";
 								echo "<form class='deleteBtnForm' method='post'>";
 								echo "<input class='deleteBtn' type='submit' name='del".$post["Title"]."Btn' value='Delete'/><br><br>";
