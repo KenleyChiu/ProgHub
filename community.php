@@ -116,7 +116,7 @@
 							$profilePic=searchAuthor($post["Author"],$imagesArray);
 							echo "<div class='singlePost'>";
 							echo "<a href='users.php'><img src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
-							echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label><br>";
+							echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label>";
 							if($post["Author"] == $userarray[0]){
 								echo "<form class='deleteBtnForm' method='post'>";
 								echo "<input class='deleteBtn' type='submit' name='del".$post["Title"]."Btn' value='Delete'/><br><br>";
