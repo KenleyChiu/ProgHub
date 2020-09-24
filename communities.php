@@ -67,6 +67,7 @@
 								<label class='commsLabel' name='".$community["name"]."'/>".$community["name"]."</label>
 								<input class='commsBtn' type='submit' name='".$community["name"]."Btn' value=''/></li>";
 							}
+							$_SESSION['searchedPost'] = "False";
 						?>
 					</form>
 						<?php

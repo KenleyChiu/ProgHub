@@ -18,6 +18,8 @@
 					echo "<label class='titleLabel'>".$_SESSION['commSelected']."</label>";
 				}
 				
+				
+				
 			?>		
 		</div>
 		
@@ -25,7 +27,7 @@
 		<div class="searchPosts">
 			<ul class="searchPost">
 				<li><label class="searchPosts"> Search Posts </label></li>
-				<li><form class="searchForm" action="search.php" method="get">
+				<li><form class="searchForm" action="<?php $_SERVER['PHP_SELF']; ?>" method="get">
 					<input class="searchPostInput" type="text" name="searchPostInput" Placeholder="Search" /></li>
 		</div>
 		
@@ -61,11 +63,24 @@
 				
 		<div class ="post">
 			<?php	
-				$postsArr = array();
-				$community=$_SESSION['commSelected'];
-				$postsQuery = mysqli_query($data,"select * from posts where community = '$community'");
+				$community = $_SESSION['commSelected'];
 				
+				
+				$postsArr = array();
 				$postArr = array();
+				
+				//$searchedPost = FALSE;
+				//$searchedPost = $_SESSION['searchedPost'];
+				//echo $searchedPost;
+				if(isset($_POST["searchPostBtn"])){
+					/*unset($_SESSION['searchedPost']);
+					$_SESSION['searchedPost'] = "True";
+					$searchedPost = $_SESSION['searchedPost'];
+					echo $searchedPost;*/
+					$postsQuery = mysqli_query($data,"select * from posts where community = '$community' and Title like '%".$_POST['searchPostInput']."%'");
+				} else {
+					$postsQuery = mysqli_query($data,"select * from posts where community = '$community'");
+				}
 				
 				while($posts = mysqli_fetch_array($postsQuery)){
 					$postsArr["Author"] = $posts["Author"];
@@ -81,6 +96,40 @@
 					,$postsArr["Community"],$postsArr["PostType"],$postsArr["Upload"]);
 					array_push($postArr,$postsArr);
 				}
+				
+				/*if($searchedPost == "False"){
+					$postsQuery = mysqli_query($data,"select * from posts where community = '$community'");
+					while($posts = mysqli_fetch_array($postsQuery)){
+						$postsArr["Author"] = $posts["Author"];
+						$postsArr["Title"] = $posts["Title"];
+						$postsArr["TextContent"] = $posts["TextContent"];
+						$postsArr["ImageContent"] = $posts["ImageContent"];
+						$postsArr["Likes"] = $posts["Likes"];
+						$postsArr["Comments"] = $posts["Comments"];
+						$postsArr["Community"] = $posts["Community"];
+						$postsArr["PostType"] = $posts["PostType"];
+						$postsArr["Upload"] = $posts["Upload"];
+						array_push($postsArr,$postsArr["Author"],$postsArr["Title"],$postsArr["TextContent"],$postsArr["ImageContent"],$postsArr["Likes"],$postsArr["Comments"]
+						,$postsArr["Community"],$postsArr["PostType"],$postsArr["Upload"]);
+						array_push($postArr,$postsArr);
+					}
+				} else {
+					$postsQuery = mysqli_query($data,"select * from posts where community = '$community' and Title like '%".$_POST['searchPostInput']."%'");
+					while($posts = mysqli_fetch_array($postsQuery)){
+						$postsArr["Author"] = $posts["Author"];
+						$postsArr["Title"] = $posts["Title"];
+						$postsArr["TextContent"] = $posts["TextContent"];
+						$postsArr["ImageContent"] = $posts["ImageContent"];
+						$postsArr["Likes"] = $posts["Likes"];
+						$postsArr["Comments"] = $posts["Comments"];
+						$postsArr["Community"] = $posts["Community"];
+						$postsArr["PostType"] = $posts["PostType"];
+						$postsArr["Upload"] = $posts["Upload"];
+						array_push($postsArr,$postsArr["Author"],$postsArr["Title"],$postsArr["TextContent"],$postsArr["ImageContent"],$postsArr["Likes"],$postsArr["Comments"]
+						,$postsArr["Community"],$postsArr["PostType"],$postsArr["Upload"]);
+						array_push($postArr,$postsArr);
+					}
+				}*/
 				
 				foreach($postArr as $post){
 					if(isset($_POST[$post["Title"]])){
