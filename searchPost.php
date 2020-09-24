@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<title>Website Project</title>
-		<link rel="stylesheet" type="text/css" href="css/community.css">
+		<link rel="stylesheet" type="text/css" href="css/searchPost.css">
 	</head>
 	<body>
 		<!-- TITLE -->
@@ -24,7 +24,7 @@
 		<div class="searchPosts">
 			<ul class="searchPost">
 				<li><label class="searchPosts"> Search Posts </label></li>
-				<li><form class="searchForm" action="searchPost.php" method="post">
+				<li><form class="searchForm" action="searchPost.php" method="get">
 					<input class="searchPostInput" type="text" name="searchPostInput" Placeholder="Search" /></li>
 		</div>
 		
@@ -65,7 +65,7 @@
 				$postsArr = array();
 				$postArr = array();
 				
-				$postsQuery = mysqli_query($data,"select * from posts where community = '$community'");
+				$postsQuery = mysqli_query($data,"select * from posts where community = '$community' and Title like '%".$_POST['searchPostInput']."%'");
 				
 				while($posts = mysqli_fetch_array($postsQuery)){
 					$postsArr["Author"] = $posts["Author"];
