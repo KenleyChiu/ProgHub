@@ -156,10 +156,10 @@
 					
 					while($comments = mysqli_fetch_array($commentsArr)){
 						$profilePic=searchAuthor($comments['Username'],$imagesArray);
-						echo "<div class='singlePost'>";
-					 	echo "<a href='users.php'><img src='pictures/user.png'></a>";
+						echo "<div class='singleComment'>";
+					 	echo "<a href='users.php'><img class='commentUserImg' src='pictures/user.png'></a>";
 						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$comments['Username']." </a></label><br><br>";
-						echo "<img class='postImg' src='".$comments['ImageComment']."'/><br>" ;
+						echo "<img class='commentImg' src='".$comments['ImageComment']."'/><br><br>" ;
 						echo "<p class='postComment'>".$comments['TextComment']." </p><br>";
 						echo "</div>";
 					 	//<label class='stars'> 0 Stars </label> //THIS IS EXTRA, IF THERE IS TIME
