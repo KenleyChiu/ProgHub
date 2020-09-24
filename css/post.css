@@ -414,6 +414,28 @@ label.createComment{
 	margin: 10 0 0 0;
 }
 
+.editBtnForm{
+	display:inline-block;
+	float:right;
+	margin-right:10;
+}
+
+.editBtn{
+	text-decoration: none;
+	border: transparent;
+	border-radius: 8px;
+	background-color: #323335;
+	font-size: 15px;
+	padding: 3 4 3 4;
+	color: #D0FF36;
+	float: right;
+	cursor:pointer;
+}
+
+.editBtn:hover{
+	background-color: gray;
+}
+
 .commentUserImg{
 	margin: 2 0 0 4; 
 	width: 35px; 

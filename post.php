@@ -38,6 +38,7 @@
 					$likesCount = $_SESSION['StarsPost'];
 					$postAuthor = $_SESSION['AuthorPost'];
 					$postTitle = $_SESSION['TitlePost'];
+					$postTextContent = $_SESSION['TextContentPost'];
 					$postImageContent = $_SESSION['ImageContentPost'];
 					$postPostType = $_SESSION['PostTypePost'];
 					$commentsCount = $_SESSION['CommentsPost'];
@@ -120,10 +121,29 @@
 						}
 					}
 					
+					if(isset($_POST['editBtn'])){
+						//use this for new session
+						$_SESSION['AuthorPost'] = $postAuthor;
+						$_SESSION['TitlePost'] = $postTitle;
+						$_SESSION['ImagePost'] = $postImageContent;
+						$_SESSION['TextPost'] = $postTextContent;
+						
+						/* //or try this (using previous session)
+						$_SESSION['AuthorPost'];
+						$_SESSION['TitlePost'];
+						$_SESSION['TextContentPost'];
+						$_SESSION['ImageContentPost'];*/
+						
+						header("Location: editPost.php");
+					}
+					
 					if($_SESSION['statusPost'] == "selected"){
-						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$postAuthor." </a></label><br><br>";
-						echo "<label class='postTitle'>".$postTitle."</label><br><br>";
-						echo "<br><p class='postContent'>".$_SESSION['TextContentPost']."</p><br>";
+						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$postAuthor." </a></label>";						
+						echo "<form class='editBtnForm' method='post'>";
+						echo "<input class='editBtn' type='submit' name='editBtn' value='Edit Post'/><br>";
+						echo "</form>";
+						echo "<br><br><label class='postTitle'>".$postTitle."</label><br><br>";
+						echo "<br><p class='postContent'>".$postTextContent."</p><br>";
 						echo "<img class='postImg' src='".$postImageContent."'/><br>" ;
 						echo "<form class='starsForm' action='".$_SERVER['PHP_SELF']."' method='post'>";
 						echo "<input class='likeBtn' type='submit' name='likeBtn' value='Star'></form>";
