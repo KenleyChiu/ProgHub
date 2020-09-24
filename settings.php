@@ -183,7 +183,7 @@
 						<tr><td valign="top"><label class="settingsDetails"> Bio: </label></td>
 						<td><textarea class="settingsInputBio"rows='7' cols='34' name='bio' Placeholder="Enter your bio.."></textarea></td></tr>
 						<tr><td><label class="settingsDetails"> Username: </label></td>
-						<td><input class="settingsInput" type="text" name="username" size='35' Placeholder="Username.."/></td></tr>
+						<td><input class="settingsInput" type="text" name="username" minlength="5" size='35' Placeholder="Username.."/></td></tr>
 						<tr><td><label class="settingsDetails"> Email: </label></td>
 						<td><input class="settingsInput" type="email" name="email" size='35' Placeholder="Email.."/></td></tr>
 						<tr><td><label class="settingsDetails"> Age: </label></td>
@@ -191,11 +191,11 @@
 						<tr><td><label class="settingsDetails"> Gender: </label></td>
 						<td><input class="radioInput" type="radio" name="gender" value="M"/> M <input class="radioInput" type="radio" name="gender" value="F"/> F </td></tr>
 						<tr><td><label class="settingsDetails"> Change Password: </label></td>
-						<td><input class="settingsInput" type="password" name="newPassword" size='35' Placeholder="New Password.."/></td></tr>
+						<td><input class="settingsInput" type="password" name="newPassword" minlength="5" size='35' Placeholder="New Password.."/></td></tr>
 						<tr><td><label class="settingsDetails"> Old Password: </label></td>
-						<td><input class="settingsInput" type="password" name="oldPassword" size='35' Placeholder="Old Password.."/></td></tr>
+						<td><input class="settingsInput" type="password" name="oldPassword" minlength="5" size='35' Placeholder="Old Password.."/></td></tr>
 						<tr><td><label class="settingsDetails"> Confirm Password: </label></td>
-						<td><input class="settingsInput" type="password" name="confirmPassword" size='35' Placeholder="Confirm Change Password.."/></td></tr>
+						<td><input class="settingsInput" type="password" name="confirmPassword" minlength="5" size='35' Placeholder="Confirm Change Password.."/></td></tr>
 						<tr><td></td><td><span style="color:red"> <?php echo $userRegistrationError;?> </span></td></tr>
 					</table>					
 				

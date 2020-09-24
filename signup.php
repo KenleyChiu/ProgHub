@@ -67,7 +67,7 @@
 				<form method="post">
 					<table class="signupFormTable">
 						<tr><td><label class="signupDetails"> Username: </label></td>
-						<td><input class="signupInput" type="text" name="username" size='30' Placeholder="Username.."/></td></tr>
+						<td><input class="signupInput" type="text" name="username" minlength="5" size='30' Placeholder="Username.."/></td></tr>
 						<tr><td><label class="signupDetails"> Email: </label></td>
 						<td><input class="signupInput" type="email" name="email" size='30' Placeholder="Email.."/></td></tr>
 						<tr><td><label class="signupDetails"> Age: </label></td>
@@ -75,9 +75,9 @@
 						<tr><td><label class="signupDetails"> Gender: </label></td>
 						<td><input class="radioInput" type="radio" name="gender" value="M"/> M <input class="radioInput" type="radio" name="gender" value="F"/> F </td></tr>
 						<tr><td><label class="signupDetails"> Password: </label></td>
-						<td><input class="signupInput" type="password" name="password" size='30' Placeholder="Password.."/></td></tr>
+						<td><input class="signupInput" type="password" name="password" minlength="5" size='30' Placeholder="Password.."/></td></tr>
 						<tr><td><label class="signupDetails"> Confirm Password: </label></td>
-						<td><input class="signupInput" type="password" name="confirmPassword" size='30' Placeholder="Confirm Password.."/></td></tr>
+						<td><input class="signupInput" type="password" name="confirmPassword" minlength="5" size='30' Placeholder="Confirm Password.."/></td></tr>
 						<tr><td></td><td><span style="color:red"> <?php echo $userRegistrationError;?> </span></td></tr>
 					</table>					
 				

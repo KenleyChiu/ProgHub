@@ -157,7 +157,7 @@
 					while($comments = mysqli_fetch_array($commentsArr)){
 						$profilePic=searchAuthor($comments['Username'],$imagesArray);
 						echo "<div class='singlePost'>";
-					 	echo "<a href='users.php'><img src='pictures/user.png'></a>";
+						echo "<a href='users.php'><img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
 						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$comments['Username']." </a></label><br><br>";
 						echo "<img class='postImg' src='".$comments['ImageComment']."'/><br>" ;
 						echo "<p class='postComment'>".$comments['TextComment']." </p><br>";
