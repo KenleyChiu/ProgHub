@@ -53,6 +53,10 @@
 							{	
                                 $titleUpdate="Update posts set Title = '$title' Where Author = '$author' and Title = '$firstTitle'";
                                 $result=mysqli_query($data,$titleUpdate);
+                                $titlelikesUpdate= "Update posts set Title = '$title' Where Username = '$author' and Title = '$firstTitle'";
+                                $result=mysqli_query($data,$titlelikesUpdate);
+                                $titlecommentUpdate= "Update commentpost set Title = '$title' Where Username = '$author' and Title = '$firstTitle'";
+                                $result=mysqli_query($data,$titlecommentUpdate);
                                 $contentUpdate="update posts set TextContent = '$content' Where Author = '$author' and Title = '$title'";
                                 mysqli_query($data,$contentUpdate);
 								header("Location:community.php");
@@ -73,8 +77,12 @@
 										$fileNameNew = $fileExt[0].".".$fileActualExt;
 										$fileDestination ='upload/'.$fileNameNew;
 										move_uploaded_file($filetmp,$fileDestination);
-										$titleUpdate="update posts set Title = '$title' Where Author = '$author' and Title = '$firstTitle'";
-                                        mysqli_query($data,$titleUpdate);
+										$titleUpdate="Update posts set Title = '$title' Where Author = '$author' and Title = '$firstTitle'";
+                                        $result=mysqli_query($data,$titleUpdate);
+                                        $titlelikesUpdate= "Update posts set Title = '$title' Where Username = '$author' and Title = '$firstTitle'";
+                                        $result=mysqli_query($data,$titlelikesUpdate);
+                                        $titlecommentUpdate= "Update commentpost set Title = '$title' Where Username = '$author' and Title = '$firstTitle'";
+                                        $result=mysqli_query($data,$titlecommentUpdate);
                                         $contentUpdate="update posts set TextContent = '$content' Where Author = '$author' and Title = '$title'";
                                         mysqli_query($data,$contentUpdate);
                                         $FileUpdate="update posts set ImageContent = '$fileDestination' Where Author = '$author' and Title = '$title'";

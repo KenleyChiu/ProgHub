@@ -93,10 +93,10 @@
 									$comment= $_POST["commentContent"];
 									if(empty($_FILES["commentImage"]["name"]))
 									{	
-										$statement="Insert into comments values ('$userarray[0]','$postTitle','$comment','','0','$community','Thread',NOW())";
+										$statement="Insert into commentpost values ('$userarray[0]','$postTitle','$comment','','0','$community','Thread',NOW())";
 										mysqli_query($data,$statement);
 										$commentsCount++;
-										$addComment = "update posts set Comments='".$commentsCount."' where Title='".$postTitle."'";
+										$addComment = "update posts set Comment='".$commentsCount."' where Title='".$postTitle."'";
 										mysqli_query($data,$addComment);
 										$_SESSION['CommentsPost']=$commentsCount;
 									}else{
@@ -113,7 +113,7 @@
 												$fileNameNew = $fileExt[0].".".$fileActualExt;
 												$fileDestination ='upload/'.$fileNameNew;
 												move_uploaded_file($filetmp,$fileDestination);
-												$statement = "Insert into comments values ('$userarray[0]','$postTitle','$comment','$fileDestination','0','$community','Thread',NOW())";
+												$statement = "Insert into commentPost values ('$userarray[0]','$postTitle','$comment','$fileDestination','0','$community','Thread',NOW())";
 												$status=mysqli_query($data,$statement);
 												if($status){
 													$errorMessage="File sucessfully Upload";
@@ -139,10 +139,13 @@
 					
 					
 					if($_SESSION['statusPost'] == "selected"){
-						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$postAuthor." </a></label>";						
-						echo "<form class='editBtnForm' method='post'>";
-						echo "<input class='editBtn' type='submit' name='editBtn' value='Edit Post'/><br>";
-						echo "</form>";
+						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$postAuthor." </a></label>";
+						if($postAuthor == $userarray[0])
+						{
+							echo "<form class='editBtnForm' method='post'>";
+							echo "<input class='editBtn' type='submit' name='editBtn' value='Edit Post'/><br>";
+							echo "</form>";
+						}						
 						echo "<br><br><label class='postTitle'>".$postTitle."</label><br><br>";
 						echo "<br><p class='postContent'>".$postTextContent."</p><br>";
 						echo "<img class='postImg' src='".$postImageContent."'/><br>" ;
@@ -172,7 +175,7 @@
 			<div class ="postComments">
 				<?php 
 				
-					$commentsQuery = "select * from comments where Community='$community' and Title = '$postTitle'";
+					$commentsQuery = "select * from commentPost where Community='$community' and Title = '$postTitle'";
 					$commentsArr = mysqli_query($data,$commentsQuery);
 					
 					while($comments = mysqli_fetch_array($commentsArr)){
