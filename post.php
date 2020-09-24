@@ -23,6 +23,12 @@
 					
 				?>
 			</div>
+			
+			<div class="back">
+				<form class="backForm" action="community.php" method="post">
+					<input class="backBtn" type="submit" name="backBtn" value="Back to Community" />
+				</form>
+			</div>
 				
 			<div class ="post">
 				<a href="users.php"><img class='user' src="pictures/user.png"></a>

@@ -17,49 +17,6 @@
 				if($_SESSION['status'] == "selected"){
 					echo "<label class='titleLabel'>".$_SESSION['commSelected']."</label>";
 				}
-			?>		
-		</div>
-		
-		<!--LEFT SIDE-->
-		<div class="searchPosts">
-			<ul class="searchPost">
-				<li><label class="searchPosts"> Search Posts </label></li>
-				<li><form class="searchForm" action="searchPost.php" method="get">
-					<input class="searchPostInput" type="text" name="searchPostInput" Placeholder="Search" /></li>
-		</div>
-		
-		<div class="searchPosts2">
-			<li><input class="searchPostBtn" type="submit" name="searchPostBtn" value="Search" /></li>
-				</form>
-			</ul>
-		</div>
-		
-		<!-- DIVIDER BEWTEEN THREAD AND PROJECT -->
-		<div class="headers">
-			<label class="threads"><a href="#"> Threads </a></label>
-			<span class="divider1"> </span>
-			<label class="projects"><a href="#"> Projects </a></label>
-			<?php
-			$signin=$GLOBALS["signedInStatus"];
-			if(isset($_POST["goTocreate"]))
-			{
-				if($signedInStatus== "True"){
-					header("Location: createPost.php");
-					exit();
-				}
-				else{
-					header("Location: login.php");
-					exit();
-				}
-			}
-			?>
-			<form class="createBtnForm" method ="post" action=>
-				<input class="createBtn" type = "submit" name = "goTocreate" value="Create Post"/>
-			</form>
-		</div>
-				
-		<div class ="post">
-			<?php	
 				$community = $_SESSION['commSelected'];
 				
 				$postsArr = array();
@@ -106,6 +63,27 @@
 						header("Location:community.php");
 					}
 				}
+				
+				
+				$resultsQuery = mysqli_query($data,"select * from posts where Community='$community' and Title like '%".$_POST['searchPostInput']."%'");
+				$resultsCount = mysqli_num_rows($resultsQuery);
+			?>		
+		</div>
+		
+		<!--LEFT SIDE-->
+		<div class="back">
+			<form class="backForm" action="community.php" method="post">
+				<input class="backBtn" type="submit" name="backBtn" value="Back to Community" />
+			</form>
+		</div>
+		
+		<!-- DIVIDER BEWTEEN THREAD AND PROJECT -->
+		<div class="headers">
+			<label class="searchResults"> <?php echo $resultsCount; ?> Results found</label>
+		</div>
+				
+		<div class ="post">
+			<?php	
 				if($signedInStatus == "True"){
 					if($userarray[3] == "User"){
 						foreach(array_values($postArr) as $key => $post){
@@ -160,25 +138,9 @@
 					}
 				}
 				
-				
+				mysqli_close($data);
 			?>
 		
-		</div>
-		
-		<?php
-			$threadQuery = mysqli_query($data,"select * from posts where Community='$community' and Title like '%".$_POST['searchPostInput']."%' and PostType='Thread'");
-			$threadsCount = mysqli_num_rows($threadQuery);
-			$projectQuery = mysqli_query($data,"select * from posts where Community='$community' and Title like '%".$_POST['searchPostInput']."%' and PostType='Project'");
-			$projectsCount = mysqli_num_rows($projectQuery);
-			
-			mysqli_close($data);
-		?>
-			
-		<div class="data">
-			<ul class="data">
-				<li class="threadsNum">Total Threads: <?php echo $threadsCount; ?></li>
-				<li class="projectsNum">Total Projects: <?php echo $projectsCount; ?></li>
-			</ul>
 		</div>
 			
 		<div class="footer">
