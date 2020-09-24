@@ -297,7 +297,7 @@ label.popular a:hover{
 	margin: 10 0 0 0;
 }
 
-.singlePost img{
+.userImg{
 	float: left;
 	margin: 0 0 0 0;
 	width: 35;
@@ -328,7 +328,7 @@ label.postTitle{
 }
 
 .deleteBtnForm{
-	display:inline-block;
+	/*display:inline-block;*/
 	float:right;
 	margin-right:10;
 }
@@ -337,7 +337,20 @@ label.postTitle{
 	border: 1px solid transparent;
 	background-color: transparent;
 	cursor: pointer;
-	display:inline-block;
+	/*display:inline-block;*/
+	position:absolute;
+	padding: 10;
+	margin-left: 11;
+	margin-bottom: 15;
+}
+
+.delImg{
+	width: 25;
+	height: 25;
+	float: right;
+	margin-right:6;
+	margin-top: 6;
+	position:relative;
 }
 
 .postTitleBtn{

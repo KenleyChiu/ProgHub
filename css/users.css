@@ -300,7 +300,6 @@ label.titleLabel{
 .users{
 	grid-area: users;
 	/*border: 1px solid black;*/
-	grid-template-rows: minmax(100px,500px);
 	/*background-image: url("pictures/innerbg.jpg");
 	background-color: white;*/
 	margin-top: 10;
