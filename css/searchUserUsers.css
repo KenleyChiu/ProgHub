@@ -20,9 +20,8 @@ body{
 	"menu menu menu"
 	"title title title"
 	"back headers data"
-	". post ."
+	". users data"
 	"footer footer footer";
-
 }
 
 /*.mainGrid div:nth-child(6){
@@ -218,7 +217,7 @@ ul.nav li{
 	cursor:pointer;
 }
 
-.communityBtn{
+.usersBtn{
 	background-color: gray;
 	color: #D0FF36;
 }
@@ -231,6 +230,14 @@ ul.nav li{
 .back{
 	grid-area: back;
 	text-align: center;
+}
+
+.headers{
+	grid-area: headers;
+	padding: 10 0 0 0;
+	margin-top: 10;
+	height: 20%;
+	position: relative;
 }
 
 label.searchResults{
@@ -272,156 +279,48 @@ label.titleLabel{
 	align-self: center;
 }
 
-.headers{
-	grid-area: headers;
-	padding: 10 0 0 0;
-	margin-top: 10;
-	height: 20%;
-	position: relative;
-	/*border: 1px solid black;*/
+.users{
+	grid-area: users;
+	border: 1px solid black;
+	grid-template-rows: minmax(100px,500px);
+	/*background-image: url("pictures/innerbg.jpg");
+	background-color: white;*/
 }
 
-/*section{
-	position: relative;
+ul.users{
+	border: 1px solid #E1E1E1;
+	margin-top: 0;
 }
 
-section:first-of-type {
-    display: block;
+ul.users li{
+	border-bottom: 1px solid #E1E1E1;
+	margin-bottom: -1;
 }
 
-.headers ul li{
-	display:inline-block;
-	font-size: 22px;
-	cursor: pointer;
-}*/
-
-label.threads, a:link, a:visited{
-	font-size: 22px;
-	color: black;
-	display: inline;
+.userImg{
+	margin: 2 0 0 4;
+	width: 50px;
+	height: 50px;
 }
 
-label.threads a:hover{
-	color: gray;
-}
-
-.divider1{
-	display: inline-block;
-	width: 2px;
-	background-color: black;
-	height: 1em;
-	margin: 0 10 0 10;
-}
-
-label.projects, a:link, a:visited{
-	font-size: 22px;
-	color:  black;
-	display:inline-block;
-}
-
-label.projects a:hover{
-	color: gray;
-}
-
-.createBtnForm{
-	display:inline-block;
-	float: right;
-}
-
-.createBtn{
-	text-decoration: none;
-	border: transparent;
-	border-radius: 8px;
-	background-color: #323335;
-	font-size: 17px;
-	padding: 7;
-	color: #D0FF36;
+label.userLabel{
+	font-size: 20px;
+	padding: 10 0 0 10;
+	position: absolute;
+	color:black;
 	cursor:pointer;
 }
 
-.createBtn:hover{
-	background-color: gray;
-}
-
-.post{
-	grid-area: post;
-	grid-auto-rows:minmax(190px, auto);
-	/*border: 1px solid black;
-	border-radius: 5px;
-	background-color: white;
-	padding: 10 0 10 10;
-	margin: 10 0 0 0;*/
-}
-
-.singlePost{
-	border: 1px solid black;
-	border-radius: 5px;
-	background-color: white;
-	padding: 10 0 10 10;
-	margin: 10 0 0 0;
-}
-
-.singlePost img{
-	float: left;
-	margin: 0 0 0 0;
-	width: 35;
-	height: 35;
-}
-
-/*.post img{
-	float: left;
-	margin: 0 0 0 0;
-	width: 35;
-	height: 35;
-}*/
-
-label.postUser, .postUser:link, .postUser:visited{
-	font-size: 17px;
-	padding: 0 0 10 5;
-	color:  black;
-	line-height: 2;
-	display:inline-block;
-}
-
-label.postTitle, .postTitle:link, .postTitle:visited{
-	font-size: 25px;
-	padding: 0 0 10 5;
-	color: black;
-	font-weight: bold;
-}
-
-.deleteBtnForm{
-	display:inline-block;
-	float:right;
-	margin-right:10;
-}
-
-.deleteBtn{
+.userBtn{
 	border: 1px solid transparent;
 	background-color: transparent;
-	cursor: pointer;
-	display:inline-block;
+	/*border: 1px solid black;*/
+	padding: 9 0 20 690;
+	cursor:pointer;
 }
 
-.postTitleBtn{
-	border: 1px solid transparent;
-	margin-left: 10;
-	font-weight: bold;
-	font-size: 20px;
-	background-color: transparent;
-	cursor: pointer;
-}
-
-label.stars{
-	font-size: 15px;
-	color:  black;
-	padding-left: 10;
-}
-
-label.comments{
-	font-size: 15px;
-	color: black;
-	padding-left: 5;
+.userBtn:hover{
+	/*background-color: red;*/
 }
 
 .data{
@@ -438,15 +337,15 @@ ul.data{
 	width: 275px;
 }
 
-.threadsNum{
+.usersNum{
 	margin-top: 25;
 }
 
-.projectsNum{
+.adminNum{
 	margin-top: 5;
 }
 
-.threadsNum, .projectsNum{
+.usersNum, .adminNum{
 	font-size: 18px;
 }
 
