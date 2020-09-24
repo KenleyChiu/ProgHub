@@ -10,16 +10,11 @@
 		global $user;
 		$userarray=$GLOBALS["userArr"];
 		
-		if(isset($_POST['searchUserInput'])){
-			if(empty($_POST['searchUserInput'])){
-				$usersListQuery = mysqli_query($user,"select * from userdetails where Username=''");
+		
+		if(empty($_POST['searchUserInput'])){
+			$usersListQuery = mysqli_query($user,"select * from userdetails where Username=''");
 			$resultsQuery = mysqli_query($user,"select * from login where Username=''");
 			$resultsCount = mysqli_num_rows($resultsQuery);
-			} else {
-				$usersListQuery = mysqli_query($user,"select * from userdetails where Username like '%".$_POST['searchUserInput']."%'");
-			$resultsQuery = mysqli_query($user,"select * from login where Username like '%".$_POST['searchUserInput']."%'");
-			$resultsCount = mysqli_num_rows($resultsQuery);
-			}
 		} else {
 			$usersListQuery = mysqli_query($user,"select * from userdetails where Username like '%".$_POST['searchUserInput']."%'");
 			$resultsQuery = mysqli_query($user,"select * from login where Username like '%".$_POST['searchUserInput']."%'");
@@ -57,7 +52,7 @@
 				<ul class="users">
 					<form method="post">
 						<?php
-							// ob_start();
+							ob_start();
 							while($users = mysqli_fetch_array($usersListQuery)){
 								$usersArr["Username"] = $users["Username"];
 								$usersArr["Password"] = $users["Password"];
@@ -100,8 +95,7 @@
 									header("Location: userProfile.php");
 								}
 							}
-							// ob_end_flush();
-							
+							ob_end_flush()
 						?>
 					</form>
 				</ul>
