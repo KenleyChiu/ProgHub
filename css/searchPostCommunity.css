@@ -19,8 +19,8 @@ body{
 	"header header header"
 	"menu menu menu"
 	"title title title"
-	"searchPosts headers data"
-	"searchPosts2 post data"
+	"back headers data"
+	". post ."
 	"footer footer footer";
 
 }
@@ -228,42 +228,17 @@ ul.nav li{
 	/*color: #A464FF;*/
 }
 
-.searchPosts{
-	grid-area: searchPosts;
+.back{
+	grid-area: back;
+	text-align: center;
 }
 
-label.searchPosts{
-	font-size:15px;
+label.searchResults{
+	font-size:20px;
 	font-weight: bold;
 }
 
-ul.searchPost{
-	/*background-color: white;
-	border-radius: 10px	;
-	border: 1px solid #E1E1E1;*/
-	display: block;
-	margin: 0 50 0 30;
-	padding: 0 0 20 0;
-}
-
-.searchPostInput{
-	padding: 7 5 7 30;
-	box-sizing: border-box;
-	width: 300;
-	background-image: url("pictures/search.png");
-	background-position: 10px 8px;
-	background-size: 12px 12px;
-	background-repeat: no-repeat;
-	border-radius: 10px;
-	margin: 5 0 0 0;
-}
-
-.searchPosts2{
-	grid-area: searchPosts2;
-	margin-right: 60;
-}
-
-.searchPostBtn{
+.backBtn{
 	text-decoration: none;
 	border: transparent;
 	border-radius: 8px;
@@ -271,12 +246,11 @@ ul.searchPost{
 	font-size: 15px;
 	padding: 3 4 3 4;
 	color: #D0FF36;
-	float: right;
-	margin-top: -15;
 	cursor:pointer;
+	margin-top: 20;
 }
 
-.searchPostBtn:hover{
+.backBtn:hover{
 	background-color: gray;
 }
 

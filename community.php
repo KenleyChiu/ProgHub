@@ -68,6 +68,7 @@
 				$postsQuery = mysqli_query($data,"select * from posts where community = '$community'");
 				
 				while($posts = mysqli_fetch_array($postsQuery)){
+					$postsArr = array();
 					$postsArr["Author"] = $posts["Author"];
 					$postsArr["Title"] = $posts["Title"];
 					$postsArr["TextContent"] = $posts["TextContent"];

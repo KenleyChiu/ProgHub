@@ -19,7 +19,7 @@ body{
 	"header header header"
 	"menu menu menu"
 	"title title title"
-	". post data"
+	"back post data"
 	". comment data"
 	". postComments data"
 	"footer footer footer";
@@ -245,6 +245,27 @@ ul.nav li{
 label.titleLabel{
 	font-size: 40px;
 	align-self: center;
+}
+
+.back{
+	grid-area: back;
+	text-align: center;
+}
+
+.backBtn{
+	text-decoration: none;
+	border: transparent;
+	border-radius: 8px;
+	background-color: #323335;
+	font-size: 15px;
+	padding: 3 4 3 4;
+	color: #D0FF36;
+	cursor:pointer;
+	margin-top: 20;
+}
+
+.backBtn:hover{
+	background-color: gray;
 }
 
 .post{

@@ -2,6 +2,7 @@
 	<?php require_once 'config.php'?>
 	<?php require_once (ROOT_PATH .'\includes\header.php')?>
 	<?php require_once (ROOT_PATH .'\includes\navigation.php')?>
+	<?php require_once (ROOT_PATH .'\includes\getauthorImage.php')?>
 	<head>
 		<title>Website Project</title>
 		<link rel="stylesheet" type="text/css" href="css/home.css">
@@ -9,6 +10,8 @@
 	<?php
 		global $data;
 		$userarray=$GLOBALS["userArr"];
+		$userDetailsarray=$GLOBALS["specificUserArr"];
+		$imagesArray=$GLOBALS["allUserImages"];
 	?>
 	<body>
 		
@@ -31,13 +34,13 @@
 			<div class ="post">
 				<?php
 					
-
 					$postsQuery = mysqli_query($data,"select * from posts order by Upload DESC");					
-					$postsArr = array();
+					
 					$postArr = array();
 					
 					//$y = 0;
 					while($posts = mysqli_fetch_array($postsQuery)){
+						$postsArr = array();
 						$postsArr["Author"] = $posts["Author"];
 						//echo $postsArr["Author"];
 						$postsArr["Title"] = $posts["Title"];
@@ -79,11 +82,20 @@
 							header("Location:home.php");
 						}
 					}
+
+					$profilePic="";
 					if($signedInStatus == "True"){
 						if($userarray[3] == "User"){
 							foreach(array_values($postArr) as $key => $post){
+								foreach($imagesArray as $arr)
+								{
+									if($post['Author'] == $arr[0]){
+										$profilePic=$arr[1];
+										break;
+									}
+								}
 								echo "<div class='singlePost'>";
-								echo "<a href='users.php'><img src='pictures/user.png'></a>";
+								echo "<a href='users.php'><img src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
 								echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label>";
 								if($post["Author"] == $userarray[0]){
 									echo "<form class='deleteBtnForm' method='post'>";
@@ -101,8 +113,15 @@
 							}
 						} else {
 							foreach(array_values($postArr) as $key => $post){
+								foreach($imagesArray as $arr)
+								{
+									if($post['Author'] == $arr[0]){
+										$profilePic=$arr[1];
+										break;
+									}
+								}
 								echo "<div class='singlePost'>";
-								echo "<a href='users.php'><img src='pictures/user.png'></a>";
+								echo "<a href='users.php'><img src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
 								echo "<label class='postUser'><a class='postUser' href='users.php' > ".$post["Author"]." </a></label>";
 								echo "<form class='deleteBtnForm' method='post'>";
 								echo "<input class='deleteBtn' type='submit' name='del".$post["Title"]."Btn' value='Delete'/><br><br>";
