@@ -30,15 +30,8 @@
 			
 			<div class ="post">
 				<?php
-					$userArray=$GLOBALS["userArr"];
-				
-					if($userArray[2]==FALSE)
-					{
-						header("Location:login.php");
-						exit();
-						
-					}
-					 
+					
+
 					$postsQuery = mysqli_query($data,"select * from posts order by Upload DESC");					
 					$postsArr = array();
 					$postArr = array();
