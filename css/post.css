@@ -254,7 +254,39 @@ label.titleLabel{
 .userImg{
 	margin: 2 0 0 4;
 	width: 50px;
-	height: 50px;
+	height: 40px;
+}
+
+.userBtnForm{
+	/*display:inline-block;*/
+	float:left;
+	/*margin-right:10;*/
+}
+
+.userBtn{
+	border: 1px solid transparent;
+	background-color: transparent;
+	cursor: pointer;
+	/*display:inline-block;*/
+	position:absolute;
+	padding: 10 40 20 10;
+	margin-left: 5;
+	margin-bottom: 15;
+}
+
+.postBtnForm{
+	display: inline-block;
+}
+
+.postUserBtn{
+	font-size: 25px;
+	padding: 0 0 0 10;
+	color:  black;
+	line-height: 2.5;
+	background-color: transparent;
+	border: 1px solid transparent;
+	cursor:pointer;
+	position: relative;
 }
 
 label.postUser, .postUser:link, .postUser:visited{
@@ -283,7 +315,7 @@ label.postTitle{
 }
 
 p.postContent{
-	font-size: 15px;
+	font-size: 19px;
 	margin-left: 10;
 	padding: 0 0 10 15;
 	color: black;

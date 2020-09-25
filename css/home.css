@@ -323,7 +323,7 @@ label.projects a:hover{
 .post{
 	grid-area: post;
 	grid-auto-rows:minmax(190px, auto);
-	margin: 0 60 0 50;
+	margin: 0 0 0 50;
 }
 
 .singlePost{

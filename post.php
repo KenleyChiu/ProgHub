@@ -22,6 +22,36 @@
 						echo "<label class='titleLabel'>".$community."</label>";
 					}
 					
+					function fillUserArray($usersListQuery){
+						$userArr = array();
+						while($users = mysqli_fetch_array($usersListQuery)){
+							$usersArr = array();
+							$usersArr["Username"] = $users["Username"];
+							$usersArr["Password"] = $users["Password"];
+							$usersArr["Age"] = $users["Age"];
+							$usersArr["Email"] = $users["Email"];
+							$usersArr["Gender"] = $users["Gender"];
+							$usersArr["Image"] = $users["Image"];
+							$usersArr["Bio"] = $users["Bio"];
+							$usersArr["Likes"] = $users["Likes"];
+							array_push($usersArr,$usersArr["Username"],$usersArr["Password"],$usersArr["Age"],$usersArr["Email"],$usersArr["Gender"],$usersArr["Image"]
+							,$usersArr["Bio"],$usersArr["Likes"]);
+							array_push($userArr,$usersArr);
+						}
+						return $userArr;
+					}
+					
+					function toUserProfile($user){
+						$_SESSION['statusUser'] = "selected";
+						$_SESSION['UsernameUser'] = $user["Username"];
+						$_SESSION['AgeUser'] = $user["Age"];
+						$_SESSION['EmailUser'] = $user["Email"];
+						$_SESSION['GenderUser'] = $user["Gender"];
+						$_SESSION['ImageUser'] = $user["Image"];
+						$_SESSION['BioUser'] = $user["Bio"];
+						$_SESSION['LikesUser'] = $user["Likes"];
+						header("Location:userProfile.php");
+					}
 					
 				?>
 			</div>
@@ -44,6 +74,20 @@
 					$commentsCount = $_SESSION['CommentsPost'];
 					$errorMessage = " ";
 					$allCommentArray = array();
+					
+					$usersListQuery = mysqli_query($user,"select * from userdetails");
+							
+					$userArr=fillUserArray($usersListQuery);
+					
+					// go to user.php
+					if(isset($_POST['userBtn'])){
+						foreach($userArr as $user){
+							if($_POST['userBtn'] == $user["Username"]){
+								toUserProfile($user);
+							}
+						}
+					 }
+					
 					if(isset($_POST['editPost'])){
 						//use this for new session
 						$_SESSION['AuthorPost'] = $postAuthor;
@@ -84,7 +128,6 @@
 					}
 
 					$profilePic= searchAuthor($postAuthor,$imagesArray);
-					echo "<a href='users.php'><img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
 					if(isset($_POST['likeBtn'])){
 						if($signedInStatus == "True"){
 							$checkLikes = "select * from postlikes where Username='".$userarray[0]."' and Title='".$postTitle."'";
@@ -164,7 +207,13 @@
 					
 					
 					if($_SESSION['statusPost'] == "selected"){
-						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$postAuthor." </a></label>";
+						echo "<img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'>";
+						echo "<form class='userBtnForm' method='post'>";
+						echo "<input class='userBtn' type='submit' name='".$postAuthor."Btn' value=''/>";
+						echo "</form>";
+						echo "<form class='postBtnForm' method='post'>";
+						echo "<input class='postUserBtn' type='submit' name= 'userBtn'value='".$postAuthor."'/>";
+						echo "</form>";
 						if($postAuthor == $userarray[0] || $userarray[3]== "Admin")
 						{
 							echo "<img class='delImg' src='pictures/delete.png'/>";
