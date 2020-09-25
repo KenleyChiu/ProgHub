@@ -14,13 +14,10 @@
 		$imagesArray=$GLOBALS["allUserImages"];
 		
 		function fillPostArray($postsQuery){
-			global $postsArr,$postArr;
 			$postArr = array();
-			$y = 0;
 			while($posts = mysqli_fetch_array($postsQuery)){
 				$postsArr = array();
 				$postsArr["Author"] = $posts["Author"];
-				//echo $postsArr["Author"];
 				$postsArr["Title"] = $posts["Title"];
 				$postsArr["TextContent"] = $posts["TextContent"];
 				$postsArr["ImageContent"] = $posts["ImageContent"];
@@ -32,17 +29,13 @@
 				array_push($postsArr,$postsArr["Author"],$postsArr["Title"],$postsArr["TextContent"],$postsArr["ImageContent"],$postsArr["Likes"],$postsArr["Comments"]
 				,$postsArr["Community"],$postsArr["PostType"],$postsArr["Upload"]);
 				array_push($postArr,$postsArr);
-				$y++;
-				if($y == 5) break;
 			}
-			return;
+			return $postArr;
 		}
 		
 		function fillUserArray($usersListQuery){
-			global $usersArr,$userArr;
 			$usersArr = array();
 			$userArr = array();
-			
 			while($users = mysqli_fetch_array($usersListQuery)){
 				$usersArr = array();
 				$usersArr["Username"] = $users["Username"];
@@ -57,7 +50,7 @@
 				,$usersArr["Bio"],$usersArr["Likes"]);
 				array_push($userArr,$usersArr);
 			}
-			return;
+			return $userArr;
 		}
 		
 		function toPost($post){
@@ -71,51 +64,45 @@
 			$_SESSION['commSelected'] = $post["Community"];
 			$_SESSION['PostTypePost'] = $post["PostType"];
 			header("Location:post.php");
-			return;
 		}
 		
-		function toUserProfile($post,$userArr){
-			foreach($userArr as $user){
-				if($post['Author'] == $user["Username"]){
-					$_SESSION['statusUser'] = "selected";
-					$_SESSION['UsernameUser'] = $user["Username"];
-					$_SESSION['AgeUser'] = $user["Age"];
-					$_SESSION['EmailUser'] = $user["Email"];
-					$_SESSION['GenderUser'] = $user["Gender"];
-					$_SESSION['ImageUser'] = $user["Image"];
-					$_SESSION['BioUser'] = $user["Bio"];
-					$_SESSION['LikesUser'] = $user["Likes"];
-					header("Location:userProfile.php");
-				}
-			}
-			return;
+		function toUserProfile($user){
+			$_SESSION['statusUser'] = "selected";
+			$_SESSION['UsernameUser'] = $user["Username"];
+			$_SESSION['AgeUser'] = $user["Age"];
+			$_SESSION['EmailUser'] = $user["Email"];
+			$_SESSION['GenderUser'] = $user["Gender"];
+			$_SESSION['ImageUser'] = $user["Image"];
+			$_SESSION['BioUser'] = $user["Bio"];
+			$_SESSION['LikesUser'] = $user["Likes"];
+			header("Location:userProfile.php");
 		}
 		
 		function displayPostsIfUser($postArr,$imagesArray,$userarray){
 			foreach(array_values($postArr) as $key => $post){
 				$profilePic=searchAuthor($post["Author"],$imagesArray);
-				echo "<div class='singlePost'>";
-				echo "<img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'>";
-				echo "<form class='userBtnForm' method='post'>";
-				echo "<input class='userBtn' type='submit' name='".$post["Author"]."Btn' value=''/>";
-				echo "</form>";
-				echo "<form class='postBtnForm' method='post'>";
-				echo "<input class='postUserBtn' type='submit' name='".$post["Author"]."Btn' value='".$post["Author"]."'/>";
-				echo "</form>";
-				if($post["Author"] == $userarray[0]){
-					echo "<img class='delImg' src='pictures/delete.png'/>";
-					echo "<form class='deleteBtnForm' method='post'>";
-					echo "<input class='deleteBtn' type='submit' name='del".$post["Title"]."Btn' value=''/><br><br>";
-					echo "</form>";									
-				}
-				echo "<form method='post'>";
-				echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
-				echo "</form>";
-				//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
-				echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
-				echo "<label class='comments'> ".$post["Comments"]." Comments </label>";
-				echo "<br>";
-				echo "</div>";
+					echo "<div class='singlePost'>";
+					echo "<img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'>";
+					echo "<form class='userBtnForm' method='post'>";
+					echo "<input class='userBtn' type='submit' name='".$post["Author"]."Btn' value=''/>";
+					echo "</form>";
+					echo "<form class='postBtnForm' method='post'>";
+					echo "<input class='postUserBtn' type='submit' name='userBtn' value='".$post["Author"]."'/>";
+					echo "</form>";
+					// if($post["Author"] == $userarray[0]){
+					// 	echo "<img class='delImg' src='pictures/delete.png'/>";
+					// 	echo "<form class='deleteBtnForm' method='post'>";
+					// 	echo "<input class='deleteBtn' type='submit' name='deleteBtn' value='".$post["Title"]."'/><br><br>";
+					// 	echo "</form>";
+					// }
+					echo "<form method='post'>";
+					echo "<input class='postTitleBtn' type='submit' name='goToPost' value='".$post["Title"]."'/><br><br>";
+					echo "</form>";
+					//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
+					echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
+					echo "<label class='comments'> ".$post["Comments"]." Comments </label>";
+					echo "<br>";
+					echo "</div>";
 			}
 			return;
 		}
@@ -123,26 +110,26 @@
 		function displayPostsIfAdmin($postArr,$imagesArray,$userarray){
 			foreach(array_values($postArr) as $key => $post){
 				$profilePic=searchAuthor($post["Author"],$imagesArray);
-				echo "<div class='singlePost'>";
-				echo "<img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'>";
-				echo "<form class='userBtnForm' method='post'>";
-				echo "<input class='userBtn' type='submit' name='".$post["Author"]."Btn' value=''/>";
-				echo "</form>";
-				echo "<form class='postBtnForm' method='post'>";
-				echo "<input class='postUserBtn' type='submit' name='".$post["Author"]."Btn' value='".$post["Author"]."'/>";
-				echo "</form>";
-				echo "<img class='delImg' src='pictures/delete.png'/>";
-				echo "<form class='deleteBtnForm' method='post'>";
-				echo "<input class='deleteBtn' type='submit' name='del".$post["Title"]."Btn' value=''/><br><br>";
-				echo "</form>";
-				echo "<form method='post'>";
-				echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
-				echo "</form>";
-				//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
-				echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
-				echo "<label class='comments'> ".$post["Comments"]." Comments </label>";
-				echo "<br>";
-				echo "</div>";
+					echo "<div class='singlePost'>";
+					echo "<img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'>";
+					echo "<form class='userBtnForm' method='post'>";
+					echo "<input class='userBtn' type='submit' name='".$post["Author"]."Btn' value=''/>";
+					echo "</form>";
+					echo "<form class='postBtnForm' method='post'>";
+					echo "<input class='postUserBtn' type='submit' name='userBtn' value='".$post["Author"]."'/>";
+					echo "</form>";
+					// echo "<img class='delImg' src='pictures/delete.png'/>";
+					// echo "<form class='deleteBtnForm' method='post'>";
+					// echo "<input class='deleteBtn' type='submit' name='deleteBtn' value='".$post["Title"]."'/><br><br>";
+					// echo "</form>";
+					echo "<form method='post'>";
+					echo "<input class='postTitleBtn' type='submit' name='goToPost' value='".$post["Title"]."'/><br><br>";
+					echo "</form>";
+					//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
+					echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
+					echo "<label class='comments'> ".$post["Comments"]." Comments </label>";
+					echo "<br>";
+					echo "</div>";
 			}
 			return;
 		}
@@ -150,22 +137,22 @@
 		function displayPostsIfAnonymous($postArr,$imagesArray,$userarray){
 			foreach(array_values($postArr) as $key => $post){
 				$profilePic=searchAuthor($post["Author"],$imagesArray);
-				echo "<div class='singlePost'>";
-				echo "<img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'>";
-				echo "<form class='userBtnForm' method='post'>";
-				echo "<input class='userBtn' type='submit' name='".$post["Author"]."Btn' value=''/>";
-				echo "</form>";
-				echo "<form class='postBtnForm' method='post'>";
-				echo "<input class='postUserBtn' type='submit' name='".$post["Author"]."Btn' value='".$post["Author"]."'/>";
-				echo "</form>";
-				echo "<form method='post'>";
-				echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
-				echo "</form>";
-				//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
-				echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
-				echo "<label class='comments'> ".$post["Comments"]." Comments </label>";
-				echo "<br>";
-				echo "</div>";
+					echo "<div class='singlePost'>";
+					echo "<img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'>";
+					echo "<form class='userBtnForm' method='post'>";
+					echo "<input class='userBtn' type='submit' name='".$post["Author"]."Btn' value=''/>";
+					echo "</form>";
+					echo "<form class='postBtnForm' method='post'>";
+					echo "<input class='postUserBtn' type='submit' name= 'userBtn'value='".$post["Author"]."'/>";
+					echo "</form>";
+					echo "<form method='post'>";
+					echo "<input class='postTitleBtn' type='submit' name='goToPost' value='".$post["Title"]."'/><br><br>";
+					echo "</form>";
+					//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
+					echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
+					echo "<label class='comments'> ".$post["Comments"]." Comments </label>";
+					echo "<br>";
+					echo "</div>";
 			}
 		}
 	?>
@@ -191,34 +178,31 @@
 				<?php
 					$postsQuery = mysqli_query($data,"select * from posts order by Upload DESC");					
 					
-					fillPostArray($postsQuery);
-					
-					//
+					$postArr=fillPostArray($postsQuery);
+				
 					$usersListQuery = mysqli_query($user,"select * from userdetails");
-		
-					fillUserArray($usersListQuery);
-					//
 					
-					foreach($postArr as $post){
-						if(isset($_POST[$post["Title"]])){
-							toPost($post);
-						}
-						
-						if(isset($_POST['del'.$post["Title"].'Btn'])){
-							//delete post
-							$delPostQuery = "delete from posts where community='".$post["Community"]."' and Title='".$post["Title"]."'";
-							mysqli_query($data,$delPostQuery);
-							
-							//delete comments on post
-							$delCommentsQuery = "delete from commentpost where community='".$post["Community"]."' and Title='".$post["Title"]."'";
-							mysqli_query($data,$delCommentsQuery);
-							header("Location:home.php");
-						}
-						
-						if(isset($_POST[$post['Author'].'Btn'])){
-							toUserProfile($post,$userArr);
+					$userArr=fillUserArray($usersListQuery);
+					
+					// Go to post.php	
+					if(isset($_POST['goToPost']))
+					{
+						foreach($postArr as $post){
+							if($post['Title']==$_POST['goToPost'])
+							{
+								toPost($post);
+							}
 						}
 					}
+
+					// go to user.php
+					if(isset($_POST['userBtn'])){
+						foreach($userArr as $user){
+							if($_POST['userBtn'] == $user["Username"]){
+								toUserProfile($user);
+							}
+						}
+					 }
 					
 
 					$profilePic="";
@@ -229,7 +213,7 @@
 							displayPostsIfAdmin($postArr,$imagesArray,$userarray);
 						}
 					} else {
-						
+						displayPostsIfAnonymous($postArr,$imagesArray,$userarray);
 					}
 				?>
 			</div>

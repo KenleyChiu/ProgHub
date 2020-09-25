@@ -43,7 +43,7 @@
 					$postPostType = $_SESSION['PostTypePost'];
 					$commentsCount = $_SESSION['CommentsPost'];
 					$errorMessage = " ";
-					if(isset($_POST['editBtn'])){
+					if(isset($_POST['editPost'])){
 						//use this for new session
 						$_SESSION['AuthorPost'] = $postAuthor;
 						$_SESSION['TitlePost'] = $postTitle;
@@ -57,6 +57,17 @@
 						$_SESSION['ImageContentPost'];*/
 						
 						header("Location: editPost.php");
+					}
+
+					if(isset($_POST['deletePost']))
+					{
+						$delPostQuery = "delete from posts where community='$community' and Title='$postTitle'";
+						mysqli_query($data,$delPostQuery);
+						$delLikesQuery = "delete from postlikes where community='$community' and Title='$postTitle'";
+						mysqli_query($data,$delLikesQuery);
+						$delCommentsQuery = "delete from commentpost where community='$community' and Title='$postTitle'";
+						mysqli_query($data,$delCommentsQuery);
+						header("Location:community.php");
 					}
 					$profilePic= searchAuthor($postAuthor,$imagesArray);
 					echo "<a href='users.php'><img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
@@ -140,10 +151,14 @@
 					
 					if($_SESSION['statusPost'] == "selected"){
 						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$postAuthor." </a></label>";
-						if($postAuthor == $userarray[0])
+						if($postAuthor == $userarray[0] || $userarray[3]== "Admin")
 						{
 							echo "<form class='editBtnForm' method='post'>";
-							echo "<input class='editBtn' type='submit' name='editBtn' value='Edit Post'/><br>";
+							echo "<input class='editBtn' type='submit' name='editPost' value='Edit Post'/><br>";
+							echo "</form>";
+							// echo "<img class='delImg' src='pictures/delete.png'/>";
+							echo "<form class='deleteBtnForm' method='post'>";
+							echo "<input class='deleteBtn' type='submit' name='deletePost' value ='delete'/><br><br>";
 							echo "</form>";
 						}						
 						echo "<br><br><label class='postTitle'>".$postTitle."</label><br><br>";

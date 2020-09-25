@@ -16,7 +16,6 @@
 			$community = $_SESSION['commSelected'];
 			
 			function fillPostArray($postsQuery){
-				global $postsArr,$postArr;
 				$postArr = array();
 				while($posts = mysqli_fetch_array($postsQuery)){
 					$postsArr = array();
@@ -33,14 +32,12 @@
 					,$postsArr["Community"],$postsArr["PostType"],$postsArr["Upload"]);
 					array_push($postArr,$postsArr);
 				}
-				return;
+				return $postArr;
 			}
 			
 			function fillUserArray($usersListQuery){
-				global $usersArr,$userArr;
 				$usersArr = array();
 				$userArr = array();
-				
 				while($users = mysqli_fetch_array($usersListQuery)){
 					$usersArr = array();
 					$usersArr["Username"] = $users["Username"];
@@ -55,7 +52,7 @@
 					,$usersArr["Bio"],$usersArr["Likes"]);
 					array_push($userArr,$usersArr);
 				}
-				return;
+				return $userArr;
 			}
 			
 			function toPost($post){
@@ -69,24 +66,18 @@
 				$_SESSION['commSelected'] = $post["Community"];
 				$_SESSION['PostTypePost'] = $post["PostType"];
 				header("Location:post.php");
-				return;
 			}
 			
-			function toUserProfile($post,$userArr){
-				foreach($userArr as $user){
-					if($post['Author'] == $user["Username"]){
-						$_SESSION['statusUser'] = "selected";
-						$_SESSION['UsernameUser'] = $user["Username"];
-						$_SESSION['AgeUser'] = $user["Age"];
-						$_SESSION['EmailUser'] = $user["Email"];
-						$_SESSION['GenderUser'] = $user["Gender"];
-						$_SESSION['ImageUser'] = $user["Image"];
-						$_SESSION['BioUser'] = $user["Bio"];
-						$_SESSION['LikesUser'] = $user["Likes"];
-						header("Location:userProfile.php");
-					}
-				}
-				return;
+			function toUserProfile($user){
+				$_SESSION['statusUser'] = "selected";
+				$_SESSION['UsernameUser'] = $user["Username"];
+				$_SESSION['AgeUser'] = $user["Age"];
+				$_SESSION['EmailUser'] = $user["Email"];
+				$_SESSION['GenderUser'] = $user["Gender"];
+				$_SESSION['ImageUser'] = $user["Image"];
+				$_SESSION['BioUser'] = $user["Bio"];
+				$_SESSION['LikesUser'] = $user["Likes"];
+				header("Location:userProfile.php");
 			}
 			
 			function toCreatePost($signedInStatus){
@@ -110,16 +101,16 @@
 					echo "<input class='userBtn' type='submit' name='".$post["Author"]."Btn' value=''/>";
 					echo "</form>";
 					echo "<form class='postBtnForm' method='post'>";
-					echo "<input class='postUserBtn' type='submit' name='".$post["Author"]."Btn' value='".$post["Author"]."'/>";
+					echo "<input class='postUserBtn' type='submit' name='userBtn' value='".$post["Author"]."'/>";
 					echo "</form>";
-					if($post["Author"] == $userarray[0]){
-						echo "<img class='delImg' src='pictures/delete.png'/>";
-						echo "<form class='deleteBtnForm' method='post'>";
-						echo "<input class='deleteBtn' type='submit' name='del".$post["Title"]."Btn' value=''/><br><br>";
-						echo "</form>";
-					}
+					// if($post["Author"] == $userarray[0]){
+					// 	echo "<img class='delImg' src='pictures/delete.png'/>";
+					// 	echo "<form class='deleteBtnForm' method='post'>";
+					// 	echo "<input class='deleteBtn' type='submit' name='deleteBtn' value='".$post["Title"]."'/><br><br>";
+					// 	echo "</form>";
+					// }
 					echo "<form method='post'>";
-					echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
+					echo "<input class='postTitleBtn' type='submit' name='goToPost' value='".$post["Title"]."'/><br><br>";
 					echo "</form>";
 					//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
 					echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
@@ -139,14 +130,14 @@
 					echo "<input class='userBtn' type='submit' name='".$post["Author"]."Btn' value=''/>";
 					echo "</form>";
 					echo "<form class='postBtnForm' method='post'>";
-					echo "<input class='postUserBtn' type='submit' name='".$post["Author"]."Btn' value='".$post["Author"]."'/>";
+					echo "<input class='postUserBtn' type='submit' name='userBtn' value='".$post["Author"]."'/>";
 					echo "</form>";
-					echo "<img class='delImg' src='pictures/delete.png'/>";
-					echo "<form class='deleteBtnForm' method='post'>";
-					echo "<input class='deleteBtn' type='submit' name='del".$post["Title"]."Btn' value=''/><br><br>";
-					echo "</form>";
+					// echo "<img class='delImg' src='pictures/delete.png'/>";
+					// echo "<form class='deleteBtnForm' method='post'>";
+					// echo "<input class='deleteBtn' type='submit' name='deleteBtn' value='".$post["Title"]."'/><br><br>";
+					// echo "</form>";
 					echo "<form method='post'>";
-					echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
+					echo "<input class='postTitleBtn' type='submit' name='goToPost' value='".$post["Title"]."'/><br><br>";
 					echo "</form>";
 					//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
 					echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
@@ -166,10 +157,10 @@
 					echo "<input class='userBtn' type='submit' name='".$post["Author"]."Btn' value=''/>";
 					echo "</form>";
 					echo "<form class='postBtnForm' method='post'>";
-					echo "<input class='postUserBtn' type='submit' name='".$post["Author"]."Btn' value='".$post["Author"]."'/>";
+					echo "<input class='postUserBtn' type='submit' name= 'userBtn'value='".$post["Author"]."'/>";
 					echo "</form>";
 					echo "<form method='post'>";
-					echo "<input class='postTitleBtn' type='submit' name='".$post["Title"]."' value='".$post["Title"]."'/><br><br>";
+					echo "<input class='postTitleBtn' type='submit' name='goToPost' value='".$post["Title"]."'/><br><br>";
 					echo "</form>";
 					//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
 					echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
@@ -193,8 +184,14 @@
 		<!--LEFT SIDE-->
 		<div class="searchPosts">
 			<ul class="searchPost">
+				<?php if(!empty($_POST["searchPostInput"]))
+				{
+					$_SESSION['searchPostInput'] = $_POST["searchPostInput"];
+					header('Location: searchPostCommunity.php');
+				}	 
+				?>
 				<li><label class="searchPosts"> Search Posts </label></li>
-				<li><form class="searchForm" action="searchPostCommunity.php" method="post">
+				<li><form class="searchForm" method="post">
 					<input class="searchPostInput" type="text" name="searchPostInput" Placeholder="Search" /></li>
 		</div>
 		
@@ -285,24 +282,25 @@
 						fillUserArray($usersListQuery);
 						
 						foreach($postArr as $post){
-							if(isset($_POST[$post["Title"]])){
-								toPost($post);
+							// Go to post.php	
+							if(isset($_POST['goToPost']))
+							{
+								foreach($postArr as $post){
+									if($post['Title']==$_POST['goToPost'])
+									{
+										toPost($post);
+									}
+								}
 							}
 							
-							if(isset($_POST['del'.$post["Title"].'Btn'])){
-								//delete post
-								$delPostQuery = "delete from posts where community='$community' and Title='".$post["Title"]."'";
-								mysqli_query($data,$delPostQuery);
-								
-								//delete comments on post
-								$delCommentsQuery = "delete from commentspost where community='$community' and Title='".$post["Title"]."'";
-								mysqli_query($data,$delCommentsQuery);
-								header("Location:community.php");
-							}
-							
-							if(isset($_POST[$post['Author'].'Btn'])){
-								toUserProfile($post,$userArr);
-							}
+							// go to user.php
+							if(isset($_POST['userBtn'])){
+								foreach($userArr as $user){
+									if($_POST['userBtn'] == $user["Username"]){
+										toUserProfile($user);
+									}
+								}
+							 }
 						}
 						
 						$profilePic="";
@@ -323,7 +321,6 @@
 			 
 			
 		</div>
-				
 		
 		
 		<?php
