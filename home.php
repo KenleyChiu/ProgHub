@@ -92,16 +92,9 @@
 					echo "<form class='postBtnForm' method='post'>";
 					echo "<input class='postUserBtn' type='submit' name='userBtn' value='".$post["Author"]."'/>";
 					echo "</form>";
-					// if($post["Author"] == $userarray[0]){
-					// 	echo "<img class='delImg' src='pictures/delete.png'/>";
-					// 	echo "<form class='deleteBtnForm' method='post'>";
-					// 	echo "<input class='deleteBtn' type='submit' name='deleteBtn' value='".$post["Title"]."'/><br><br>";
-					// 	echo "</form>";
-					// }
 					echo "<form method='post'>";
 					echo "<input class='postTitleBtn' type='submit' name='goToPost' value='".$post["Title"]."'/><br><br>";
 					echo "</form>";
-					//echo "<label class='postTitle'><a class='postTitle' href='' name='".$$post[$key]["Title"]."'> ".$postsArr["Title"]." </a></label><br>";
 					echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
 					echo "<label class='comments'> ".$post["Comments"]." Comments </label>";
 					echo "<br>";

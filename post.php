@@ -168,7 +168,7 @@
 							}
 						}
 					} else {
-						$errorMessage = "You have to be logged in to do that!";
+						$errorMessage = "You have to be logged in to do that like!";
 					}
 					// if create comment button is pressed
 					if(isset($_POST['commentBtn'])){
