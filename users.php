@@ -55,8 +55,6 @@
 			}
 		}
 		
-		
-		
 		$usersQuery = mysqli_query($user,"select * from login where Position='User'");
 		$usersCount = mysqli_num_rows($usersQuery);
 		$adminsQuery = mysqli_query($user,"select * from login where Position='Admin'");
@@ -133,6 +131,7 @@
 							}
 						} else {
 							echo "<li class='usersNum'>Total Users: ".$usersCount." </li>";
+							echo "<li class='adminNum'>Total Admins: ".$adminsCount." </li>";
 						}
 					?>
 				</ul>

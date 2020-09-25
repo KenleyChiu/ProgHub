@@ -60,7 +60,7 @@
 							{	
                                 $titleUpdate="Update posts set Title = '$title' Where Author = '$author' and Title = '$firstTitle'";
                                 $result=mysqli_query($data,$titleUpdate);
-                                $titlelikesUpdate= "Update posts set Title = '$title' Where Username = '$author' and Title = '$firstTitle'";
+                                $titlelikesUpdate= "Update postlikes set Title = '$title' Where Username = '$author' and Title = '$firstTitle'";
                                 $result=mysqli_query($data,$titlelikesUpdate);
                                 $titlecommentUpdate= "Update commentpost set Title = '$title' Where Username = '$author' and Title = '$firstTitle'";
                                 $result=mysqli_query($data,$titlecommentUpdate);
@@ -86,7 +86,7 @@
 										move_uploaded_file($filetmp,$fileDestination);
 										$titleUpdate="Update posts set Title = '$title' Where Author = '$author' and Title = '$firstTitle'";
                                         $result=mysqli_query($data,$titleUpdate);
-                                        $titlelikesUpdate= "Update posts set Title = '$title' Where Username = '$author' and Title = '$firstTitle'";
+                                        $titlelikesUpdate= "Update postlikes set Title = '$title' Where Username = '$author' and Title = '$firstTitle'";
                                         $result=mysqli_query($data,$titlelikesUpdate);
                                         $titlecommentUpdate= "Update commentpost set Title = '$title' Where Username = '$author' and Title = '$firstTitle'";
                                         $result=mysqli_query($data,$titlecommentUpdate);

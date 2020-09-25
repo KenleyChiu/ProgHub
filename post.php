@@ -126,22 +126,45 @@
 						$_SESSION['id'] = $_POST['commentDeleteInfo'];
 						header("Location:deleteComment.php");
 					}
-
+					
 					$profilePic= searchAuthor($postAuthor,$imagesArray);
-					if(isset($_POST['likeBtn'])){
-						if($signedInStatus == "True"){
-							$checkLikes = "select * from postlikes where Username='".$userarray[0]."' and Title='".$postTitle."'";
-							$liked = mysqli_query($data,$checkLikes);
-							$likeArr = mysqli_fetch_array($liked);
+					if($signedInStatus == "True"){
+						$likeValue = "Star";
+						$checkLikes = "select * from postlikes where Username='".$userarray[0]."' and Title='".$postTitle."'";
+						$liked = mysqli_query($data,$checkLikes);
+						$likeArr = mysqli_fetch_array($liked);
+						$newLikes = $likesCount;
 							
+						if(!empty($likeArr)){
+							$likeValue = "Unstar";
+						} else {
+							$likeValue = "Star";
+						}
+						
+						if(isset($_POST['likeBtn'])){	
 							if(empty($likeArr)){
-								$likesCount = $_SESSION['StarsPost'] + 1;
-								$addLikes = "update posts set Likes='".$likesCount."' where Title='".$postTitle."'";
+								$newLikes = $likesCount + 1;
+								$addLikes = "update posts set Likes='".$newLikes."' where Title='".$postTitle."'";
 								mysqli_query($data,$addLikes);
-								$_SESSION['StarsPost']=$likesCount;
+								//session_unset($_SESSION['StarsPost']);
+								$_SESSION['StarsPost']=$newLikes;
+								$likesCount = $newLikes;
 								
 								$addLikes2 = "insert into postlikes values('".$userarray[0]."','".$postTitle."','".$community."','".$postPostType."')";
 								mysqli_query($data,$addLikes2);
+								$likeValue = "Unstar";
+							} else {
+								//$likeValue = "Unstar";
+								$newLikes = $likesCount - 1;
+								$minusLikes = "update posts set Likes='".$newLikes."' where Title='".$postTitle."'";
+								mysqli_query($data,$minusLikes);
+								
+								$minusLikes2 = "delete from postlikes where Username='".$userarray[0]."' and Title='".$postTitle."'";
+								mysqli_query($data,$minusLikes2);
+								//session_unset($_SESSION['StarsPost']);
+								$_SESSION['StarsPost']=$newLikes;
+								$likesCount = $newLikes;
+								$likeValue = "Star";
 							}
 						} else {
 							$errorMessage = "You have to be logged in to do that!";
@@ -202,6 +225,8 @@
 						 }else {
 							$errorMessage = "You have to be logged in to do that!";
 						}
+					} else {
+						$errorMessage = "";
 					}
 					
 					
@@ -214,22 +239,24 @@
 						echo "<form class='postBtnForm' method='post'>";
 						echo "<input class='postUserBtn' type='submit' name= 'userBtn'value='".$postAuthor."'/>";
 						echo "</form>";
-						if($postAuthor == $userarray[0] || $userarray[3]== "Admin")
-						{
-							echo "<img class='delImg' src='pictures/delete.png'/>";
-							echo "<form class='deleteBtnForm' method='post'>";
-							echo "<input class='deleteBtn' type='submit' name='deletePost' value =''/><br><br>";
-							echo "</form>";
-							echo "<form class='editBtnForm' method='post'>";
-							echo "<input class='editBtn' type='submit' name='editPost' value='Edit Post'/><br>";
-							echo "</form>";
+						if ($signedInStatus == "True"){
+							if($postAuthor == $userarray[0] || $userarray[3]== "Admin")
+							{
+								echo "<img class='delImg' src='pictures/delete.png'/>";
+								echo "<form class='deleteBtnForm' method='post'>";
+								echo "<input class='deleteBtn' type='submit' name='deletePost' value =''/><br><br>";
+								echo "</form>";
+								echo "<form class='editBtnForm' method='post'>";
+								echo "<input class='editBtn' type='submit' name='editPost' value='Edit Post'/><br>";
+								echo "</form>";
+							}		
 						}						
 						echo "<br><br><label class='postTitle'>".$postTitle."</label><br><br>";
 						echo "<br><p class='postContent'>".$postTextContent."</p><br>";
 						echo "<img class='postImg' src='".$postImageContent."'/><br>" ;
 						echo "<form class='starsForm' action='".$_SERVER['PHP_SELF']."' method='post'>";
-						echo "<input class='likeBtn' type='submit' name='likeBtn' value='Star'></form>";
-						echo "<label class='stars'>" .$likesCount." Stars </label>";
+						echo "<input class='likeBtn' type='submit' name='likeBtn' value='".$likeValue."'></form>";
+						echo "<label class='stars'>" .$newLikes." Stars </label>";
 						echo "<label class='comments'>" .$commentsCount." Comments </label>";
 					}
 
@@ -260,17 +287,19 @@
 						$profilePic=searchAuthor($comments['Username'],$imagesArray);
 						echo "<div class='singleComment'>";
 						echo "<a href='users.php'><img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
-						if($comments['Username'] == $userarray[0] || $userarray[3]== "Admin")
-						{
-							echo "<img class='delImg' src='pictures/delete.png'/>";
-							echo "<form class='deleteBtnForm' method='post'>";
-							echo "<input type='hidden' name='commentDeleteInfo' value='".$comments['id']."'/><br>";
-							echo "<input class='deleteBtn' type='submit' value =''/><br><br>";
-							echo "</form>";
-							echo "<form class='editBtnFormComment' method='post'>";
-							echo "<input type='hidden' name='commentEditInfo' value='".$comments['id']."'/><br>";
-							echo "<input class='editBtn'type='submit' value='Edit Comment'/><br>";
-							echo "</form>";
+						if ($signedInStatus == "True"){
+							if($comments['Username'] == $userarray[0] || $userarray[3]== "Admin")
+							{
+								echo "<img class='delImg' src='pictures/delete.png'/>";
+								echo "<form class='deleteBtnForm' method='post'>";
+								echo "<input type='hidden' name='commentDeleteInfo' value='".$comments['id']."'/><br>";
+								echo "<input class='deleteBtn' type='submit' value =''/><br><br>";
+								echo "</form>";
+								echo "<form class='editBtnFormComment' method='post'>";
+								echo "<input type='hidden' name='commentEditInfo' value='".$comments['id']."'/><br>";
+								echo "<input class='editBtn'type='submit' value='Edit Comment'/><br>";
+								echo "</form>";
+							}
 						}
 						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$comments['Username']." </a></label><br><br>";
 						echo "<p class='postContent'>".$comments['TextComment']." </p><br>";
