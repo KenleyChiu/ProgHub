@@ -372,6 +372,17 @@ label.editPost{
 	cursor:pointer;
 }
 
+.postImg{
+	/*margin-left: 10;*/
+	height: auto; 
+    width: auto; 
+	margin-left: auto;
+	margin-right: auto;
+    max-width: 400px; 
+    max-height: 400px;
+	display: block;
+}
+
 .editBtn{
 	text-decoration: none;
 	border: transparent;
