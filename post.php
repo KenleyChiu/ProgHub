@@ -216,16 +216,16 @@
 							echo "<img class='delImg' src='pictures/delete.png'/>";
 							echo "<form class='deleteBtnForm' method='post'>";
 							echo "<input type='hidden' name='commentDeleteInfo' value='".$comments['id']."'/><br>";
-							echo "<input class='deleteBtn' type='submit'value =''/><br><br>";
+							echo "<input class='deleteBtn' type='submit' value =''/><br><br>";
 							echo "</form>";
-							echo "<form class='editBtnForm' method='post'>";
+							echo "<form class='editBtnFormComment' method='post'>";
 							echo "<input type='hidden' name='commentEditInfo' value='".$comments['id']."'/><br>";
-							echo "<input class='editBtn'type='submit' value='edit'/><br>";
+							echo "<input class='editBtn'type='submit' value='Edit Comment'/><br>";
 							echo "</form>";
 						}
 						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$comments['Username']." </a></label><br><br>";
-						echo "<p class='postComment'>".$comments['TextComment']." </p><br>";
-						echo "<img class='commentImg' src='".$comments['ImageComment']."'/><br><br>" ;
+						echo "<p class='postContent'>".$comments['TextComment']." </p><br>";
+						echo "<img class='commentImg' src='".$comments['ImageComment']."'/>" ;
 						echo "</div>";
 					 	//<label class='stars'> 0 Stars </label> //THIS IS EXTRA, IF THERE IS TIME
 					}
@@ -236,9 +236,8 @@
 			<div class="data">
 			</div>
 			
-			<div class="footer">
-				
-			</div>
+			<!--FOOTER-->
+			<?php require_once (ROOT_PATH .'\includes\footer.php')?>
 				
 		</div>
 		

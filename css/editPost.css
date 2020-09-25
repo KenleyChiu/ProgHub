@@ -19,8 +19,7 @@ body{
 	"header header header"
 	"menu menu menu"
 	"title title title"
-	"back headers data"
-	". post ."
+	"back edit data"
 	"footer footer footer";
 
 }
@@ -201,17 +200,38 @@ ul.nav li{
 	/*color: #A464FF;*/
 }
 
-.back{
-	grid-area: back;
-	text-align: center;
+.searchPosts{
+	grid-area: searchPosts;
+	margin: 0 0 0 0;
 }
 
-label.searchResults{
-	font-size:20px;
+label.searchPosts{
+	font-size:15px;
 	font-weight: bold;
 }
 
-.backBtn{
+ul.searchPost{
+	/*background-color: white;
+	border-radius: 10px	;
+	border: 1px solid #E1E1E1;*/
+	display: block;
+	margin: 0 50 0 30;
+	padding: 0 0 20 0;
+}
+
+.searchPostInput{
+	padding: 7 5 7 30;
+	box-sizing: border-box;
+	width: 300;
+	background-image: url("pictures/search.png");
+	background-position: 10px 8px;
+	background-size: 12px 12px;
+	background-repeat: no-repeat;
+	border-radius: 10px;
+	margin: 5 0 0 0;
+}
+
+.searchPostBtn{
 	text-decoration: none;
 	border: transparent;
 	border-radius: 8px;
@@ -219,13 +239,14 @@ label.searchResults{
 	font-size: 15px;
 	padding: 3 4 3 4;
 	color: #D0FF36;
-	cursor:pointer;
-	margin-top: 20;
+	float: right;
+	margin-top: 5;
 }
 
-.backBtn:hover{
+.searchPostBtn:hover{
 	background-color: gray;
 }
+
 
 .title{
 	grid-area: title;
@@ -245,19 +266,16 @@ label.titleLabel{
 	align-self: center;
 }
 
-.headers{
+/*.headers{
 	grid-area: headers;
-	padding: 10 0 0 0;
+	padding: 10 0 20 0;
 	margin-top: 10;
 	height: 20%;
 	position: relative;
-	/*border: 1px solid black;*/
 }
-
-/*section{
+section{
 	position: relative;
 }
-
 section:first-of-type {
     display: block;
 }
@@ -266,12 +284,11 @@ section:first-of-type {
 	display:inline-block;
 	font-size: 22px;
 	cursor: pointer;
-}*/
+}
 
 label.threads, a:link, a:visited{
 	font-size: 22px;
-	color: black;
-	display: inline;
+	color:  black;
 }
 
 label.threads a:hover{
@@ -289,174 +306,91 @@ label.threads a:hover{
 label.projects, a:link, a:visited{
 	font-size: 22px;
 	color:  black;
-	display:inline-block;
 }
 
 label.projects a:hover{
 	color: gray;
+}*/
+
+.back{
+	grid-area: back;
+	text-align: center;
 }
 
-.createBtnForm{
-	display:inline-block;
-	float: right;
-}
-
-.createBtn{
+.backBtn{
 	text-decoration: none;
 	border: transparent;
 	border-radius: 8px;
 	background-color: #323335;
-	font-size: 17px;
-	padding: 7;
+	font-size: 15px;
+	padding: 3 4 3 4;
 	color: #D0FF36;
 	cursor:pointer;
+	margin-top: 20;
+	margin-left: 50;
 }
 
-.createBtn:hover{
+.backBtn:hover{
 	background-color: gray;
 }
 
-.post{
-	grid-area: post;
-	grid-auto-rows:minmax(190px, auto);
-	/*border: 1px solid black;
-	border-radius: 5px;
-	background-color: white;
-	padding: 10 0 10 10;
-	margin: 10 0 0 0;*/
-}
-
-.singlePost{
+.edit{
+	grid-area: edit;
 	border: 1px solid black;
-	border-radius: 5px;
-	background-color: white;
-	padding: 10 0 10 10;
-	margin: 10 0 0 0;
+	padding: 5;
+	margin-top:20;
 }
 
-.userBtnForm{
-	/*display:inline-block;*/
-	float:left;
-	/*margin-right:10;*/
-}
-
-.userBtn{
-	border: 1px solid transparent;
-	background-color: transparent;
-	cursor: pointer;
-	/*display:inline-block;*/
-	position:absolute;
-	padding: 10 25 10 10;
-	margin-left: 5;
-	margin-bottom: 15;
-}
-
-.userImg{
-	float: left;
-	width: 35;
-	height: 35;
-	position:absolute;
-	margin-left: 5;
-}
-
-.postBtnForm{
-	display: inline-block;
-}
-
-.postUserBtn{
-	font-size: 20px;
-	padding: 0 0 0 50;
-	color:  black;
-	line-height: 2.5;
-	background-color: transparent;
-	border: 1px solid transparent;
-	cursor:pointer;
-	position: relative;
-}
-
-label.postTitle{
-	font-size: 25px;
-	padding-left: 15;
-	margin-top: 5;
-	color: black;
-	line-height: 1.2;
+label.editPost{
 	font-weight: bold;
+	font-size: 20px;
 }
 
-.deleteBtnForm{
-	/*display:inline-block;
-	float:right;*/
-	margin-right:10;
-	float:right;
-}
-
-.deleteBtn{
-	border: 1px solid transparent;
-	background-color: transparent;
-	cursor: pointer;
-	/*display:inline-block;
-	position:absolute;*/
-	padding: 10;
-	margin-left: 11;
-	margin-bottom: 15;
-	float:right;
-	position: absolute;
-}
-
-.delImg{
-	width: 25;
-	height: 25;
-	float: right;
-	margin-right:6;
-	margin-top: 6;
-	position:relative;
-}
-
-.postTitleBtn{
-	border: 1px solid transparent;
+.editDetails{
 	margin-left: 10;
-	font-weight: bold;
-	font-size: 20px;
-	background-color: transparent;
-	cursor: pointer;
 }
 
-label.stars{
-	font-size: 15px;
-	color:  black;
-	padding-left: 10;
+.editDetails, td{
+	padding-bottom: 5;
 }
 
-label.comments{
-	font-size: 15px;
-	color: black;
-	padding-left: 5;
+.titleInput, .contentInput{
+	border-radius: 5px;
+	width: 720;
+	border: 1px solid black;
 }
+
+.titleInput{
+	padding: 2 0 2 5;
+}
+
+.contentInput{
+	padding: 2 0 2 5;
+}
+
+.imageInput{
+	cursor:pointer;
+}
+
+.editBtn{
+	text-decoration: none;
+	border: transparent;
+	border-radius: 8px;
+	background-color: #323335;
+	font-size: 15px;
+	padding: 3 4 3 4;
+	color: #D0FF36;
+	float: right;
+	cursor:pointer;
+}
+
+.editBtn:hover{
+	background-color: gray;
+}
+
 
 .data{
 	grid-area: data;
-}
-
-ul.data{
-	margin: 10 40 0 50;
-	background-color: white;
-	height: 100px;
-	border-radius: 10px	;
-	border: 1px solid #E1E1E1;
-	text-align: center;
-	width: 275px;
-}
-
-.threadsNum{
-	margin-top: 25;
-}
-
-.projectsNum{
-	margin-top: 5;
-}
-
-.threadsNum, .projectsNum{
-	font-size: 18px;
 }
 
 .footer{

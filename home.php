@@ -160,6 +160,10 @@
 		}
 	?>
 	<body>
+	
+			<div class="title">
+				<label class="titleLabel"> HOME </label>
+			</div>
 		
 			<!--LEFT SIDE-->
 			<div class="info">
@@ -290,9 +294,7 @@
 			</div>
 			
 			<!--FOOTER-->
-			<div class="footer">
-				
-			</div>
+			<?php require_once (ROOT_PATH .'\includes\footer.php')?>
 				
 		</div>
 		<script>

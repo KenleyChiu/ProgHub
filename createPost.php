@@ -19,10 +19,16 @@
 		</div>
 		
 		<!-- DIVIDER BEWTEEN THREAD AND PROJECT -->
-		<div class="headers">
+		<!--<div class="headers">
 			<label class="threads"><a href="#"> Threads </a></label>
 			<span class="divider1"> </span>
 			<label class="projects"><a href="#"> Projects </a></label>
+		</div>-->
+		
+		<div class="back">
+			<form class="backForm" action="post.php" method="post">
+				<input class="backBtn" type="submit" name="backBtn" value="Back to Post" />
+			</form>
 		</div>
 			
 		<!-- CREATE POSTS -->
@@ -98,10 +104,9 @@
 				</table>
 			</form>
 		</div>
-			
-		<div class="footer">
-				
-		</div>
+		
+		<!--FOOTER-->
+		<?php require_once (ROOT_PATH .'\includes\footer.php')?>
 		
 	</body>
 </html>

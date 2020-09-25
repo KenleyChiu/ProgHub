@@ -10,9 +10,9 @@
 					<li><form class="usersNav" action="users.php" method="get">
 						<input class="usersBtn" type="submit" value="Users"/>
 					</form></li>
-					<li><form class="tagsNav" action="tags.php" method="get">
+					<!--<li><form class="tagsNav" action="tags.php" method="get">
 						<input class="tagsBtn" type="submit" value="Tags"/>
-					</form></li>
+					</form></li>-->
 					<li><form class="aboutNav" action="about.php" method="get">
 						<input class="aboutBtn" type="submit" value="About"/>
 					</form></li>

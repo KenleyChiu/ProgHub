@@ -64,40 +64,12 @@ body{
 	width: 50px;
 	height: 50px;
 	margin-left: 300;
-
 }
 
 .proghub {
 	width: 150px;
 	height: 45px;
 	margin-left: 10;
-}
-
-.search{
-	grid-area: search;
-	padding: 10 0 10 0;
-	/*border-bottom:: 1px solid black;*/
-}
-
-.searchForm{
-	display: inline;
-}
-
-.searchInput{
-	padding: 7 5 7 30;
-	box-sizing: border-box;
-	width: 400;
-	background-image: url("pictures/search.png");
-	background-position: 10px 8px;
-	background-size: 12px 12px;
-	background-repeat: no-repeat;
-	border-radius: 10px;
-	margin: 0 0 0 300;
-}
-
-.searchInput:focus{
-	border:1px solid transparent;
-	border-radius: 10px;
 }
 
 .account{

@@ -74,13 +74,16 @@
 					<li><label class="searchusers"> Search Users </label></li>
 					<li><form class="searchForm" action="searchUserUsers.php" method="post">
 						<input class="searchUserInput" type="text" name="searchUserInput" Placeholder="Search" /></li>
-			</div>
-			
-			<div class="searchUsers2">
-				<li><input class="searchUserBtn" type="submit" name="searchUserBtn" value="Search" /></li>
+						<li><input class="searchUserBtn" type="submit" name="searchUserBtn" value="Search" /></li>
 					</form>
 				</ul>
 			</div>
+			
+			<!--<div class="searchUsers2">
+				<li><input class="searchUserBtn" type="submit" name="searchUserBtn" value="Search" /></li>
+					</form>
+				</ul>
+			</div>-->
 			
 			<div class="users">
 				<ul class="users">
@@ -136,9 +139,7 @@
 			</div>
 			
 			<!--FOOTER-->
-			<div class="footer">
-				
-			</div>
+			<?php require_once (ROOT_PATH .'\includes\footer.php')?>
 		</div>
 		
 	</body>

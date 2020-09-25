@@ -192,13 +192,16 @@
 				<li><label class="searchPosts"> Search Posts </label></li>
 				<li><form class="searchForm" method="post">
 					<input class="searchPostInput" type="text" name="searchPostInput" Placeholder="Search" /></li>
-		</div>
-		
-		<div class="searchPosts2">
-			<li><input class="searchPostBtn" type="submit" name="searchPostBtn" value="Search" /></li>
+					<li><input class="searchPostBtn" type="submit" name="searchPostBtn" value="Search" /></li>
 				</form>
 			</ul>
 		</div>
+		
+		<!--<div class="searchPosts2">
+			<li><input class="searchPostBtn" type="submit" name="searchPostBtn" value="Search" /></li>
+				</form>
+			</ul>
+		</div>-->
 		
 		<!-- DIVIDER BEWTEEN THREAD AND PROJECT -->
 		<div class="headers">
@@ -334,10 +337,10 @@
 				<li class="projectsNum">Total Projects: <?php echo $projectsCount; ?></li>
 			</ul>
 		</div>
+		
+		<!--FOOTER-->
+		<?php require_once (ROOT_PATH .'\includes\footer.php')?>
 			
-		<div class="footer">
-				
-		</div>
 		<script>
 		(function($) {
 			$('nav li').click(function() {

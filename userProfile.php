@@ -204,9 +204,7 @@
 			</div>	
 			
 			<!--FOOTER-->
-			<div class="footer">
-				
-			</div>
+			<?php require_once (ROOT_PATH .'\includes\footer.php')?>
 		</div>
 		
 	</body>

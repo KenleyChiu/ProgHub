@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<title>Website Project</title>
-		<link rel="stylesheet" type="text/css" href="css/createPost.css">
+		<link rel="stylesheet" type="text/css" href="css/editPost.css">
 	</head>
 	<body>
 		<!-- TITLE -->
@@ -24,9 +24,15 @@
 			<span class="divider1"> </span>
 			<label class="projects"><a href="#"> Projects </a></label>
 		</div> -->
+		
+		<div class="back">
+			<form class="backForm" action="post.php" method="post">
+				<input class="backBtn" type="submit" name="backBtn" value="Back to Post" />
+			</form>
+		</div>
 			
 		<!-- EDIT POSTS -->
-		<div class="create">
+		<div class="edit">
 		<?php
 			global $data;
 			$userarray=$GLOBALS["userArr"];
@@ -105,22 +111,21 @@
 			}
 			?>
 			<form method ="post" enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"];?>" >
-				<label class="createPost"> Edit Post </label>
-				<table class="createDetails">
-					<tr><td><input class="titleInput" type = "text" name = "editTitle" Placeholder="Title" value = "<?php echo $firstTitle;?>"/></td></tr>
+				<label class="editPost"> Edit Post </label>
+				<table class="editDetails">
+					<tr><td><input class="titleInput" type = "text" name = "titleInput" Placeholder="Title" value = "<?php echo $firstTitle;?>"/></td></tr>
 					<!--<tr><td><input class="contentInput" type = "text" name = "createContent" Placeholder="Thread Discussion"/></td></tr>-->
-					<tr><td><textarea class="contentInput" rows='15' cols='35' name='editContent'><?php echo $firstContent;?></textarea></td></tr>
+					<tr><td><textarea class="contentInput" rows='15' cols='35' name='contentInput'><?php echo $firstContent;?></textarea></td></tr>
                     <tr><td><img class='postImg' src='<?php echo $firstImage;?>'/></td></tr>
-					<tr><td><input class="imageInput" type = "file" name = "editImage"></td></tr>
+					<tr><td><input class="imageInput" type = "file" name = "imageInput"></td></tr>
 					<tr><td><span style="color:red"> <?php echo $errorMessage;?> </span></td></tr>
-					<tr><td><input class="createBtn" type = "submit" name = "editBtn" value="Edit Post"/></td></tr>
+					<tr><td><input class="editBtn" type = "submit" name = "editBtn" value="Edit Post"/></td></tr>
 				</table>
 			</form>
 		</div>
 			
-		<div class="footer">
-				
-		</div>
+		<!--FOOTER-->
+		<?php require_once (ROOT_PATH .'\includes\footer.php')?>
 		
 	</body>
 </html>

@@ -232,9 +232,8 @@
 		
 		</div>
 			
-		<div class="footer">
-				
-		</div>
+		<!--FOOTER-->
+		<?php require_once (ROOT_PATH .'\includes\footer.php')?>
 		
 	</body>
 </html>
