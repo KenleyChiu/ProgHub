@@ -126,22 +126,25 @@
 						$_SESSION['id'] = $_POST['commentDeleteInfo'];
 						header("Location:deleteComment.php");
 					}
-					
+					$likeValue = "Star";
+					$newLikes = "0";
 					$profilePic= searchAuthor($postAuthor,$imagesArray);
-					if($signedInStatus == "True"){
-						$likeValue = "Star";
-						$checkLikes = "select * from postlikes where Username='".$userarray[0]."' and Title='".$postTitle."'";
+					
+						$checkLikes = "select * from postlikes where Community='".$community."' and Title='".$postTitle."'";
 						$liked = mysqli_query($data,$checkLikes);
 						$likeArr = mysqli_fetch_array($liked);
 						$newLikes = $likesCount;
 							
-						if(!empty($likeArr)){
-							$likeValue = "Unstar";
-						} else {
-							$likeValue = "Star";
-						}
 						
-						if(isset($_POST['likeBtn'])){	
+						
+					if(isset($_POST['likeBtn'])){
+											
+						if($signedInStatus == "True"){
+							if(!empty($likeArr)){
+								$likeValue = "Unstar";
+							} else {
+								$likeValue = "Star";
+							}	
 							if(empty($likeArr)){
 								$newLikes = $likesCount + 1;
 								$addLikes = "update posts set Likes='".$newLikes."' where Title='".$postTitle."'";
@@ -166,10 +169,11 @@
 								$likesCount = $newLikes;
 								$likeValue = "Star";
 							}
+						}else {
+							$errorMessage = "You have to be logged in to Like!";
 						}
-					} else {
-						$errorMessage = "You have to be logged in to do that!";
 					}
+					
 					// if create comment button is pressed
 					if(isset($_POST['commentBtn'])){
 						if($signedInStatus == "True"){		
@@ -223,7 +227,7 @@
 								}
 							}
 						 }else {
-							$errorMessage = "You have to be logged in to do that!";
+							$errorMessage = "You have to be logged in to Comment!";
 						}
 					} 
 					
@@ -256,7 +260,7 @@
 						echo "<input class='likeBtn' type='submit' name='likeBtn' value='".$likeValue."'></form>";
 						echo "<label class='stars'>" .$newLikes." Stars </label>";
 						echo "<label class='comments'>" .$commentsCount." Comments </label>";
-					}
+					} 
 
 					
 				?>				
