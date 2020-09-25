@@ -48,6 +48,7 @@
 					if ($_SERVER["REQUEST_METHOD"] == "POST")
 					{
 						$title=$content=$statement=" ";
+						// echo $_POST["editTitle"];
 						if(empty($_POST["editTitle"])||empty($_POST["editContent"])){
 							$errorMessage = "Fill up Title and Content";
 						}
@@ -113,11 +114,11 @@
 			<form method ="post" enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"];?>" >
 				<label class="editPost"> Edit Post </label>
 				<table class="editDetails">
-					<tr><td><input class="titleInput" type = "text" name = "titleInput" Placeholder="Title" value = "<?php echo $firstTitle;?>"/></td></tr>
+					<tr><td><input class="titleInput" type = "text" name = "editTitle" Placeholder="Title" value = "<?php echo $firstTitle;?>"/></td></tr>
 					<!--<tr><td><input class="contentInput" type = "text" name = "createContent" Placeholder="Thread Discussion"/></td></tr>-->
-					<tr><td><textarea class="contentInput" rows='15' cols='35' name='contentInput'><?php echo $firstContent;?></textarea></td></tr>
+					<tr><td><textarea class="contentInput" rows='15' cols='35' name='editContent'><?php echo $firstContent;?></textarea></td></tr>
                     <tr><td><img class='postImg' src='<?php echo $firstImage;?>'/></td></tr>
-					<tr><td><input class="imageInput" type = "file" name = "imageInput"></td></tr>
+					<tr><td><input class="imageInput" type = "file" name = "editImage"></td></tr>
 					<tr><td><span style="color:red"> <?php echo $errorMessage;?> </span></td></tr>
 					<tr><td><input class="editBtn" type = "submit" name = "editBtn" value="Edit Post"/></td></tr>
 				</table>
