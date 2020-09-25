@@ -31,10 +31,10 @@
 			global $data;
 			$userarray=$GLOBALS["userArr"];
             $errorMessage="";
-            $firstTitle=$_SESSION['TitlePost'];
-            $firstContent=$_SESSION['TextPost'];
-            $firstImage=$_SESSION['ImagePost'];
-            $author= $_SESSION['AuthorPost'];
+            $firstContent=$_POST['contentBtn'];
+            $firstImage=$_POST['imageBtn'];
+			$author= $_POST['userbtn'];
+			$title= $_POST['titleBtn'];
 			
 			if(isset($_POST["editBtn"]))
 			{
@@ -42,11 +42,10 @@
 					if ($_SERVER["REQUEST_METHOD"] == "POST")
 					{
 						$title=$content=$statement=" ";
-						if(empty($_POST["editTitle"])||empty($_POST["editContent"])){
-							$errorMessage = "Fill up Title and Content";
+						if(empty($_POST["editContent"])){
+							$errorMessage = "Fill up Content";
 						}
 						else{
-							$title=$_POST["editTitle"];
 							$content=$_POST["editContent"];
 							$community=$_SESSION['commSelected'];
 							if(empty($_FILES["editImage"]["name"]))
