@@ -48,7 +48,6 @@
 					if ($_SERVER["REQUEST_METHOD"] == "POST")
 					{
 						$title=$content=$statement=" ";
-						// echo $_POST["editTitle"];
 						if(empty($_POST["editTitle"])||empty($_POST["editContent"])){
 							$errorMessage = "Fill up Title and Content";
 						}
