@@ -190,10 +190,10 @@
 						<td><input class="settingsInput" type="text" name="age" size='35' Placeholder="Age.."/></td></tr>
 						<tr><td><label class="settingsDetails"> Gender: </label></td>
 						<td><input class="radioInput" type="radio" name="gender" value="M"/> M <input class="radioInput" type="radio" name="gender" value="F"/> F </td></tr>
-						<tr><td><label class="settingsDetails"> Change Password: </label></td>
-						<td><input class="settingsInput" type="password" name="newPassword" minlength="5" size='35' Placeholder="New Password.."/></td></tr>
 						<tr><td><label class="settingsDetails"> Old Password: </label></td>
 						<td><input class="settingsInput" type="password" name="oldPassword" minlength="5" size='35' Placeholder="Old Password.."/></td></tr>
+						<tr><td><label class="settingsDetails"> Change Password: </label></td>
+						<td><input class="settingsInput" type="password" name="newPassword" minlength="5" size='35' Placeholder="New Password.."/></td></tr>						
 						<tr><td><label class="settingsDetails"> Confirm Password: </label></td>
 						<td><input class="settingsInput" type="password" name="confirmPassword" minlength="5" size='35' Placeholder="Confirm Change Password.."/></td></tr>
 						<tr><td></td><td><span style="color:red"> <?php echo $userRegistrationError;?> </span></td></tr>
