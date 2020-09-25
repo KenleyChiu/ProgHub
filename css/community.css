@@ -307,7 +307,7 @@ label.titleLabel{
 	/*border: 1px solid black;*/
 }
 
-/*section{
+section{
 	position: relative;
 }
 
@@ -319,12 +319,13 @@ section:first-of-type {
 	display:inline-block;
 	font-size: 22px;
 	cursor: pointer;
-}*/
+}
 
 label.threads, a:link, a:visited{
 	font-size: 22px;
 	color: black;
 	display: inline;
+	cursor: pointer;
 }
 
 label.threads a:hover{
@@ -343,6 +344,7 @@ label.projects, a:link, a:visited{
 	font-size: 22px;
 	color:  black;
 	display:inline-block;
+	cursor: pointer;
 }
 
 label.projects a:hover{

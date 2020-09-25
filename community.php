@@ -6,6 +6,7 @@
 	<head>
 		<title>Website Project</title>
 		<link rel="stylesheet" type="text/css" href="css/community.css">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	</head>
 		<?php
 			global $user;
@@ -205,63 +206,125 @@
 		
 		<!-- DIVIDER BEWTEEN THREAD AND PROJECT -->
 		<div class="headers">
-			<label class="threads"><a href="#"> Threads </a></label>
-			<span class="divider1"> </span>
-			<label class="projects"><a href="#"> Projects </a></label>
 			<?php
 				if(isset($_POST["goTocreate"])) toCreatePost($signedInStatus);
 			?>
 			<form class="createBtnForm" method ="post" action=>
 				<input class="createBtn" type = "submit" name = "goTocreate" value="Create Post"/>
 			</form>
-		</div>
-				
-		<div class ="post">
-			<?php	
-				
-				$postsQuery = mysqli_query($data,"select * from posts where community = '$community'");
-				
-				fillPostArray($postsQuery);
-				
-				$usersListQuery = mysqli_query($user,"select * from userdetails");
-				
-				fillUserArray($usersListQuery);
-				
-				foreach($postArr as $post){
-					if(isset($_POST[$post["Title"]])){
-						toPost($post);
-					}
-					
-					if(isset($_POST['del'.$post["Title"].'Btn'])){
-						//delete post
-						$delPostQuery = "delete from posts where community='$community' and Title='".$post["Title"]."'";
-						mysqli_query($data,$delPostQuery);
+			<nav>
+				<ul>
+				  <li data-rel="1" class="active" name="current"><a href="#"><label class="threads"> Threads </label></a></li>
+				  <li><span class="divider1"> </span></li>
+				  <li data-rel="2"><a href="#"><label class="projects">Projects </label></a></li>
+				</ul>
+			 </nav>
+			 <br>
+			 
+			
+			 <!--THREADS SECTION-->
+			 <section> <article>
+				<div class ="post">
+					<?php	
 						
-						//delete comments on post
-						$delCommentsQuery = "delete from commentspost where community='$community' and Title='".$post["Title"]."'";
-						mysqli_query($data,$delCommentsQuery);
-						header("Location:community.php");
-					}
-					
-					if(isset($_POST[$post['Author'].'Btn'])){
-						toUserProfile($post,$userArr);
-					}
-				}
+						$postsQuery = mysqli_query($data,"select * from posts where community = '$community' and PostType='Thread'");
+						
+						fillPostArray($postsQuery);
+						
+						$usersListQuery = mysqli_query($user,"select * from userdetails");
+						
+						fillUserArray($usersListQuery);
+						
+						foreach($postArr as $post){
+							if(isset($_POST[$post["Title"]])){
+								toPost($post);
+							}
+							
+							if(isset($_POST['del'.$post["Title"].'Btn'])){
+								//delete post
+								$delPostQuery = "delete from posts where community='$community' and Title='".$post["Title"]."'";
+								mysqli_query($data,$delPostQuery);
+								
+								//delete comments on post
+								$delCommentsQuery = "delete from commentspost where community='$community' and Title='".$post["Title"]."'";
+								mysqli_query($data,$delCommentsQuery);
+								header("Location:community.php");
+							}
+							
+							if(isset($_POST[$post['Author'].'Btn'])){
+								toUserProfile($post,$userArr);
+							}
+						}
+						
+						$profilePic="";
+						if($signedInStatus == "True"){
+							if($userarray[3] == "User"){
+								displayPostsIfUser($postArr,$imagesArray,$userarray);
+							} else {
+								displayPostsIfAdmin($postArr,$imagesArray,$userarray);
+							}
+						} else {
+							displayPostsIfAnonymous($postArr,$imagesArray,$userarray);
+						}
+						
+					?>
 				
-				$profilePic="";
-				if($signedInStatus == "True"){
-					if($userarray[3] == "User"){
-						displayPostsIfUser($postArr,$imagesArray,$userarray);
-					} else {
-						displayPostsIfAdmin($postArr,$imagesArray,$userarray);
-					}
-				} else {
-					displayPostsIfAnonymous($postArr,$imagesArray,$userarray);
-				}
+				</div>
+			</article></section> 
+			
+			<!--PROJECTS SECTION-->
+			<section> <article>
+				<div class ="post"><br>
+					<?php					
+						$postsQuery = mysqli_query($data,"select * from posts where community = '$community' and PostType='Project'");
+						
+						fillPostArray($postsQuery);
+						
+						$usersListQuery = mysqli_query($user,"select * from userdetails");
+						
+						fillUserArray($usersListQuery);
+						
+						foreach($postArr as $post){
+							if(isset($_POST[$post["Title"]])){
+								toPost($post);
+							}
+							
+							if(isset($_POST['del'.$post["Title"].'Btn'])){
+								//delete post
+								$delPostQuery = "delete from posts where community='$community' and Title='".$post["Title"]."'";
+								mysqli_query($data,$delPostQuery);
+								
+								//delete comments on post
+								$delCommentsQuery = "delete from commentspost where community='$community' and Title='".$post["Title"]."'";
+								mysqli_query($data,$delCommentsQuery);
+								header("Location:community.php");
+							}
+							
+							if(isset($_POST[$post['Author'].'Btn'])){
+								toUserProfile($post,$userArr);
+							}
+						}
+						
+						$profilePic="";
+						if($signedInStatus == "True"){
+							if($userarray[3] == "User"){
+								displayPostsIfUser($postArr,$imagesArray,$userarray);
+							} else {
+								displayPostsIfAdmin($postArr,$imagesArray,$userarray);
+							}
+						} else {
+							displayPostsIfAnonymous($postArr,$imagesArray,$userarray);
+						}
+						
+					?>
 				
-			?>
-		
+				</div>
+			</article></section> 
+			 
+			
 		</div>
+				
+		
 		
 		<?php
 			$threadQuery = mysqli_query($data,"select * from posts where Community='$community' and PostType='Thread'");
@@ -282,6 +345,13 @@
 		<div class="footer">
 				
 		</div>
-		
+		<script>
+		(function($) {
+			$('nav li').click(function() {
+			  $(this).addClass('active').siblings('li').removeClass('active');
+			  $('section:nth-of-type('+$(this).data('rel')+')').stop().fadeIn(400, 'linear').siblings('section').stop().fadeOut(400, 'linear'); 
+			});
+		  })(jQuery);
+		</script>
 	</body>
 </html>
