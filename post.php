@@ -166,9 +166,9 @@
 								$likesCount = $newLikes;
 								$likeValue = "Star";
 							}
-						} else {
-							$errorMessage = "You have to be logged in to do that!";
 						}
+					} else {
+						$errorMessage = "You have to be logged in to do that!";
 					}
 					// if create comment button is pressed
 					if(isset($_POST['commentBtn'])){
@@ -225,9 +225,7 @@
 						 }else {
 							$errorMessage = "You have to be logged in to do that!";
 						}
-					} else {
-						$errorMessage = "";
-					}
+					} 
 					
 					
 					
