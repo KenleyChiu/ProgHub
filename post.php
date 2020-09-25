@@ -43,6 +43,7 @@
 					$postPostType = $_SESSION['PostTypePost'];
 					$commentsCount = $_SESSION['CommentsPost'];
 					$errorMessage = " ";
+					$allCommentArray = array();
 					if(isset($_POST['editPost'])){
 						//use this for new session
 						$_SESSION['AuthorPost'] = $postAuthor;
@@ -69,6 +70,19 @@
 						mysqli_query($data,$delCommentsQuery);
 						header("Location:community.php");
 					}
+
+					if(isset($_POST['commentEditInfo']))
+					{
+						$_SESSION['id'] = $_POST['commentEditInfo'];
+						header("Location:editComment.php");
+					}
+
+					if(isset($_POST['commentDeleteInfo']))
+					{
+						$_SESSION['id'] = $_POST['commentDeleteInfo'];
+						header("Location:deleteComment.php");
+					}
+
 					$profilePic= searchAuthor($postAuthor,$imagesArray);
 					echo "<a href='users.php'><img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
 					if(isset($_POST['likeBtn'])){
@@ -104,7 +118,7 @@
 									$comment= $_POST["commentContent"];
 									if(empty($_FILES["commentImage"]["name"]))
 									{	
-										$statement="Insert into commentpost values ('$userarray[0]','$postTitle','$comment','','0','$community','Thread',NOW())";
+										$statement="Insert into commentpost (Username,Title,TextComment,ImageComment,Likes,Community,PostType,Upload) values ('$userarray[0]','$postTitle','$comment','','0','$community','Thread',NOW())";
 										mysqli_query($data,$statement);
 										$commentsCount++;
 										$addComment = "update posts set Comment='".$commentsCount."' where Title='".$postTitle."'";
@@ -124,7 +138,7 @@
 												$fileNameNew = $fileExt[0].".".$fileActualExt;
 												$fileDestination ='upload/'.$fileNameNew;
 												move_uploaded_file($filetmp,$fileDestination);
-												$statement = "Insert into commentPost values ('$userarray[0]','$postTitle','$comment','$fileDestination','0','$community','Thread',NOW())";
+												$statement = "Insert into commentPost (Username,Title,TextComment,ImageComment,Likes,Community,PostType,Upload) values ('$userarray[0]','$postTitle','$comment','$fileDestination','0','$community','Thread',NOW())";
 												$status=mysqli_query($data,$statement);
 												if($status){
 													$errorMessage="File sucessfully Upload";
@@ -197,6 +211,18 @@
 						$profilePic=searchAuthor($comments['Username'],$imagesArray);
 						echo "<div class='singleComment'>";
 						echo "<a href='users.php'><img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
+						if($comments['Username'] == $userarray[0] || $userarray[3]== "Admin")
+						{
+							echo "<img class='delImg' src='pictures/delete.png'/>";
+							echo "<form class='deleteBtnForm' method='post'>";
+							echo "<input type='hidden' name='commentDeleteInfo' value='".$comments['id']."'/><br>";
+							echo "<input class='deleteBtn' type='submit'value =''/><br><br>";
+							echo "</form>";
+							echo "<form class='editBtnForm' method='post'>";
+							echo "<input type='hidden' name='commentEditInfo' value='".$comments['id']."'/><br>";
+							echo "<input class='editBtn'type='submit' value='edit'/><br>";
+							echo "</form>";
+						}
 						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$comments['Username']." </a></label><br><br>";
 						echo "<p class='postComment'>".$comments['TextComment']." </p><br>";
 						echo "<img class='commentImg' src='".$comments['ImageComment']."'/><br><br>" ;

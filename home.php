@@ -256,9 +256,7 @@
 									}
 								}
 							 }
-							
 
-							$profilePic="";
 							if($signedInStatus == "True"){
 								if($userarray[3] == "User"){
 									displayPostsIfUser($postArr,$imagesArray,$userarray);
@@ -271,12 +269,7 @@
 						?>
 					</div>			
 				</article></section>
-			
-			
-			
-			
-			
-			
+		
 			</div>
 			
 			
