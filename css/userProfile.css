@@ -333,7 +333,6 @@ ul.data{
 	height: 70px;
 	border-radius: 10px	;
 	border: 1px solid #E1E1E1;
-	text-align: center;
 	width: 275px;
 	background-color: #323335;
 }
@@ -344,6 +343,7 @@ ul.data{
 	font-weight:bold;
 	color: #D0FF36;
 	margin-bottom: -10;
+	text-align: center;
 }
 
 .singlePost{
@@ -352,15 +352,17 @@ ul.data{
 	background-color: white;
 	padding: 10 0 10 10;
 	margin: 10 0 0 0;
+	
+	text-align:center;
 }
 
-.postTitleBtn{
+label.postTitleBtn, .postTitleBtn{
 	border: 1px solid transparent;
-	margin-left: 10;
 	font-weight: bold;
 	font-size: 20px;
 	background-color: transparent;
-	cursor: pointer;
+	/*cursor: pointer;*/
+	overflow-wrap: break-word;
 }
 
 .footer{

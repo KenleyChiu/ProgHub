@@ -1,5 +1,4 @@
 <html>
-	
 	<?php require_once 'config.php'?>
 	<?php require_once (ROOT_PATH .'\includes\header.php')?>
 	<?php require_once (ROOT_PATH .'\includes\navigation.php')?>
@@ -7,7 +6,6 @@
 		<title>Website Project</title>
 		<link rel="stylesheet" type="text/css" href="css/userProfile.css">
 	</head>
-	
 	<?php
 		global $user,$data;
 		$userarray=$GLOBALS["userArr"];
@@ -47,13 +45,16 @@
 			$_SESSION['commSelected'] = $post["Community"];
 			$_SESSION['PostTypePost'] = $post["PostType"];
 			header("Location:post.php");
+			return;
 		}
 		
 		function displayPosts($postArr){
 			foreach(array_values($postArr) as $key => $post){
 				echo "<div class='singlePost'>";
 				echo "<form method='post'>";
-				echo "<input class='postTitleBtn' type='submit' name='goToPost' value='".$post["Title"]."'/><br><br>";
+				//echo "<input class='postTitleBtn' type='submit' name='goToPost' value='".$post["Title"]."'/>";
+				//echo "<input type='hidden' name='goToPostValue' value='".$post["Title"]."'/>";
+				echo "<label class='postTitleBtn'> ".$post["Title"]." </label><br><br>";
 				echo "</form>";
 				echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
 				echo "<br>";
@@ -62,7 +63,6 @@
 			return;
 		}
 	?>
-
 	<body>
 
 			
@@ -172,26 +172,24 @@
 			</div>
 
 			<div class="data">
-				
 				<ul class="data">
 					<li class="top3posts">Top 3 Posts:</li><br><br>
 					<?php
-						
-						
+						ob_start();
 						if($_SESSION['statusUser'] == "selected"){
-							$postsQuery = mysqli_query($data,"select * from posts where Author='".$username."' order by Likes DESC");
-							$postArr = fillPostArray($postsQuery);
-							displayPosts($postArr);
+							$selectedUserQuery = "select * from posts where Author='".$username."' order by Likes DESC";
 							unset($_SESSION['statusUser']);
 							$_SESSION['statusUser'] = "notselected";
 						} else {
-							$postsQuery = mysqli_query($data,"select * from posts where Author='".$userarray[0]."' order by Likes DESC");
-							$postArr = fillPostArray($postsQuery);
-							displayPosts($postArr);
+							$selectedUserQuery = "select * from posts where Author='".$userarray[0]."' order by Likes DESC";
 						}
 						
+						$postsQuery = mysqli_query($data,$selectedUserQuery);
+						$postArr = fillPostArray($postsQuery);
+						
+						displayPosts($postArr);
 						// Go to post.php	
-						if(isset($_POST['goToPost']))
+						/*if(isset($_POST['goToPost']))
 						{
 							foreach($postArr as $post){
 								if($post['Title']==$_POST['goToPost'])
@@ -199,12 +197,12 @@
 									toPost($post);
 								}
 							}
-						}
-						
-						
+						}*/
+						ob_end_flush();
 					?>
 				</ul>
-			</div>			
+			</div>	
+			
 			<!--FOOTER-->
 			<div class="footer">
 				
