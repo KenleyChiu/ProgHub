@@ -71,12 +71,17 @@
 						header("Location:community.php");
 					}
 
-					if(isset($_POST['commentinfo']))
+					if(isset($_POST['commentEditInfo']))
 					{
-						echo $_POST['commentinfo'];
+						$_SESSION['id'] = $_POST['commentEditInfo'];
+						header("Location:editComment.php");
 					}
 
-					
+					if(isset($_POST['commentDeleteInfo']))
+					{
+						$_SESSION['id'] = $_POST['commentDeleteInfo'];
+						header("Location:deleteComment.php");
+					}
 
 					$profilePic= searchAuthor($postAuthor,$imagesArray);
 					echo "<a href='users.php'><img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
@@ -162,13 +167,13 @@
 						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$postAuthor." </a></label>";
 						if($postAuthor == $userarray[0] || $userarray[3]== "Admin")
 						{
-							// echo "<form class='editBtnForm' method='post'>";
-							// echo "<input class='editBtn' type='submit' name='editPost' value='Edit Post'/><br>";
-							// echo "</form>";
-							// // echo "<img class='delImg' src='pictures/delete.png'/>";
-							// echo "<form class='deleteBtnForm' method='post'>";
-							// echo "<input class='deleteBtn' type='submit' name='deletePost' value ='delete'/><br><br>";
-							// echo "</form>";
+							echo "<img class='delImg' src='pictures/delete.png'/>";
+							echo "<form class='deleteBtnForm' method='post'>";
+							echo "<input class='deleteBtn' type='submit' name='deletePost' value =''/><br><br>";
+							echo "</form>";
+							echo "<form class='editBtnForm' method='post'>";
+							echo "<input class='editBtn' type='submit' name='editPost' value='Edit Post'/><br>";
+							echo "</form>";
 						}						
 						echo "<br><br><label class='postTitle'>".$postTitle."</label><br><br>";
 						echo "<br><p class='postContent'>".$postTextContent."</p><br>";
@@ -208,8 +213,13 @@
 						echo "<a href='users.php'><img class='userImg' src='data:image/jpeg;base64,".base64_encode($profilePic)."'></a>";
 						if($comments['Username'] == $userarray[0] || $userarray[3]== "Admin")
 						{
+							echo "<img class='delImg' src='pictures/delete.png'/>";
+							echo "<form class='deleteBtnForm' method='post'>";
+							echo "<input type='hidden' name='commentDeleteInfo' value='".$comments['id']."'/><br>";
+							echo "<input class='deleteBtn' type='submit'value =''/><br><br>";
+							echo "</form>";
 							echo "<form class='editBtnForm' method='post'>";
-							echo "<input type='hidden' name='commentinfo' value='".$comments['id']."'/><br>";
+							echo "<input type='hidden' name='commentEditInfo' value='".$comments['id']."'/><br>";
 							echo "<input class='editBtn'type='submit' value='edit'/><br>";
 							echo "</form>";
 						}

@@ -30,11 +30,14 @@
 		<?php
 			global $data;
 			$userarray=$GLOBALS["userArr"];
-            $errorMessage="";
-            $firstContent=$_POST['contentBtn'];
-            $firstImage=$_POST['imageBtn'];
-			$author= $_POST['userbtn'];
-			$title= $_POST['titleBtn'];
+			$errorMessage="";
+			$statement="select * from commentpost where id = '".$_SESSION['id']."'";
+			$result=mysqli_query($data,$statement);
+			$commentdata=mysqli_fetch_array($result);
+            $firstContent=$commentdata['TextComment'];
+            $firstImage=$commentdata['ImageComment'];
+			$author= $commentdata['Username'];
+			$title= $commentdata['Title'];
 			
 			if(isset($_POST["editBtn"]))
 			{
@@ -50,15 +53,9 @@
 							$community=$_SESSION['commSelected'];
 							if(empty($_FILES["editImage"]["name"]))
 							{	
-                                $titleUpdate="Update posts set Title = '$title' Where Author = '$author' and Title = '$firstTitle'";
-                                $result=mysqli_query($data,$titleUpdate);
-                                $titlelikesUpdate= "Update posts set Title = '$title' Where Username = '$author' and Title = '$firstTitle'";
-                                $result=mysqli_query($data,$titlelikesUpdate);
-                                $titlecommentUpdate= "Update commentpost set Title = '$title' Where Username = '$author' and Title = '$firstTitle'";
-                                $result=mysqli_query($data,$titlecommentUpdate);
-                                $contentUpdate="update posts set TextContent = '$content' Where Author = '$author' and Title = '$title'";
+                                $contentUpdate="update commentpost set TextComment = '$content' Where id ='".$_SESSION['id']."'";
                                 mysqli_query($data,$contentUpdate);
-								header("Location:community.php");
+								header("Location:post.php");
 								exit();
 							}
 							else{
@@ -76,17 +73,11 @@
 										$fileNameNew = $fileExt[0].".".$fileActualExt;
 										$fileDestination ='upload/'.$fileNameNew;
 										move_uploaded_file($filetmp,$fileDestination);
-										$titleUpdate="Update posts set Title = '$title' Where Author = '$author' and Title = '$firstTitle'";
-                                        $result=mysqli_query($data,$titleUpdate);
-                                        $titlelikesUpdate= "Update posts set Title = '$title' Where Username = '$author' and Title = '$firstTitle'";
-                                        $result=mysqli_query($data,$titlelikesUpdate);
-                                        $titlecommentUpdate= "Update commentpost set Title = '$title' Where Username = '$author' and Title = '$firstTitle'";
-                                        $result=mysqli_query($data,$titlecommentUpdate);
-                                        $contentUpdate="update posts set TextContent = '$content' Where Author = '$author' and Title = '$title'";
-                                        mysqli_query($data,$contentUpdate);
-                                        $FileUpdate="update posts set ImageContent = '$fileDestination' Where Author = '$author' and Title = '$title'";
+										$contentUpdate="update commentpost set TextComment = '$content' Where id ='".$_SESSION['id']."'";
+                                		mysqli_query($data,$contentUpdate);
+                                        $FileUpdate="update commentpost set ImageComment = '$fileDestination' Where id ='".$_SESSION['id']."'";
                                         mysqli_query($data,$FileUpdate);
-										header("Location:community.php");
+										header("Location:post.php");
 										exit();
 									}else{
 										$errorMessage="File Upload Failed";
@@ -104,15 +95,14 @@
 			}
 			?>
 			<form method ="post" enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"];?>" >
-				<label class="createPost"> Edit Post </label>
+				<label class="createPost"> Edit Comment </label>
 				<table class="createDetails">
-					<tr><td><input class="titleInput" type = "text" name = "editTitle" Placeholder="Title" value = "<?php echo $firstTitle;?>"/></td></tr>
 					<!--<tr><td><input class="contentInput" type = "text" name = "createContent" Placeholder="Thread Discussion"/></td></tr>-->
 					<tr><td><textarea class="contentInput" rows='15' cols='35' name='editContent'><?php echo $firstContent;?></textarea></td></tr>
                     <tr><td><img class='postImg' src='<?php echo $firstImage;?>'/></td></tr>
 					<tr><td><input class="imageInput" type = "file" name = "editImage"></td></tr>
 					<tr><td><span style="color:red"> <?php echo $errorMessage;?> </span></td></tr>
-					<tr><td><input class="createBtn" type = "submit" name = "editBtn" value="Edit Post"/></td></tr>
+					<tr><td><input class="createBtn" type = "submit" name = "editBtn" value="Edit Comment"/></td></tr>
 				</table>
 			</form>
 		</div>

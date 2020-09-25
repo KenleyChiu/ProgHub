@@ -68,7 +68,7 @@
 				<label class="titleLabel"> USERS </label>
 			</div>
 			
-			<!--LEFT SIDE
+			<!--LEFT SIDE-->
 			<div class="searchUsers">
 				<ul class="searchUser">
 					<li><label class="searchusers"> Search Users </label></li>
@@ -80,7 +80,7 @@
 				<li><input class="searchUserBtn" type="submit" name="searchUserBtn" value="Search" /></li>
 					</form>
 				</ul>
-			</div>-->
+			</div> 
 			
 			<div class="users">
 				<ul class="users">

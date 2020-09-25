@@ -16,8 +16,6 @@
 			$community = $_SESSION['commSelected'];
 			
 			function fillPostArray($postsQuery){
-				global $postsArr,$postArr;
-				$postsArr = array();
 				$postArr = array();
 				while($posts = mysqli_fetch_array($postsQuery)){
 					$postsArr = array();
@@ -38,7 +36,6 @@
 			}
 			
 			function fillUserArray($usersListQuery){
-				$usersArr = array();
 				$userArr = array();
 				while($users = mysqli_fetch_array($usersListQuery)){
 					$usersArr = array();
@@ -228,11 +225,11 @@
 						
 						$postsQuery = mysqli_query($data,"select * from posts where community = '$community' and PostType='Thread'");
 						
-						fillPostArray($postsQuery);
+						$postArr = fillPostArray($postsQuery);
 						
 						$usersListQuery = mysqli_query($user,"select * from userdetails");
 						
-						fillUserArray($usersListQuery);
+						$userArr = fillUserArray($usersListQuery);
 						
 						// Go to post.php	
 						if(isset($_POST['goToPost']))
@@ -276,11 +273,11 @@
 					<?php					
 						$postsQuery = mysqli_query($data,"select * from posts where community = '$community' and PostType='Project'");
 						
-						fillPostArray($postsQuery);
+						$postArr = fillPostArray($postsQuery);
 						
 						$usersListQuery = mysqli_query($user,"select * from userdetails");
 						
-						fillUserArray($usersListQuery);
+						$userArr = fillUserArray($usersListQuery);
 						
 						// Go to post.php	
 						if(isset($_POST['goToPost']))

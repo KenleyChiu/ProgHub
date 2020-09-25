@@ -417,7 +417,7 @@ label.createComment{
 .editBtnForm{
 	display:inline-block;
 	float:right;
-	margin-right:10;
+	margin-top:7;
 }
 
 .editBtn{
@@ -430,10 +430,40 @@ label.createComment{
 	color: #D0FF36;
 	float: right;
 	cursor:pointer;
+	position: relative;
 }
 
 .editBtn:hover{
 	background-color: gray;
+}
+
+.deleteBtnForm{
+	/*display:inline-block;
+	float:right;*/
+	margin-right:10;
+	float:right;
+}
+
+.deleteBtn{
+	border: 1px solid transparent;
+	background-color: transparent;
+	cursor: pointer;
+	/*display:inline-block;
+	position:absolute;*/
+	padding: 10;
+	margin-left: 11;
+	margin-bottom: 15;
+	float:right;
+	position: absolute;
+}
+
+.delImg{
+	width: 25;
+	height: 25;
+	float: right;
+	margin-right:6;
+	margin-top: 6;
+	position:relative;
 }
 
 .commentUserImg{
