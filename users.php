@@ -80,7 +80,7 @@
 				<li><input class="searchUserBtn" type="submit" name="searchUserBtn" value="Search" /></li>
 					</form>
 				</ul>
-			</div> 
+			</div>
 			
 			<div class="users">
 				<ul class="users">

@@ -19,7 +19,7 @@ body{
 	"header header header"
 	"menu menu menu"
 	"title title title"
-	"back profile ."
+	"back profile data"
 	"footer footer footer";
 }
 
@@ -321,6 +321,46 @@ ul.favorite li{
 
 .profileDetails{
 	margin-left:20;
+}
+
+.data{
+	grid-area: data;
+}
+
+ul.data{
+	margin: 10 40 0 50;
+	background-color: white;
+	height: 70px;
+	border-radius: 10px	;
+	border: 1px solid #E1E1E1;
+	text-align: center;
+	width: 275px;
+	background-color: #323335;
+}
+
+.top3posts{
+	margin-top: 25;
+	font-size: 18px;
+	font-weight:bold;
+	color: #D0FF36;
+	margin-bottom: -10;
+}
+
+.singlePost{
+	border: 1px solid black;
+	border-radius: 5px;
+	background-color: white;
+	padding: 10 0 10 10;
+	margin: 10 0 0 0;
+}
+
+.postTitleBtn{
+	border: 1px solid transparent;
+	margin-left: 10;
+	font-weight: bold;
+	font-size: 20px;
+	background-color: transparent;
+	cursor: pointer;
 }
 
 .footer{
