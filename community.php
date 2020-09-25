@@ -16,6 +16,8 @@
 			$community = $_SESSION['commSelected'];
 			
 			function fillPostArray($postsQuery){
+				global $postsArr,$postArr;
+				$postsArr = array();
 				$postArr = array();
 				while($posts = mysqli_fetch_array($postsQuery)){
 					$postsArr = array();
@@ -232,26 +234,25 @@
 						
 						fillUserArray($usersListQuery);
 						
-						foreach($postArr as $post){
-							if(isset($_POST[$post["Title"]])){
-								toPost($post);
-							}
-							
-							if(isset($_POST['del'.$post["Title"].'Btn'])){
-								//delete post
-								$delPostQuery = "delete from posts where community='$community' and Title='".$post["Title"]."'";
-								mysqli_query($data,$delPostQuery);
-								
-								//delete comments on post
-								$delCommentsQuery = "delete from commentspost where community='$community' and Title='".$post["Title"]."'";
-								mysqli_query($data,$delCommentsQuery);
-								header("Location:community.php");
-							}
-							
-							if(isset($_POST[$post['Author'].'Btn'])){
-								toUserProfile($post,$userArr);
+						// Go to post.php	
+						if(isset($_POST['goToPost']))
+						{
+							foreach($postArr as $post){
+								if($post['Title']==$_POST['goToPost'])
+								{
+									toPost($post);
+								}
 							}
 						}
+							
+						// go to user.php
+						if(isset($_POST['userBtn'])){
+							foreach($userArr as $user){
+								if($_POST['userBtn'] == $user["Username"]){
+									toUserProfile($user);
+								}
+							}
+						 }
 						
 						$profilePic="";
 						if($signedInStatus == "True"){
@@ -281,27 +282,25 @@
 						
 						fillUserArray($usersListQuery);
 						
-						foreach($postArr as $post){
-							// Go to post.php	
-							if(isset($_POST['goToPost']))
-							{
-								foreach($postArr as $post){
-									if($post['Title']==$_POST['goToPost'])
-									{
-										toPost($post);
-									}
+						// Go to post.php	
+						if(isset($_POST['goToPost']))
+						{
+							foreach($postArr as $post){
+								if($post['Title']==$_POST['goToPost'])
+								{
+									toPost($post);
 								}
 							}
-							
-							// go to user.php
-							if(isset($_POST['userBtn'])){
-								foreach($userArr as $user){
-									if($_POST['userBtn'] == $user["Username"]){
-										toUserProfile($user);
-									}
-								}
-							 }
 						}
+						
+						// go to user.php
+						if(isset($_POST['userBtn'])){
+							foreach($userArr as $user){
+								if($_POST['userBtn'] == $user["Username"]){
+									toUserProfile($user);
+								}
+							}
+						 }
 						
 						$profilePic="";
 						if($signedInStatus == "True"){
