@@ -153,12 +153,13 @@
 						echo "<label class='postUser'><a class='postUser' href='users.php' > ".$postAuthor." </a></label>";
 						if($postAuthor == $userarray[0] || $userarray[3]== "Admin")
 						{
+							
+							 echo "<img class='delImg' src='pictures/delete.png'/>";
+							echo "<form class='deleteBtnForm' method='post'>";
+							echo "<input class='deleteBtn' type='submit' name='deletePost' value =''/><br><br>";
+							echo "</form>";
 							echo "<form class='editBtnForm' method='post'>";
 							echo "<input class='editBtn' type='submit' name='editPost' value='Edit Post'/><br>";
-							echo "</form>";
-							// echo "<img class='delImg' src='pictures/delete.png'/>";
-							echo "<form class='deleteBtnForm' method='post'>";
-							echo "<input class='deleteBtn' type='submit' name='deletePost' value ='delete'/><br><br>";
 							echo "</form>";
 						}						
 						echo "<br><br><label class='postTitle'>".$postTitle."</label><br><br>";

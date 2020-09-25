@@ -6,6 +6,7 @@
 	<head>
 		<title>Website Project</title>
 		<link rel="stylesheet" type="text/css" href="css/home.css">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	</head>
 	<?php
 		global $data,$user;
@@ -15,6 +16,7 @@
 		
 		function fillPostArray($postsQuery){
 			$postArr = array();
+			$y=0;
 			while($posts = mysqli_fetch_array($postsQuery)){
 				$postsArr = array();
 				$postsArr["Author"] = $posts["Author"];
@@ -29,12 +31,13 @@
 				array_push($postsArr,$postsArr["Author"],$postsArr["Title"],$postsArr["TextContent"],$postsArr["ImageContent"],$postsArr["Likes"],$postsArr["Comments"]
 				,$postsArr["Community"],$postsArr["PostType"],$postsArr["Upload"]);
 				array_push($postArr,$postsArr);
+				$y++;
+				if($y==5) break;
 			}
 			return $postArr;
 		}
 		
 		function fillUserArray($usersListQuery){
-			$usersArr = array();
 			$userArr = array();
 			while($users = mysqli_fetch_array($usersListQuery)){
 				$usersArr = array();
@@ -160,63 +163,123 @@
 		
 			<!--LEFT SIDE-->
 			<div class="info">
-				<ul class="info">
-					<li>Some: </li>
-					<li>Info</li>
-				</ul>
+				
 			</div>
 			
 			
 			<!--MAIN SECTION-->
 			<div class="sections">
-				<label class="recent"><a href="#"> Recent </a></label>
-				<span class="divider1"> </span>
-				<label class="popular"><a href="#"> Popular </a></label>
+				<nav>
+					<ul>
+					  <li data-rel="1" class="active">Recent</li>
+					  <li><span class="divider1"> </span></li>
+					  <li data-rel="2">Popular</li>
+					</ul>
+				</nav>
+				<br>
+				 
+				<!--RECENT SECTION-->
+				<section> <article>
+					<div class ="post">
+						<?php
+							$postsQuery = mysqli_query($data,"select * from posts order by Upload DESC");					
+							
+							$postArr=fillPostArray($postsQuery);
+						
+							$usersListQuery = mysqli_query($user,"select * from userdetails");
+							
+							$userArr=fillUserArray($usersListQuery);
+							
+							// Go to post.php	
+							if(isset($_POST['goToPost']))
+							{
+								foreach($postArr as $post){
+									if($post['Title']==$_POST['goToPost'])
+									{
+										toPost($post);
+									}
+								}
+							}
+
+							// go to user.php
+							if(isset($_POST['userBtn'])){
+								foreach($userArr as $user){
+									if($_POST['userBtn'] == $user["Username"]){
+										toUserProfile($user);
+									}
+								}
+							 }
+							
+
+							$profilePic="";
+							if($signedInStatus == "True"){
+								if($userarray[3] == "User"){
+									displayPostsIfUser($postArr,$imagesArray,$userarray);
+								} else {
+									displayPostsIfAdmin($postArr,$imagesArray,$userarray);
+								}
+							} else {
+								displayPostsIfAnonymous($postArr,$imagesArray,$userarray);
+							}
+						?>
+					</div>			
+				</article></section> 
+			
+				<!--POPULAR SECTION-->
+				<section> <article>
+					<div class ="post">
+						<?php
+							$postsQuery = mysqli_query($data,"select * from posts order by Likes DESC");					
+							
+							$postArr=fillPostArray($postsQuery);
+						
+							$usersListQuery = mysqli_query($user,"select * from userdetails");
+							
+							$userArr=fillUserArray($usersListQuery);
+							
+							// Go to post.php	
+							if(isset($_POST['goToPost']))
+							{
+								foreach($postArr as $post){
+									if($post['Title']==$_POST['goToPost'])
+									{
+										toPost($post);
+									}
+								}
+							}
+
+							// go to user.php
+							if(isset($_POST['userBtn'])){
+								foreach($userArr as $user){
+									if($_POST['userBtn'] == $user["Username"]){
+										toUserProfile($user);
+									}
+								}
+							 }
+							
+
+							$profilePic="";
+							if($signedInStatus == "True"){
+								if($userarray[3] == "User"){
+									displayPostsIfUser($postArr,$imagesArray,$userarray);
+								} else {
+									displayPostsIfAdmin($postArr,$imagesArray,$userarray);
+								}
+							} else {
+								displayPostsIfAnonymous($postArr,$imagesArray,$userarray);
+							}
+						?>
+					</div>			
+				</article></section>
+			
+			
+			
+			
+			
+			
 			</div>
 			
-			<div class ="post">
-				<?php
-					$postsQuery = mysqli_query($data,"select * from posts order by Upload DESC");					
-					
-					$postArr=fillPostArray($postsQuery);
-				
-					$usersListQuery = mysqli_query($user,"select * from userdetails");
-					
-					$userArr=fillUserArray($usersListQuery);
-					
-					// Go to post.php	
-					if(isset($_POST['goToPost']))
-					{
-						foreach($postArr as $post){
-							if($post['Title']==$_POST['goToPost'])
-							{
-								toPost($post);
-							}
-						}
-					}
-
-					// go to user.php
-					if(isset($_POST['userBtn'])){
-						foreach($userArr as $user){
-							if($_POST['userBtn'] == $user["Username"]){
-								toUserProfile($user);
-							}
-						}
-					 }
-					
-
-					$profilePic="";
-					if($signedInStatus == "True"){
-						if($userarray[3] == "User"){
-							displayPostsIfUser($postArr,$imagesArray,$userarray);
-						} else {
-							displayPostsIfAdmin($postArr,$imagesArray,$userarray);
-						}
-					} else {
-						displayPostsIfAnonymous($postArr,$imagesArray,$userarray);
-					}
-				?>
-			</div>
+			
 			
 			<?php
 				$threadQuery = mysqli_query($data,"select * from posts where PostType='Thread'");
@@ -239,6 +302,13 @@
 			</div>
 				
 		</div>
-		
+		<script>
+		(function($) {
+			$('nav li').click(function() {
+			  $(this).addClass('active').siblings('li').removeClass('active');
+			  $('section:nth-of-type('+$(this).data('rel')+')').stop().fadeIn(400, 'linear').siblings('section').stop().fadeOut(400, 'linear'); 
+			});
+		  })(jQuery);
+		</script>
 	</body>
 </html>
