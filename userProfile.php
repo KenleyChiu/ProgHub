@@ -9,9 +9,58 @@
 	</head>
 	
 	<?php
-		global $user;
+		global $user,$data;
 		$userarray=$GLOBALS["userArr"];
 		$userDetailsarray=$GLOBALS["specificUserArr"];
+		
+		function fillPostArray($postsQuery){
+			$postArr = array();
+			$y=0;
+			while($posts = mysqli_fetch_array($postsQuery)){
+				$postsArr = array();
+				$postsArr["Author"] = $posts["Author"];
+				$postsArr["Title"] = $posts["Title"];
+				$postsArr["TextContent"] = $posts["TextContent"];
+				$postsArr["ImageContent"] = $posts["ImageContent"];
+				$postsArr["Likes"] = $posts["Likes"];
+				$postsArr["Comments"] = $posts["Comments"];
+				$postsArr["Community"] = $posts["Community"];
+				$postsArr["PostType"] = $posts["PostType"];
+				$postsArr["Upload"] = $posts["Upload"];
+				array_push($postsArr,$postsArr["Author"],$postsArr["Title"],$postsArr["TextContent"],$postsArr["ImageContent"],$postsArr["Likes"],$postsArr["Comments"]
+				,$postsArr["Community"],$postsArr["PostType"],$postsArr["Upload"]);
+				array_push($postArr,$postsArr);
+				$y++;
+				if($y==3) break;
+			}
+			return $postArr;
+		}
+		
+		function toPost($post){
+			$_SESSION['statusPost'] = "selected";
+			$_SESSION['AuthorPost'] = $post["Author"];
+			$_SESSION['TitlePost'] = $post["Title"];
+			$_SESSION['ImageContentPost'] = $post["ImageContent"];
+			$_SESSION['TextContentPost'] = $post["TextContent"];
+			$_SESSION['StarsPost'] = $post["Likes"];
+			$_SESSION['CommentsPost'] = $post["Comments"];
+			$_SESSION['commSelected'] = $post["Community"];
+			$_SESSION['PostTypePost'] = $post["PostType"];
+			header("Location:post.php");
+		}
+		
+		function displayPosts($postArr){
+			foreach(array_values($postArr) as $key => $post){
+				echo "<div class='singlePost'>";
+				echo "<form method='post'>";
+				echo "<input class='postTitleBtn' type='submit' name='goToPost' value='".$post["Title"]."'/><br><br>";
+				echo "</form>";
+				echo "<label class='stars'> ".$post["Likes"]." Stars </label>";
+				echo "<br>";
+				echo "</div>";
+			}
+			return;
+		}
 	?>
 
 	<body>
@@ -96,8 +145,6 @@
 								<li><input class='favoriteAcc' type='submit' name='favoriteAcc' value='".$favoriteValue."'/></li>
 								</form>
 							</ul>";
-							unset($_SESSION['statusUser']);
-							$_SESSION['statusUser'] = "notselected";
 						} else { 
 							echo "<table class='profileFormTableUser'>
 								<tr><td align='center'><img class='profileImg' src='data:image/jpeg;base64,".base64_encode($userDetailsarray[5])."'></td></tr>
@@ -123,7 +170,41 @@
 				?>
 				
 			</div>
-			
+
+			<div class="data">
+				
+				<ul class="data">
+					<li class="top3posts">Top 3 Posts:</li><br><br>
+					<?php
+						
+						
+						if($_SESSION['statusUser'] == "selected"){
+							$postsQuery = mysqli_query($data,"select * from posts where Author='".$username."' order by Likes DESC");
+							$postArr = fillPostArray($postsQuery);
+							displayPosts($postArr);
+							unset($_SESSION['statusUser']);
+							$_SESSION['statusUser'] = "notselected";
+						} else {
+							$postsQuery = mysqli_query($data,"select * from posts where Author='".$userarray[0]."' order by Likes DESC");
+							$postArr = fillPostArray($postsQuery);
+							displayPosts($postArr);
+						}
+						
+						// Go to post.php	
+						if(isset($_POST['goToPost']))
+						{
+							foreach($postArr as $post){
+								if($post['Title']==$_POST['goToPost'])
+								{
+									toPost($post);
+								}
+							}
+						}
+						
+						
+					?>
+				</ul>
+			</div>			
 			<!--FOOTER-->
 			<div class="footer">
 				
