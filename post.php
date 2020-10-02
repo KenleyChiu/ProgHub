@@ -138,7 +138,6 @@
 						
 						
 					if(isset($_POST['likeBtn'])){
-											
 						if($signedInStatus == "True"){
 							if(!empty($likeArr)){
 								$likeValue = "Unstar";
