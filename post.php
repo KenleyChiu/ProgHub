@@ -130,16 +130,12 @@
 					$newLikes = "0";
 					$profilePic= searchAuthor($postAuthor,$imagesArray);
 					
-						$checkLikes = "select * from postlikes where Community='".$community."' and Title='".$postTitle."'";
-						$liked = mysqli_query($data,$checkLikes);
-						$likeArr = mysqli_fetch_array($liked);
-						$newLikes = $likesCount;
+					$checkLikes = "select * from postlikes where Community='".$community."' and Title='".$postTitle."'";
+					$liked = mysqli_query($data,$checkLikes);
+					$likeArr = mysqli_fetch_array($liked);
+					$newLikes = $likesCount;
 							
 						
-<<<<<<< HEAD
-						
-=======
->>>>>>> 2ea53a79d679e8ecf7623d18827059fc1b332f97
 					if(isset($_POST['likeBtn'])){			
 						if($signedInStatus == "True"){
 							if(!empty($likeArr)){
