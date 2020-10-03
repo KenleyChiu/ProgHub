@@ -222,7 +222,7 @@ ul.searchPost{
 .searchPostInput{
 	padding: 7 5 7 30;
 	box-sizing: border-box;
-	width: 300;
+	width: 350;
 	background-image: url("pictures/search.png");
 	background-position: 10px 8px;
 	background-size: 12px 12px;

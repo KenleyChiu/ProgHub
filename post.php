@@ -137,7 +137,11 @@
 							
 						
 						
+<<<<<<< HEAD
 					if(isset($_POST['likeBtn'])){			
+=======
+					if(isset($_POST['likeBtn'])){
+>>>>>>> c2014109a2291179d0b5c07a6dd93753b0d2bf04
 						if($signedInStatus == "True"){
 							if(!empty($likeArr)){
 								$likeValue = "Unstar";
@@ -210,7 +214,7 @@
 												$statement = "Insert into commentPost (Username,Title,TextComment,ImageComment,Likes,Community,PostType,Upload) values ('$userarray[0]','$postTitle','$comment','$fileDestination','0','$community','Thread',NOW())";
 												$status=mysqli_query($data,$statement);
 												if($status){
-													$errorMessage="File sucessfully Upload";
+													$errorMessage="File sucessfully Uploaded";
 													$commentsCount++;
 													$addComment = "update posts set Comments='".$commentsCount."' where Title='".$postTitle."'";
 													mysqli_query($data,$addComment);
@@ -219,7 +223,7 @@
 													$errorMessage="File upload Failed";
 												}
 											}else{
-												$errorMessage = "Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.";
+												$errorMessage = "Sorry, only JPG, JPEG, PNG, & GIF files are allowed for upload.";
 											}
 										}
 									}

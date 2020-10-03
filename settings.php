@@ -43,7 +43,7 @@
 				if(in_array($fileType, $allowTypes)){ 
 					$changeImage= TRUE;
 				}else{
-					$userRegistrationError= "Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.";
+					$userRegistrationError= "Sorry, only JPG, JPEG, PNG, & GIF files are allowed for upload.";
 					$error = TRUE;
 				}
 			}
