@@ -26,8 +26,8 @@
 		</div>-->
 		
 		<div class="back">
-			<form class="backForm" action="post.php" method="post">
-				<input class="backBtn" type="submit" name="backBtn" value="Back to Post" />
+			<form class="backForm" action="community.php" method="post">
+				<input class="backBtn" type="submit" name="backBtn" value="Back to Community" />
 			</form>
 		</div>
 			
