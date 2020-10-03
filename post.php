@@ -210,7 +210,7 @@
 												$statement = "Insert into commentPost (Username,Title,TextComment,ImageComment,Likes,Community,PostType,Upload) values ('$userarray[0]','$postTitle','$comment','$fileDestination','0','$community','Thread',NOW())";
 												$status=mysqli_query($data,$statement);
 												if($status){
-													$errorMessage="File sucessfully Upload";
+													$errorMessage="File sucessfully Uploaded";
 													$commentsCount++;
 													$addComment = "update posts set Comments='".$commentsCount."' where Title='".$postTitle."'";
 													mysqli_query($data,$addComment);
