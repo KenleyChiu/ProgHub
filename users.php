@@ -122,17 +122,8 @@
 			<div class="data">
 				<ul class="data">
 					<?php
-						if($signedInStatus == "True"){
-							if($userarray[3] == "User"){
-								echo "<li class='usersNum'>Total Users: ".$usersCount." </li>";
-							} else {
-								echo "<li class='usersNum'>Total Users: ".$usersCount." </li>";
-								echo "<li class='adminNum'>Total Admins: ".$adminsCount." </li>";
-							}
-						} else {
-							echo "<li class='usersNum'>Total Users: ".$usersCount." </li>";
-							echo "<li class='adminNum'>Total Admins: ".$adminsCount." </li>";
-						}
+						echo "<li class='usersNum'>Total Users: ".$usersCount." </li>";
+						echo "<li class='adminNum'>Total Admins: ".$adminsCount." </li>";
 					?>
 				</ul>
 			</div>
