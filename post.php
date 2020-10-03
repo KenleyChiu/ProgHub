@@ -136,7 +136,10 @@
 						$newLikes = $likesCount;
 							
 						
+<<<<<<< HEAD
 						
+=======
+>>>>>>> 2ea53a79d679e8ecf7623d18827059fc1b332f97
 					if(isset($_POST['likeBtn'])){			
 						if($signedInStatus == "True"){
 							if(!empty($likeArr)){
