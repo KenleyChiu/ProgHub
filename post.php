@@ -137,11 +137,7 @@
 							
 						
 						
-<<<<<<< HEAD
 					if(isset($_POST['likeBtn'])){			
-=======
-					if(isset($_POST['likeBtn'])){
->>>>>>> c2014109a2291179d0b5c07a6dd93753b0d2bf04
 						if($signedInStatus == "True"){
 							if(!empty($likeArr)){
 								$likeValue = "Unstar";
