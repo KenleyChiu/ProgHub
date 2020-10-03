@@ -291,9 +291,9 @@
 							if($comments['Username'] == $userarray[0] || $userarray[3]== "Admin")
 							{
 								echo "<img class='delImg' src='pictures/delete.png'/>";
-								echo "<form class='deleteBtnForm' method='post'>";
+								echo "<form class='deleteBtnCmtForm' method='post'>";
 								echo "<input type='hidden' name='commentDeleteInfo' value='".$comments['id']."'/><br>";
-								echo "<input class='deleteBtn' type='submit' value =''/><br><br>";
+								echo "<input class='deleteBtnCmt' type='submit' value =''/><br><br>";
 								echo "</form>";
 								echo "<form class='editBtnFormComment' method='post'>";
 								echo "<input type='hidden' name='commentEditInfo' value='".$comments['id']."'/><br>";

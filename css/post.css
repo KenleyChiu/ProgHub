@@ -479,6 +479,27 @@ label.createComment{
 	position:relative;
 }
 
+.deleteBtnCmtForm{
+	/*display:inline-block;
+	float:right;*/
+	margin-right:10;
+	float:right;
+	margin-bottom: 30;
+}
+
+.deleteBtnCmt{
+	border: 1px solid transparent;
+	background-color: transparent;
+	cursor: pointer;
+	/*display:inline-block;
+	position:absolute;*/
+	padding: 11;
+	margin-left: 10;
+	margin-top:-18;
+	float:right;
+	position: absolute;
+}
+
 .commentUserImg{
 	margin: 2 0 0 4; 
 	width: 35px; 
