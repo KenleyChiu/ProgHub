@@ -319,6 +319,8 @@ p.postContent{
 	margin-left: 10;
 	padding: 0 0 10 15;
 	color: black;
+	text-align: justify;
+	margin-right: 20;
 }
 
 .likeBtn{
