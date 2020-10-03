@@ -126,22 +126,24 @@
 						$_SESSION['id'] = $_POST['commentDeleteInfo'];
 						header("Location:deleteComment.php");
 					}
-					
+					$likeValue = "Star";
+					$newLikes = "0";
 					$profilePic= searchAuthor($postAuthor,$imagesArray);
-					if($signedInStatus == "True"){
-						$likeValue = "Star";
-						$checkLikes = "select * from postlikes where Username='".$userarray[0]."' and Title='".$postTitle."'";
+					
+						$checkLikes = "select * from postlikes where Community='".$community."' and Title='".$postTitle."'";
 						$liked = mysqli_query($data,$checkLikes);
 						$likeArr = mysqli_fetch_array($liked);
 						$newLikes = $likesCount;
 							
-						if(!empty($likeArr)){
-							$likeValue = "Unstar";
-						} else {
-							$likeValue = "Star";
-						}
 						
-						if(isset($_POST['likeBtn'])){	
+						
+					if(isset($_POST['likeBtn'])){			
+						if($signedInStatus == "True"){
+							if(!empty($likeArr)){
+								$likeValue = "Unstar";
+							} else {
+								$likeValue = "Star";
+							}	
 							if(empty($likeArr)){
 								$newLikes = $likesCount + 1;
 								$addLikes = "update posts set Likes='".$newLikes."' where Title='".$postTitle."'";
@@ -166,10 +168,11 @@
 								$likesCount = $newLikes;
 								$likeValue = "Star";
 							}
+						}else {
+							$errorMessage = "You have to be logged in to Like!";
 						}
-					} else {
-						$errorMessage = "You have to be logged in to do that like!";
 					}
+					
 					// if create comment button is pressed
 					if(isset($_POST['commentBtn'])){
 						if($signedInStatus == "True"){		
@@ -187,7 +190,7 @@
 										$statement="Insert into commentpost (Username,Title,TextComment,ImageComment,Likes,Community,PostType,Upload) values ('$userarray[0]','$postTitle','$comment','','0','$community','Thread',NOW())";
 										mysqli_query($data,$statement);
 										$commentsCount++;
-										$addComment = "update posts set Comment='".$commentsCount."' where Title='".$postTitle."'";
+										$addComment = "update posts set Comments='".$commentsCount."' where Title='".$postTitle."'";
 										mysqli_query($data,$addComment);
 										$_SESSION['CommentsPost']=$commentsCount;
 									}else{
@@ -223,7 +226,7 @@
 								}
 							}
 						 }else {
-							$errorMessage = "You have to be logged in to do that!";
+							$errorMessage = "You have to be logged in to Comment!";
 						}
 					} 
 					
@@ -256,7 +259,7 @@
 						echo "<input class='likeBtn' type='submit' name='likeBtn' value='".$likeValue."'></form>";
 						echo "<label class='stars'>" .$newLikes." Stars </label>";
 						echo "<label class='comments'>" .$commentsCount." Comments </label>";
-					}
+					} 
 
 					
 				?>				
@@ -270,7 +273,7 @@
 					<tr><td><input class="commentInput" type = "text" name = "commentContent" Placeholder="Write a comment.."/></td></tr>
 					<tr><td><input class="imageInput" type = "file" name = "commentImage" Placeholder="Image Filepath"/></td></tr>
 					<tr><td><span style="color:red"> <?php echo $errorMessage;?> </span></td></tr>
-					<tr><td><form action=" <?php echo $_SERVER['PHP_SELF']; ?>" method='post'><input class="commentBtn" type = "submit" name = "commentBtn" value="Post Comment"/></form></td></tr>
+					<tr><td><input class="commentBtn" type = "submit" name = "commentBtn" value="Post Comment"/></td></tr>
 				</table>
 				</form>
 			</div>
