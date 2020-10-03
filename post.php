@@ -190,7 +190,7 @@
 										$statement="Insert into commentpost (Username,Title,TextComment,ImageComment,Likes,Community,PostType,Upload) values ('$userarray[0]','$postTitle','$comment','','0','$community','Thread',NOW())";
 										mysqli_query($data,$statement);
 										$commentsCount++;
-										$addComment = "update posts set Comment='".$commentsCount."' where Title='".$postTitle."'";
+										$addComment = "update posts set Comments='".$commentsCount."' where Title='".$postTitle."'";
 										mysqli_query($data,$addComment);
 										$_SESSION['CommentsPost']=$commentsCount;
 									}else{
