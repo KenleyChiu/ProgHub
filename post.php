@@ -219,7 +219,7 @@
 													$errorMessage="File upload Failed";
 												}
 											}else{
-												$errorMessage = "Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.";
+												$errorMessage = "Sorry, only JPG, JPEG, PNG, & GIF files are allowed for upload.";
 											}
 										}
 									}
